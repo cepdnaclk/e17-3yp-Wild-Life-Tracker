@@ -14,7 +14,7 @@ title: Project Template
 ---
 
 ## Team
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/17/338, SRIMAL R M L C, [email](mailto:e17338@eng.pdn.ac.lk)
 -  eNumber, Name, [email](mailto:name@email.com)
 -  eNumber, Name, [email](mailto:name@email.com)
 
