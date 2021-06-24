@@ -1,26 +1,26 @@
 {
     "team": [
         {
-            "name": "Team Member Name 1",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx",
-            "github_profile":"#",
+            "name": "Alahakoon A.M.H.H",
+            "email": "e17176@eng.pdn.ac.lk",
+            "eNumber": "E/17/006",
+            "github_profile":"github.com/hansa31",
             "linkedin_profile":"#",
             "website": "#"
         },
         {
-            "name": "Team Member Name 2",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx",
-            "github_profile":"#",
+            "name": "Kumara W.M.E.S.K",
+            "email": "e17176@eng.pdn.ac.lk",
+            "eNumber": "E/17/176",
+            "github_profile":"github.com/hansa31",
             "linkedin_profile":"#",
             "website": "#"
         },
         {
-            "name": "Team Member Name 3",
-            "email": "email@eng.pdn.ac.lk",
-            "eNumber": "E/yy/xxx",
-            "github_profile":"#",
+            "name": "Srimal R.M.L.C",
+            "email": "e17338@eng.pdn.ac.lk",
+            "eNumber": "E/17/338",
+            "github_profile":"github.com/LakshithaCS",
             "linkedin_profile":"#",
             "website": "#"
         }
