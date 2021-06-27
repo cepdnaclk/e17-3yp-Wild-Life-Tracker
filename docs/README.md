@@ -3,20 +3,20 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and project title
-repository-name: eYY-3yp-project-template
-title: Project Template
+repository-name: eYY-3yp-Wild-Life-Tracker
+title: Wild Life Tracker
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Wild Life Tracker
 
 ---
 
 ## Team
 -  E/17/338, SRIMAL R M L C, [email](mailto:e17338@eng.pdn.ac.lk)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+-  E/17/176, Kumara W.M.E.S.K, [email](mailto:e17176@eng.pdn.ac.lk)
+-  E/17/006, Alahakoon A.M.H.H, [email](mailto:e17006@eng.pdn.ac.lk)
 
 <!-- Image (photo/drawing of the final hardware) should be here -->
 
