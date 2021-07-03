@@ -16,7 +16,7 @@ title: Wild-Life-Tracker
 -  E/17/338, Srimal R. M. L. C., [e17338@eng.pdn.ac.lk](mailto:e17338@eng.pdn.ac.lk)
 
 ## Table of Contents
-1. [Overview](#introduction)
+1. [Overview](#Overview)
 2. [Goals](#Goals)
 3. [Solution Architecture](#solution-Architecture )
 4. [Hardware List](#Hardware-List)
