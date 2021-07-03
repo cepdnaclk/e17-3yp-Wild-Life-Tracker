@@ -1,11 +1,3 @@
----
-layout: home
-permalink: index.html
-
-repository-name: e17-3yp-Wild-Life-Tracker
-title: Wild-Life-Tracker
----
-
 # Wild-Life-Tracker
 
 ---
