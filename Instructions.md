@@ -1,16 +1,4 @@
-___
-# Wild Life Tracker
-___
-
-# e17-3yp-Wild-Life-Tracker
-
-Basic documentation about 3rd year Cyber-Physical system design project
-
-Group Members : 
-* E/17/006 A. M. H. H. Alahakoon e17006@eng.pdn.ac.lk 
-* E/17/ e17@eng.pdn.ac.lk 
-* E/17/ e17@eng.pdn.ac.lk
-
+This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
 
 ### Enable GitHub Pages
 
