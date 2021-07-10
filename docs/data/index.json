@@ -26,12 +26,12 @@
         {
             "name": "Dr. Isuru Nawinne",
             "email": "isurunawinne@eng.pdn.ac.lk",
-            "linkedin_profile":"https://lk.linkedin.com/in/isuru-nawinne-73302833",
+            "linkedin_profile":"https://lk.linkedin.com/in/isuru-nawinne-73302833"
         },
         {
             "name": "Dr. Mahanama Wikramasinghe",
             "email": "mahanamaw@eng.pdn.ac.lk",
-            "linkedin_profile":"https://www.linkedin.com/in/mahanama",
+            "linkedin_profile":"https://www.linkedin.com/in/mahanama"
         }
     ],
     "tags": ["Web", "Embedded Systems"]
