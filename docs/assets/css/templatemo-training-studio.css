@@ -324,7 +324,13 @@ header
 }
 
 .header-area .main-nav .nav li:last-child a:hover {
-  background-color: #f9735b;
+  background-color: #ed6b44;
+  color: #fff!important;
+  opacity: 1;
+}
+.background-header .main-nav .nav li:last-child a.active {
+  background-color: #7c7979a1;
+  color: #000000!important;
   opacity: 1;
 }
 
