@@ -329,8 +329,8 @@ header
   opacity: 1;
 }
 .background-header .main-nav .nav li:last-child a.active {
-  background-color: #ed563b;
-  color: #fff!important;
+  background-color: #7c7979a1;
+  color: #000000!important;
   opacity: 1;
 }
 
