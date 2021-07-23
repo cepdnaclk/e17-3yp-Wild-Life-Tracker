@@ -209,7 +209,7 @@
                 </div>
             </div>
             
-            <div>
+             <div style="border-bottom: 25px solid #ffffff;">
             <h2>Web Application</h2>
             </div>
 
@@ -269,40 +269,51 @@
                     </div>
                 </div>
                 
-                <div>
+                <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
                     <h2>Hardware Implementation</h2>
                 </div>
     
-                <div class="row" id="tabs">
+                 <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
                   <div class="col-lg-4">
                     <ul>
-                      <li><a href='#tabs-5'><img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a></li>
-                      <li><a href='#tabs-6'><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a></a></li>
-                      <li><a href='#tabs-7'><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a></a></li>
-                      <li><a href='#tabs-8'><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a></a></li>
+                  
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-5')" id="current"><img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a>                 
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-6')"><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a>
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-7')"><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a>
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-8')"><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a>
+                  </li>  
                     </ul>
                     </div>
+
+
                   <div class="col-lg-8">
                     <section class='tabs-content'>
-                      <article id='tabs-5'>
+                      <article id='tabs-5' class="demo2">
                         <img src="assets/images/design.jpg" alt="First">
                         <h4>description</h4>
                         <p>info</p>
     
                       </article>
-                      <article id='tabs-6'>
+                      <article id='tabs-6' class="demo2">
                         <img src="assets/images/web/login.jpg" alt="Second">
                         <h4>description</h4>
                         <p>info</p>
                         
                       </article>
-                      <article id='tabs-7'>
+                      <article id='tabs-7' class="demo2">
                         <img src="assets/images/web/admin.jpg" alt="Third">
                         <h4>description</h4>
                         <p>info</p>
                        
                       </article>
-                      <article id='tabs-8'>
+                      <article id='tabs-8' class="demo2">
                         <img src="assets/images/web/client.jpg" alt="Fourth">
                         <h4>description</h4>
                         <p>info</p>
@@ -527,6 +538,7 @@
     
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/tab.js"></script>
 
   </body>
 </html>
