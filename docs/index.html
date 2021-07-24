@@ -208,13 +208,18 @@
                     </div>
                 </div>
             </div>
+            
+             <div style="border-bottom: 25px solid #ffffff;">
+            <h2>Web Application</h2>
+            </div>
+
             <div class="row" id="tabs">
               <div class="col-lg-4">
                 <ul>
-                  <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon.png" alt="">Tab1</a></li>
-                  <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon.png" alt="">Tab2</a></a></li>
-                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon.png" alt="">Tab3</a></a></li>
-                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon.png" alt="">Tab4</a></a></li>
+                  <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon.png" alt="">Registration</a></li>
+                  <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon.png" alt="">Login</a></a></li>
+                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon.png" alt="">Administartors</a></a></li>
+                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon.png" alt="">Clients</a></a></li>
                 </ul>
               </div>
               <div class="col-lg-8">
@@ -226,25 +231,97 @@
 
                   </article>
                   <article id='tabs-2'>
-                    <img src="assets/images/design.jpg" alt="Second">
+                    <img src="assets/images/web/login.jpg" alt="Second">
                     <h4>description</h4>
                     <p>info</p>
                     
                   </article>
                   <article id='tabs-3'>
-                    <img src="assets/images/design.jpg" alt="Third">
+                    <img src="assets/images/web/admin.jpg" alt="Third">
                     <h4>description</h4>
                     <p>info</p>
                    
                   </article>
                   <article id='tabs-4'>
-                    <img src="assets/images/design.jpg" alt="Fourth">
+                    <img src="assets/images/web/client.jpg" alt="Fourth">
                     <h4>description</h4>
                     <p>info</p>
                     
                   </article>
                 </section>
               </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="design">
+        <div class="container">
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="section-heading">
+                            <img src="assets/images/line-dec.png" alt="">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
+                    <h2>Hardware Implementation</h2>
+                </div>
+    
+                 <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
+                  <div class="col-lg-4">
+                    <ul>
+                  
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-5')" id="current"><img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a>                 
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-6')"><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a>
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-7')"><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a>
+                  </li>
+                  <li>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-8')"><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a>
+                  </li>  
+                    </ul>
+                    </div>
+
+
+                  <div class="col-lg-8">
+                    <section class='tabs-content'>
+                      <article id='tabs-5' class="demo2">
+                        <img src="assets/images/design.jpg" alt="First">
+                        <h4>description</h4>
+                        <p>info</p>
+    
+                      </article>
+                      <article id='tabs-6' class="demo2">
+                        <img src="assets/images/web/login.jpg" alt="Second">
+                        <h4>description</h4>
+                        <p>info</p>
+                        
+                      </article>
+                      <article id='tabs-7' class="demo2">
+                        <img src="assets/images/web/admin.jpg" alt="Third">
+                        <h4>description</h4>
+                        <p>info</p>
+                       
+                      </article>
+                      <article id='tabs-8' class="demo2">
+                        <img src="assets/images/web/client.jpg" alt="Fourth">
+                        <h4>description</h4>
+                        <p>info</p>
+                        
+                      </article>
+                    </section>
+                  
+                </div>
             </div>
         </div>
     </section>
@@ -257,7 +334,7 @@
                     <div class="section-heading dark-bg">
                         <h2>Project <em>Budget</em></h2>
                         <img src="assets/images/line-dec.png" alt="">
-                        <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-budget-Description-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                        <p>(Budget is made for 1 Hardware unit only)</p>
                     </div>
                 </div>
             </div>
@@ -266,24 +343,55 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <td>Item1</td>
-                                    <td>Price1</td>
+                                    <td style="font-size:20px"><b>Hardware Component</b></td>
+                                    <td style="font-size:20px"><b>Price(Rs)</b></td>
                                 </tr>
                                 <tr>
-                                    <td>Item2</td>
-                                    <td>Price2</td>
+                                    <td>Infrared PIR motion Sensor</td>
+                                    <td>325.00</td>
                                 </tr>
                                 <tr>
-                                    <td>Item3</td>
-                                    <td>Price3</td>
+                                    <td>ESP32 Cam Board</td>
+                                    <td>1890.00</td>
                                 </tr>
                                 <tr>
-                                    <td>Item4</td>
-                                    <td>Price4</td>
+                                    <td>FTDI connector</td>
+                                    <td>470.00</td>
                                 </tr>
                                 <tr>
-                                    <td>Item5</td>
-                                    <td>Price5</td>
+                                    <td>Sim800L V2.0 GSm GPRS Module</td>
+                                    <td>1790.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Ublox NEO_6M GPS module</td>
+                                    <td>1390.00</td>
+                                </tr>
+                                <tr>
+                                    <td>1W LED</td>
+                                    <td>22.00</td>
+                                </tr><tr>
+                                    <td>ATmega328p-pu chip</td>
+                                    <td>375.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Solar Panel (>6V) 165mA</td>
+                                    <td>560.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Battery Charger</td>
+                                    <td>120.00</td>
+                                </tr>
+                                <tr>
+                                    <td>3.7V 1800mAh batteris*2</td>
+                                    <td>550.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Other Expenditures</td>
+                                    <td>1000.00</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:15px"><b>TOTAL</b></td>
+                                    <td style="font-size:15px"><u><b>8402.00</b></u></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -341,7 +449,7 @@
                     <div class="section-heading">
                         <h2>Group <em>Members</em></h2>
                         <img src="assets/images/line-dec.png" alt="">
-                        <p>Group 9.</p>
+                        <p>Group 9</p>
                     </div>
                 </div>
             </div>
@@ -373,7 +481,7 @@
                             <h4>Alahakoon A.M.H.H</h4>
                             <p></p>
                             <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i></a></li>
                             </ul>
@@ -407,7 +515,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>A Project by, group of 3rd year undergraduates,University of Peradeniya,Sri Lanka</p>
+                    <p>A Project by, group of 3rd year computer engineering undergraduates,University of Peradeniya,Sri Lanka</p>
                 </div>
             </div>
         </div>
@@ -430,6 +538,7 @@
     
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/tab.js"></script>
 
   </body>
 </html>
