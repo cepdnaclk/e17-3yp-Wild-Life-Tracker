@@ -269,34 +269,43 @@
                 <ul>
                   <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon.png" alt="">Registration</a></li>
                   <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon.png" alt="">Login</a></a></li>
-                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon.png" alt="">Administartors</a></a></li>
-                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon.png" alt="">Clients</a></a></li>
+                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon.png" alt="">Researcher's UI</a></a></li>
+                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon.png" alt="">Administartor's UI</a></a></li>
                 </ul>
               </div>
-              <div class="col-lg-8">
+              <div class="col-lg-7">
                 <section class='tabs-content'>
                   <article id='tabs-1'>
-                    <img src="assets/images/design.jpg" alt="First">
-                    <h4>description</h4>
-                    <p>info</p>
+                    <img src="assets/images/web/register.jpg" style="border: 2px solid #555;" alt="First">
+                    <p><br>It is normal registration. But, reseachers have to provid a <b>legal document for prove he is a real reseacher</b>. example : Document that issued by the Department of wildlife.<br><br>
+                    An administrator will accept the registration after cormirming all information are correct and legal.
+                    </p>
 
                   </article>
                   <article id='tabs-2'>
-                    <img src="assets/images/web/login.jpg" alt="Second">
-                    <h4>description</h4>
-                    <p>info</p>
+                    <img src="assets/images/web/login.jpg" style="border: 2px solid #555;" alt="Second">
+                    <p>
+                    <br>Users can login to the sytem by providing <b>username</b> and <b>password</b>.
+                    </p>
                     
                   </article>
                   <article id='tabs-3'>
-                    <img src="assets/images/web/admin.jpg" alt="Third">
-                    <h4>description</h4>
-                    <p>info</p>
+                    <img src="assets/images/web/client.jpg" style="border: 2px solid #555;" alt="Third">
+                    <p>
+                     <br>
+                        There are special two tabs.<br>
+                        <b>Connected devices - </b>
+                        Used to connect IOT device and web application. This can be done by using the using ID and password of the device.<br><br>
+                        <b>Photos - </b>
+                        All the photos are shown in this tab.   
+                    </p>
                    
                   </article>
                   <article id='tabs-4'>
-                    <img src="assets/images/web/client.jpg" alt="Fourth">
-                    <h4>description</h4>
-                    <p>info</p>
+                    <img src="assets/images/web/admin.jpg" style="border: 2px solid #555;" alt="Fourth">
+                    <p>
+                    <br>Admins have to check the application for registrations. If all information legal and correct, then they can approve.
+                    </p>
                     
                   </article>
                 </section>
@@ -306,20 +315,14 @@
         </div>
     </section>
 
+    <!-- ***** Hardware units ***** -->
     <section class="section" id="design">
         <div class="container">
-
+            <h2>Organization of the Hardware System</h2>
 
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-3">
-                        <div class="section-heading">
-                            <img src="assets/images/line-dec.png" alt="">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
                 
+                <img src="assets/images/Hardware3.png" style="width: 100%;" alt="">
                 <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
                     <h2>Hardware Implementation</h2>
                 </div>
@@ -329,45 +332,54 @@
                     <ul>
                   
                   <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-5')" id="current"><img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a>                 
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active">
+                      <img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a>                 
                   </li>
                   <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-6')"><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a>
                   </li>
                   <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-7')"><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a>
                   </li>
                   <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-8')"><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a>
+                      <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a>
                   </li>  
                     </ul>
                     </div>
 
 
-                  <div class="col-lg-8">
+                  <div class="col-lg-6">
                     <section class='tabs-content'>
                       <article id='tabs-5' class="demo2">
-                        <img src="assets/images/design.jpg" alt="First">
-                        <h4>description</h4>
-                        <p>info</p>
+                        <img src="assets/images/Hardware/cam.jpg" style="border: 2px solid #555; width: 90%;" alt="First">
+                        <ul>
+                            <li>This unit handles the sensing and taking snapshots of wild animals accordingly.</li>
+                            <li>It is capable of getting clear shots, day as well as night.</li>
+                        </ul>
     
                       </article>
-                      <article id='tabs-6' class="demo2">
-                        <img src="assets/images/web/login.jpg" alt="Second">
-                        <h4>description</h4>
-                        <p>info</p>
+                      <article id='tabs-6' class="demo2" style="display:none;">
+                        <img src="assets/images/Hardware/gps.jpg" style="border: 2px solid #555; width: 90%;" alt="Second">
+                        <ul>
+                            <li>SIM800 module is used to communicate with the web server remotely in harsh environments. (No Wifi access etc.)</li>
+                            <li>GPS module is used to pinpoint the location more accurately.</li>
+                        </ul>
                         
                       </article>
-                      <article id='tabs-7' class="demo2">
-                        <img src="assets/images/web/admin.jpg" alt="Third">
-                        <h4>description</h4>
-                        <p>info</p>
+                      <article id='tabs-7' class="demo2" style="display:none;">
+                        <img src="assets/images/Hardware/power.jpg" style="border: 2px solid #555; width: 90%;" alt="Third">
+                        <ul>
+                            <li>Solar cell recharges the batteries when there is optimal sunlight.</li>
+                            <li>This generated power can be used to power the system very efficiently in harsh environments.</li>
+                        </ul>
                        
                       </article>
-                      <article id='tabs-8' class="demo2">
-                        <img src="assets/images/web/client.jpg" alt="Fourth">
-                        <h4>description</h4>
-                        <p>info</p>
+                      <article id='tabs-8' class="demo2" style="display:none;">
+                        <img src="assets/images/Hardware/datapro.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
+                        <ul>
+                            <li>ATmega328p chip will interconnect the above units and control the dataflow in desired manner.</li>
+                            <li>This Atmega328p chip is low budget, PCB friendly and energy efficient.</li>
+                        </ul>
                         
                       </article>
                     </section>
@@ -525,7 +537,7 @@
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="assets/images/member.jpg" alt="">
+                            <img src="assets/images/Members/Hansa.JPG"  width="300" height="220" alt="">
                         </div>
                         <div class="down-content">
                             <span>E/17/006</span>

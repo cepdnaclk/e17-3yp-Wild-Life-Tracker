@@ -1253,3 +1253,7 @@ responsive
     margin-left: 130px;
   }
 }
+
+.demo.active{
+  color: #ed563b !important ;
+}
