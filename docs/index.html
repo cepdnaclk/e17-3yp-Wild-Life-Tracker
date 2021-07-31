@@ -53,6 +53,7 @@
                             <li class="scroll-to-section"><a href="#about">About</a></li>
                             <li class="scroll-to-section"><a href="#design">Design</a></li>
                             <li class="scroll-to-section"><a href="#schedule">Budget</a></li>
+                            <li class="scroll-to-section"><a href="#timeline">Timeline</a></li>
                             <li class="scroll-to-section"><a href="#contact-us">Contact</a></li>
                         </ul>        
 
@@ -155,8 +156,7 @@
                             <div class="right-content">
                                 <h4>High Performance Camera Module</h4>
                                 <p>
-                                    The poweful camera unit is capable of capturing very clear photos.
-                                    Also, the flasher will automatically turning ON, in low light.
+                                    The poweful camera unit to capture quality phtos inn any light condition.
                                 </p>
                                 <a href="#" class="text-button">Discover More</a>
                             </div>
@@ -267,10 +267,10 @@
             <div class="row" id="tabs">
               <div class="col-lg-4">
                 <ul>
-                  <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon.png" alt="">Registration</a></li>
-                  <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon.png" alt="">Login</a></a></li>
-                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon.png" alt="">Researcher's UI</a></a></li>
-                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon.png" alt="">Administartor's UI</a></a></li>
+                  <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon-wb.png" alt="">Registration</a></li>
+                  <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon-wb.png" alt="">Login</a></a></li>
+                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon-wb.png" alt="">Researcher's UI</a></a></li>
+                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon-wb.png" alt="">Administartor's UI</a></a></li>
                 </ul>
               </div>
               <div class="col-lg-7">
@@ -278,14 +278,15 @@
                   <article id='tabs-1'>
                     <img src="assets/images/web/register.jpg" style="border: 2px solid #555;" alt="First">
                     <p><br>It is normal registration. But, reseachers have to provid a <b>legal document for prove he is a real reseacher</b>. example : Document that issued by the Department of wildlife.<br><br>
-                    An administrator will accept the registration after cormirming all information are correct and legal.
+                    An administrator will accept the registration after confirming all information are correct and legal.
                     </p>
 
                   </article>
                   <article id='tabs-2'>
                     <img src="assets/images/web/login.jpg" style="border: 2px solid #555;" alt="Second">
                     <p>
-                    <br>Users can login to the sytem by providing <b>username</b> and <b>password</b>.
+                        <br>Users can login to the sytem by providing <b>username</b> and <b>password</b>.
+                        <br>Only, the users who are registered and approved by the administrator will be able to log in.
                     </p>
                     
                   </article>
@@ -306,18 +307,16 @@
                     <p>
                     <br>Admins have to check the application for registrations. If all information legal and correct, then they can approve.
                     </p>
-                    
                   </article>
                 </section>
               </div>
             </div>
-
         </div>
     </section>
 
     <!-- ***** Hardware units ***** -->
     <section class="section" id="design">
-        <div class="container">
+        <div class="container" style="margin-top: 5%;">
             <h2>Organization of the Hardware System</h2>
 
             <div class="container">
@@ -328,23 +327,25 @@
                 </div>
     
                  <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
-                  <div class="col-lg-4">
-                    <ul>
-                  
-                  <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active">
-                      <img src="assets/images/tabs-first-icon.png" alt="">Camera and Sensor unit</a>                 
-                  </li>
-                  <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Connection and GPS unit</a>
-                  </li>
-                  <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Power unit</a>
-                  </li>
-                  <li>
-                      <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo"><img src="assets/images/tabs-first-icon.png" alt="">Data processing unit</a>
-                  </li>  
-                    </ul>
+                    <div class="col-lg-5">
+                        <ul>
+                            <li>
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active">
+                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>                 
+                            </li>
+                            <li>
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo">
+                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Connection And GPS unit</a>
+                            </li>
+                            <li>
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo">
+                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Power unit</a>
+                            </li>
+                            <li>
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo">
+                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Data processing unit</a>
+                            </li>  
+                        </ul>
                     </div>
 
 
@@ -463,6 +464,12 @@
             </div>
         </div>
     </section>
+    <!--Timeline-->
+    <section class="section" id="timeline" style="margin-top: 5%;">
+        <div class="container" style="text-align: center;">  
+            <img src="assets/images/Timeline.png"> 
+        </div>
+    </section>
 
     <!-- ***** contact-us Starts ***** -->
     <section class="section" id="contact-us">
@@ -520,7 +527,7 @@
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="assets/images/member.jpg" alt="">
+                            <img src="assets/images/Members/Esara.JPG" width="300" height="300" alt="Esara Sithumal">
                         </div>
                         <div class="down-content">
                             <span>E/17/176</span>
@@ -537,7 +544,7 @@
                 <div class="col-lg-4">
                     <div class="trainer-item">
                         <div class="image-thumb">
-                            <img src="assets/images/Members/Hansa.JPG"  width="300" height="220" alt="">
+                            <img src="assets/images/Members/Hansa.JPG"  width="300" height="300" alt="Hansa Alahakoon">
                         </div>
                         <div class="down-content">
                             <span>E/17/006</span>
