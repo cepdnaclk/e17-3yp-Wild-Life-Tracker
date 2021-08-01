@@ -63,7 +63,7 @@
 
 
 ## Hardware Design
-    [Hardware Design](./images/Hardware3.png)
+    ![Hardware Design](./images/Hardware3.png)
 
 ## Implementation
 
