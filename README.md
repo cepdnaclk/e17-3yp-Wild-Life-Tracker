@@ -36,26 +36,34 @@
 -   Find a solution that saves time, money and lives of wildlife researchers.  
 
 ## Solution Architecture
-    Our wildlife tracking system has camera traps and GPS location trackers. The motion
-    sensors and pressure sensors are used to trigger the camera. Captures of the camera
-    first saved in its own memory and they are also uploaded to the web server. And this
-    system going to track and pinpoint areas where animals roam frequently, in real-time
-    and give those locations to the user by using a map, the data observed by GPS trackers
-    are used for accomplish this task. The location results will allow researchers to identify
-    what are the areas that animals are highly active. The camera captures will help them
-    to identify what kind of animals are roaming around particular area. Therefore,
-    this will increase the chance of seeing animals for researchers, saving huge amounts
-    of time as well as money, also it reduces the risk because this system allows remote monitoring.
-    This system will also allow the users to see animal behavior in harsh environments.
+    This system is consist of three major components, A hardware unit, A clod server and a web App.
+    A hardware unit consist of comera traps, sensors and location tracker. A one unit of thease three
+    compnents make a station. Researchers need to setup this station in the researching area. One researcher
+    can have more than one stations establish in different places if he/she need. The sensors in a station
+    can detect animals when they are in the sensing range and it will trigger the camera. A real time photo
+    is captured at that moment and they are stored in the station it self and also they are sent to the 
+    cloud server. Then the researcher can analyse these observed data through the web app.
 
 ## Hardware List
-
+    | Item                         | Quantity  | Unit Cost  | Total    |
+    | -----------------------------|:---------:|:----------:|---------:|
+    | Infrared PIR motion Sensor   |   1       | 325 LKR    | 325 LKR  |
+    | ESP32 Cam Board              |   1       | 1890 LKR   | 1890 LKR |
+    | FTDI connector               |   1       | 470 LKR    | 470 LKR  |
+    | Sim800L V2.0 GSm GPRS Module |   1       | 1790 LKR   | 1790 LKR |
+    | Ublox NEO_6M GPS module      |   1       | 1390 LKR   | 1390 LKR |
+    | 1W LED                       |   1       | 22 LKR     | 22 LKR   |
+    | ATmega328p-pu chip           |   1       | 375 LKR    | 375 LKR  |
+    | Solar Panel (>6V) 165mA      |   1       | 560 LKR    | 560 LKR  |
+    | Battery Charger              |   1       | 120 LKR    | 120 LKR  |
+    | 3.7V 1800mAh batteris        |   2       | 225 LKR    | 550 LKR  |
+    | Other Expenditures           |   1       | 1000 LKR   | 1000 LKR |
 
 ## System Overview
 
 
 ## Hardware Design
-
+    [Hardware Design](./images/Hardware3.png)
 
 ## Implementation
 
