@@ -8,6 +8,8 @@ module.exports = (req,res,next) => {
         const token = req.header('x-auth-token')
         //console.log(token)
         jwt.verify(token, "longer-secret-is-better")
+        const decodedToken = jwt.decode(token);
+        req.userEmail = decodedToken.email;
         next()                                  //execute other lines in the pipeline
     }catch(error){
         res.status(401).json({
