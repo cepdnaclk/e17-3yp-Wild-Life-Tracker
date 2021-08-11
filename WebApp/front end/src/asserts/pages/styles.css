@@ -1,0 +1,37 @@
+.logo{
+
+   font-size: 6vw;
+   font-family:Fantasy;
+   color: #ffffff;
+   margin-top: 5vw;
+   margin-bottom: 5vw;
+   }
+
+.form{
+      border-style: solid;
+      border-radius: 5%;
+      border-color:  #0275d8;
+
+      align-items: center;
+      padding: 4%;
+      margin-top: 3vh;
+
+
+   }
+
+@media screen and (min-height: 500px) and (min-width: 600px){
+   .logo{
+
+   font-size: 6vw;
+   font-family:Fantasy;
+   color: #ffffff;
+   margin-top: calc(50vh - 2em);
+   }
+
+   .form{
+      padding: 4%;
+      margin-left: 22%;
+      margin-top: 3vh;
+      width: 36vw;
+   }
+}
