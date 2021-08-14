@@ -47,7 +47,7 @@ function Form() {
   const handleSubmit = (evt) => {
 
     evt.preventDefault();
-    axios.post('http://localhost:5000/api/auth/signin',data)
+    axios.post('http://localhost:5000/api/auth/signin-user',data)
   
     .then(function (response) {
       setUser(response.data.msg.name);
@@ -56,12 +56,12 @@ function Form() {
     })
   
     .catch(function (error) {
-    console.log(error);
+      console.log(error);
     }); 
   }
 
   const authorize = (evt) =>{
-    axios.get('http://localhost:5000/api/auth//all-user',{
+    axios.get('http://localhost:5000/api/auth/all-user-admin',{
 
       headers: {
         'x-auth-token' : cookies.get('token')

@@ -66,7 +66,7 @@ function Form() {
     evt.preventDefault(); //keep page without reload
 
     /*post request*/
-    axios.post('http://localhost:5000/api/auth/register',fd)
+    axios.post('http://localhost:5000/api/auth/register-user',fd)
   
     /*if successfull*/
     .then(function (response) {
