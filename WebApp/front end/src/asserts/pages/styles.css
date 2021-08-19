@@ -1,5 +1,14 @@
-.logo{
+#left{
+   background-color:#355c7d;
+}
 
+#right{
+   background-color:#ffffff;  
+}
+
+
+.logo{
+   text-decoration: 'none';
    font-size: 6vw;
    font-family:Fantasy;
    color: #ffffff;
@@ -10,22 +19,26 @@
 .form{
       border-style: solid;
       border-radius: 5%;
-      border-color:  #0275d8;
+      border-color:  #355c7d;
+      color: #355c7d;
 
       align-items: center;
       padding: 4%;
       margin-top: 3vh;
-
-
    }
 
 @media screen and (min-height: 500px) and (min-width: 600px){
    .logo{
 
-   font-size: 6vw;
-   font-family:Fantasy;
-   color: #ffffff;
-   margin-top: calc(50vh - 2em);
+      text-decoration: 'none';
+      font-size: 6vw;
+      font-family:Fantasy;
+      color: #ffffff;
+      margin-top: calc(50vh - 2em);
+   }
+
+   .logo:hover{
+      color: #ffffff;
    }
 
    .form{

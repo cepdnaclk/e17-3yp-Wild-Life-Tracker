@@ -1,0 +1,25 @@
+#profile{
+	background-color: #ffffff;
+	margin: 4%;
+	padding: 2%;
+	min-height: 70vh;
+	height: 100%;
+
+}
+
+#profile .pic{
+	width: 100%;
+}
+
+#profile-info{
+	background-color: #ffffff;
+	margin: 4%;
+	padding: 2%;
+}
+
+
+#profile-info .p{
+
+	max-width: 96vw;
+	
+}
