@@ -1,12 +1,20 @@
+import './styles.css'
 import React,{useState} from 'react';
-import Template from './template';
-import Logo from './logo';
+import Template from '../template';
+import Logo from '../logo';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import ReactDOM from 'react-dom';
 const cookies = new Cookies();
 
+/*backend url*/
+const URL = process.env.REACT_APP_BACKEND_URL;
+
+
+
+
+/*export login page*/
 export default function Login() {
 
   const logo = <Logo /> //logo of the page
@@ -20,7 +28,7 @@ export default function Login() {
   );
 }
 
-//login form implementation
+/*login form implementation*/
 function Form() {
 
    const [isSigned, setSign] = useState(0);
@@ -47,7 +55,7 @@ function Form() {
   const handleSubmit = (evt) => {
 
     evt.preventDefault();
-    axios.post('http://localhost:5000/api/auth/signin-user',data)
+    axios.post(`${URL}api/auth/signin-user`,data)
   
     .then(function (response) {
       setUser(response.data.msg.name);
@@ -56,12 +64,12 @@ function Form() {
     })
   
     .catch(function (error) {
-      console.log(error);
+    console.log(error);
     }); 
   }
 
   const authorize = (evt) =>{
-    axios.get('http://localhost:5000/api/auth/all-user-admin',{
+    axios.get(`${URL}api/auth/all-user-admin`,{
 
       headers: {
         'x-auth-token' : cookies.get('token')
@@ -122,7 +130,7 @@ function Form() {
         </div>
  
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-block btn-primary" >Login</button>
+          <button type="submit" className="btn btn-block btn-primary" id="button-login">Login</button>
         </div>
 
         <div>

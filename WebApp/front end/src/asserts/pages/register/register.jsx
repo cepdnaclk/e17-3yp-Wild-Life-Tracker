@@ -1,8 +1,13 @@
+import './styles.css'
 import React,{useState} from 'react';
-import Template from './template';
-import Logo from './logo';
+import Template from '../template';
+import Logo from '../logo';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+/*backend url*/
+const URL = process.env.REACT_APP_BACKEND_URL;
+
 
 
 
@@ -66,7 +71,7 @@ function Form() {
     evt.preventDefault(); //keep page without reload
 
     /*post request*/
-    axios.post('http://localhost:5000/api/auth/register-user',fd)
+    axios.post(`${URL}api/auth/register-user`,fd)
   
     /*if successfull*/
     .then(function (response) {
@@ -120,11 +125,11 @@ function Form() {
         </div>
  
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-block btn-primary">Register</button>
+          <button type="submit" className="btn btn-block btn-primary" id="button-reg">Register</button>
         </div>
 
         <div>
-          {/*<Link> tag is similar to <a> tag in HTML, but we have to declare routes in 'index.js' file*/}
+          {/*<Link> tag is similar to <a> tag in HTML*/}
           <small>Already have an account? <Link to='/Login'>Login</Link></small>
         </div>
 
