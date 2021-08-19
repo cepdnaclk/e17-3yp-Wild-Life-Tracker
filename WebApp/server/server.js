@@ -11,6 +11,9 @@ connectDB();        //to connect the DB
 
 const app = express();
 
+//new
+app.use('/uploads',express.static('uploads'))
+
 app.use(express.json());        //expect json
 app.use(cors())                 //TODO
 app.use('/api/auth',auth)       //get auth route

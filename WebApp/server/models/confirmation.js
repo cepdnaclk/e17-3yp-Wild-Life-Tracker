@@ -18,8 +18,13 @@ let confirmationSchema = new Schema(
         password: {
             type: String,
             required: true
+        },
+        verificationLetter: {
+            type: String
+            //add this after implementation
+            //required: true
         }
-        //Add the letter confirmation here
+        //Add the letter confirmation here (Done)
     },
     {
         collection: 'confirmation'     //name the collection
