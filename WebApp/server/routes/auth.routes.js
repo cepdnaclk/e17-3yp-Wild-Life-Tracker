@@ -36,6 +36,7 @@ const upload = multer({storage: storage, limits: {
 //This folder is not publically accesibleby deafault (Therfore turn it to a static folder)
 
 const authorize = require('../middleware/auth')     //Authentication middleware that we created
+const { Router } = require('express')
 
 const router = express.Router();
 
@@ -253,9 +254,60 @@ router.route('/one-user').get(authorize, (req,res)=> {
             user: user
         })
     })
-    
 })
-
+    
+//accepting a user registration
+router.route('/accept-reg').delete(authorize, (req, res)=> {
+    let clientRequest;
+    let errorMessage;
+    //find the request from confirm collection
+    confirmationSchema.findOne({
+        email: req.body.email
+    })
+    .then(request=>{
+        clientRequest = request;
+        if(!request){
+            errorMessage = "No request with given Email"; //if request not exist set error message
+        }
+        return confirmationSchema.deleteOne({
+            email : request.email
+        })
+    })
+    .then(delResult => {
+        userSchema.findOne({            
+            email: req.body.email        
+        })
+        .then(response =>{
+            if(response){
+                return res.status(401).json({          
+                    message: "Confirmation Failed. User with given email exists."
+                })
+            }
+            else{
+                if(delResult.deletedCount === 1){
+                    //create a new user using data in the confirmation collections doc
+                    const user = new userSchema({                   
+                        name: clientRequest.name,
+                        email: clientRequest.email,
+                        password: clientRequest.password          
+                    })
+                    //save user       
+                    user.save().then((response) => {
+                        res.status(201).json({
+                            message: 'User registratio confirmed',
+                            result: response
+                        })
+                    })           
+                }
+            }
+        })
+    })
+    .catch((err) => {
+        res.status(500).json({
+            message: errorMessage
+        })
+    })           
+})
 
 
 module.exports = router
