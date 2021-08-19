@@ -66,7 +66,7 @@ function Form() {
     fd.append('name', data['name']);
     fd.append('email', data['email']);
     fd.append('password', data['password']);
-    fd.append('file', file);
+    fd.append('verificationLetter', file);
 
     evt.preventDefault(); //keep page without reload
 
