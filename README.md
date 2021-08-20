@@ -63,7 +63,7 @@
 
 
 ## Hardware Design
-    ![Hardware Design](./images/Hardware3.png)
+![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/assets/images/HardwareOrg.jpg)
 
 ## Implementation
 
