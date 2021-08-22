@@ -37,7 +37,7 @@
 
 ## Solution Architecture
     This system is consist of three major components, A hardware unit, A clod server and a web App.
-    A hardware unit consist of comera traps, sensors and location tracker. A one unit of thease three
+    A hardware unit consist of camera traps, sensors and location tracker. A one unit of thease three
     compnents make a station. Researchers need to setup this station in the researching area. One researcher
     can have more than one stations establish in different places if he/she need. The sensors in a station
     can detect animals when they are in the sensing range and it will trigger the camera. A real time photo
@@ -60,7 +60,7 @@
     | Other Expenditures           |   1       | 1000 LKR   | 1000 LKR |
 
 ## System Overview
-
+![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/images/System%20Overview.PNG)
 
 ## Hardware Design
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/assets/images/HardwareOrg.jpg)
