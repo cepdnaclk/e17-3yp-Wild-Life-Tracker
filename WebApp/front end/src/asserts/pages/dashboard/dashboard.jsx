@@ -1,18 +1,16 @@
-import { Link } from 'react-router-dom';
-import Profile from '../profile/profile';
-
-//import useState hook to create menu collapse state
+import { Link , BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
 import React, { useState } from "react";
 
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
-import "./styles.css";
+//import components
+import Profile from '../profile/profile';
+import Photos from '../photos/photos';
+import Devices from '../devices/devices';
 
 //import icons from react icons
 import { FaWifi, FaImage, FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export default function Dashboard() {
   
@@ -30,7 +28,7 @@ export default function Dashboard() {
 
   return (
 
-  <div>
+  <div onLoad={function(){document.title = 'Dashboard'}}>
     <Router>
 
       <div id="header">
@@ -45,16 +43,16 @@ export default function Dashboard() {
           <SidebarContent>
             <Menu iconShape="square">
 
-              <MenuItem active={true} icon={<FiHome />}>Home
+              <MenuItem icon={<FiHome />} active={true} >Home
               <Link to='/dashboard/profile'></Link>
               </MenuItem>
             
               <MenuItem icon={<FaWifi />}>Devices 
-               <Link to=''></Link>
+               <Link to='/dashboard/devices'></Link>
               </MenuItem>
             
               <MenuItem icon={<FaImage />}>Photos
-              <Link to=''></Link>
+              <Link to='/dashboard/photos'></Link>
               </MenuItem>
             
               <MenuItem icon={<FaPhone />}>Contact us
@@ -90,6 +88,8 @@ export default function Dashboard() {
           <div className='row' id='content-body'>
             <Switch>
               <Route exact path="/dashboard/profile" component={Profile}/>
+              <Route exact path="/dashboard/photos" component={Photos}/>
+              <Route exact path="/dashboard/devices" component={Devices}/>
             </Switch>
           </div>
 

@@ -1,0 +1,73 @@
+.items{
+	border-style: solid;
+	border-color: black;
+	border-radius: 25px;
+	font-size: 90%;
+	color: black;
+	margin: 10%;
+	padding: 5%;
+}
+
+.items-active{
+
+	background-color: #355c7d;
+	border-style: solid;
+	border-color: black;
+	border-radius: 25px;
+	font-size: 90%;
+	color: black;
+	margin: 10%;
+	padding: 5%;
+
+
+}
+
+#requests{
+	background-color: #ffffff;
+	margin: 2%;
+	height: 75vh;
+	overflow-y: auto;
+}
+#profile-informations{
+	background-color: #ffffff;
+	padding: 5%;
+	margin: 2%;
+	height: 75vh;
+}
+.view{
+	background-color: #355c7d;
+  	border-color: #355c7d;
+  	color: #ffffff;
+  	cursor: pointer;
+}
+
+.view:hover{
+	background-color: #45A29E;
+}
+.control{
+	background-color: #355c7d;
+  	border-color: #355c7d;
+  	color: #ffffff;
+  	margin: 1%;
+  	cursor: pointer;
+  	max-width: 40%;
+}
+
+.control:hover{
+	background-color: #45A29E;
+}
+
+.letter{
+	height: 50vh;
+	border-style: solid;
+	cursor: pointer;
+
+}
+
+#button-div{
+	text-align: center;
+}
+
+.none-style-list{
+	list-style: none;
+}

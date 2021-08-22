@@ -23,3 +23,9 @@
 	max-width: 96vw;
 	
 }
+
+.token-error{
+  font-size: 40px;
+  color: red;
+  text-align: center;
+}

@@ -1,17 +1,24 @@
 import React from "react";
-import './styles.css'
+import Cookies from 'universal-cookie';
 
-const profile = {
-	name : 'Jacob Byrd',
-	email : 'erat.eget.tincidunt@risusDonec.edu',
-	joined : '2020/10/11',
-	photos : 12
-}
+import './styles.css';
 
-export default function Profile() {
+var name : '';
+var email : '';
+var joined : '';
+var photos : 0;
+
+
+export default function Profile(props) {
+
+	const cookies = new Cookies();
+	name = cookies.get('name');
+	email = cookies.get('email');
+
+
 	return(
 
-	<div className="container">
+	<div>
 		<div className='row'>
 
 			<div className='col-10 col-md-5' id="profile">
@@ -23,10 +30,10 @@ export default function Profile() {
 
 					<div className='col-12 col-md-8'>
 						<ul className="list-unstyled">
-							<li>Name  : {profile.name}</li>
-							<li>Email : {profile.email}</li>
-							<li>Joined: {profile.joined}</li>
-							<li>Photos: {profile.photos}</li>
+							<li>Name  : {name}</li>
+							<li>Email : {email}</li>
+							<li>Joined: {joined}</li>
+							<li>Photos: {photos}</li>
 						</ul>
 						
 					</div>

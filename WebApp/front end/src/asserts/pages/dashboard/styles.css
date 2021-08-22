@@ -61,8 +61,8 @@ html {
     color: #66FCF1
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout .active {
-    background-color: #1F2833;
+#header .pro-sidebar-inner .pro-sidebar-layout ul li :active{
+    background-color: #1F2833!important;
   }
 
 #button {
@@ -94,6 +94,17 @@ html {
 #content-logo{
     color: #66FCF1
 }
+
+.error-token{
+  font-size: 40px;
+  color: red;
+  border-style: solid;
+  border-radius: 25px;
+  margin: 10%;
+  padding: 5%;
+  background-color: yellow;
+}
+
 
 /*
 @media only screen and (max-width: 720px) {

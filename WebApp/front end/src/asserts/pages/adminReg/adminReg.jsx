@@ -12,14 +12,14 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 
 
 /*export registration page*/
-export default function Register() {
+export default function AdminRegister() {
   
   const logo = <Logo /> //logo of the page
-  const form = <Form /> //registration form
+  const form = <AdminForm /> //registration form
 
   //return template --> left side = logo , right side = registration form 
   return (
-    <div onLoad={function(){document.title = 'Signup'}}>
+    <div>
       <Template left={logo} right={form} />
     </div>
   );
@@ -28,7 +28,7 @@ export default function Register() {
 
 
 /*registration form component*/
-function Form() {
+function AdminForm() {
 
   /*initial states*/
    const [data, setData] = useState({
@@ -38,7 +38,6 @@ function Form() {
     password : "",
     cpassword : "",
    });
-   const [file, setfile] = useState ('');
 
 
    //update states for changes
@@ -51,39 +50,25 @@ function Form() {
         };
 
 
-  //update file when uploaded
-  const handleFileChange = e => {
-      setfile(e.target.files[0]);
-  }
-
-
   //when submit button clicked
   const handleSubmit = (evt) => {
-
-    const fd = new FormData(); //create an form data object
-    
-    /*append all data*/
-    fd.append('name', data['name']);
-    fd.append('email', data['email']);
-    fd.append('password', data['password']);
-    fd.append('verificationLetter', file);
 
     evt.preventDefault(); //keep page without reload
 
     /*post request*/
-    axios.post(`${URL}api/auth/register-user`,fd)
+    axios.post(`${URL}api/auth/register-admin`,data)
   
     /*if successfull*/
     .then(function (response) {
-      document.getElementById('reg-form').innerHTML = "Your data has been sent. It may take 3-5 working days to accept your registration.";
-      document.getElementById('reg-form').className ='success';
+      document.getElementById('admin-reg-form').innerHTML = "Your registration has been done.";
+      document.getElementById('admin-reg-form').className ='admin-reg-success';
 
     })
   
     /**if failed*/
     .catch(function (error) {
-      document.getElementById('reg-form').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
-      document.getElementById('reg-form').className ='error';
+      document.getElementById('admin-reg-form').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+      document.getElementById('admin-reg-form').className ='admin-reg-error';
     });
 
   }
@@ -91,11 +76,11 @@ function Form() {
 
   /*registration form*/
   return (
-    <div id='reg-form'>
+    <div id='admin-reg-form'>
       <form onSubmit={handleSubmit}>
 
         <div className="text-center">
-          <h1>Register</h1>
+          <h1>Admin-Register</h1>
         </div>
         
         <div className="mb-3">
@@ -121,15 +106,9 @@ function Form() {
           <input type="password" className="form-control" id="Password2"
           name="cpassword" onChange={handleChange}></input>
         </div>
-
-        <label className="custom-file-label" htmlFor="validatedCustomFile">Confirmation Letter</label>
-        <div className="mb-3">
-          <input type="file" className="custom-file-input" id="validatedCustomFile" onChange={handleFileChange} required ></input>
-          <div className="invalid-feedback">Choose Correct Format</div>
-        </div>
  
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-block btn-primary" id="button-reg">Register</button>
+          <button type="submit" className="btn btn-block btn-primary" id="admin-button-reg">Register</button>
         </div>
 
         <div>

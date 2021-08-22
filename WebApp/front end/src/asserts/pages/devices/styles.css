@@ -1,0 +1,22 @@
+#device-tab{
+	background-color: #ffffff;
+	width: 90%;
+	margin: 5%;
+	min-height: 60vh;
+}
+
+#device-list{
+	list-style: none;
+}
+
+.device{
+	border-style: solid;
+	border-radius: 20px;
+	background-color: yellow;
+	margin: 2%;
+	padding: 1%;
+}
+
+#dev-form{
+	padding-left: 10%;
+}
