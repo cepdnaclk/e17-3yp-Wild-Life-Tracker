@@ -19,14 +19,16 @@ export default function App() {
 ///page content
 function Page() {
   return (
-    <div className="row">
+    <div className="row" onLoad={function(){document.title = 'Home'}}>
       <div className="col-6">
         <div className="list-group" id="list-tab" role="tablist">
             Home
            <Link className="list-group-item list-group-item-action" to='/Login'> Login </Link>
            <Link className="list-group-item list-group-item-action" to='/Register'> Register </Link>
            <Link className="list-group-item list-group-item-action" to='/Dashboard/profile'> Dashboard </Link>
-           <Link className="list-group-item list-group-item-action" to='/Admin/profile'> Admin-panel </Link>       
+           <Link className="list-group-item list-group-item-action" to='/Admin/profile'> Admin-panel </Link>
+           <Link className="list-group-item list-group-item-action" to='/AdminLogin'> Admin-Login </Link>
+           <Link className="list-group-item list-group-item-action" to='/AdminRegiter'> Admin-Register </Link>       
         </div>
       </div>
     </div>

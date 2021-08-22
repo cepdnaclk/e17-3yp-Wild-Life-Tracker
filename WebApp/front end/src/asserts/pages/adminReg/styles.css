@@ -1,4 +1,4 @@
-#button-reg{
+#admin-button-reg{
   background-color: #355c7d;
   border-color: #355c7d;
   color: #ffffff;
@@ -8,16 +8,16 @@
 }
 
 
-#button-reg:hover {
+#admin-button-reg:hover {
   background-color: #45A29E;
 }
 
-.error{
+.admin-reg-error{
   font-size: 40px;
   color: red;
 }
 
-.success{
+.admin-reg-success{
   font-size: 40px;
   color: yellow;
 }

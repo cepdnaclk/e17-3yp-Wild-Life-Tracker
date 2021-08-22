@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
-import Profile from '../profile/profile';
-
-//import useState hook to create menu collapse state
+import { Link , BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
 import React, { useState } from "react";
 
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
+//import components
+import Profile from '../profile/profile';
+import Users from '../users/users';
+
+//import stylesheets
 import 'react-pro-sidebar/dist/css/styles.css';
 import "./styles.css";
 
@@ -12,8 +14,8 @@ import "./styles.css";
 import { FaUsers, FaBars, FaTimes } from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+/*export admin component*/
 export default function Admin() {
   
    //create initial menuCollapse state using useState hook
@@ -24,13 +26,12 @@ export default function Admin() {
     //condition checking to change state from true to false and vice versa
 
         (menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true));
-      
-        
+              
       };
 
   return (
 
-  <div>
+  <div onLoad={function(){document.title = 'Admin-panel'}}>
     <Router>
 
       <div id="header">
@@ -50,7 +51,7 @@ export default function Admin() {
               </MenuItem>
             
               <MenuItem icon={<FaUsers />}>Users
-               <Link to=''></Link>
+               <Link to='/Admin/users'></Link>
               </MenuItem>          
             
             </Menu>
@@ -82,6 +83,7 @@ export default function Admin() {
           <div className='row' id='content-body'>
             <Switch>
               <Route exact path="/Admin/profile" component={Profile}/>
+              <Route exact path="/Admin/users" component={Users}/>
             </Switch>
           </div>
 
