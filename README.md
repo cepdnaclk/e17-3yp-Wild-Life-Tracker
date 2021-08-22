@@ -60,7 +60,7 @@
     | Other Expenditures           |   1       | 1000 LKR   | 1000 LKR |
 
 ## System Overview
-![image](./docs/images/System Overview.PNG)
+![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/images/System%20Overview.PNG)
 
 ## Hardware Design
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/assets/images/HardwareOrg.jpg)
