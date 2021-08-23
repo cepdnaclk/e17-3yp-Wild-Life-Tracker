@@ -26,7 +26,7 @@ export default function Login() {
 
   //return template --> left side = logo , right side = login form 
   return (
-    <div onLoad={function(){document.title = 'Signin'}}>
+    <div onLoad={function(){document.title = 'Admin Login'}}>
       <Template left={logo} right={form} /> 
     </div>
   );
@@ -58,9 +58,11 @@ function Form() {
   const handleSubmit = (evt) => {
 
     evt.preventDefault();
-    axios.post(`${URL}api/auth/signin-user`,data)
+    axios.post(`${URL}api/auth/signin-admin`,data)
   
     .then(function (response) {
+        cookies.set('name', response.data.msg.name, { path: '/' });
+        cookies.set('email', response.data.msg.email , { path: '/' });
         cookies.set('token', response.data.token , { path: '/' });
         setSign(true);
     })
@@ -69,22 +71,23 @@ function Form() {
         setSign(false);
         if(error.response){
           if(error.response.status===401){
-            document.getElementById('error-field').innerHTML = "!!!Wrong username & password. Plesse try again!!!";
+            document.getElementById('admin-error-field').innerHTML = "!!!Wrong username & password. Plesse try again!!!";
+            console.log(error);
           }
         }else{
-            document.getElementById('log-form').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
-            document.getElementById('log-form').className ='error';
+            document.getElementById('admin-log-form').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+            document.getElementById('admin-log-form').className ='error';
         }
         
-    }); 
+    });
   }
 
 
-  //if user has logged in
+  //if logged in
   if(isSigned){
 
     return(
-        <Redirect to="/Dashboard/profile" />
+        <Redirect to="Admin/profile" />
       )
 
   }
@@ -93,13 +96,13 @@ function Form() {
   else{
   
     return (
-    <div id='log-form'>
+    <div id='admin-log-form'>
       <form onSubmit={handleSubmit}>
         <div className="text-center">
           <h1>Login</h1>
-        <div id='error-field'>
         </div>
 
+        <div id='admin-error-field'>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -119,7 +122,7 @@ function Form() {
         </div>
  
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-block btn-primary" id="button-login">Login</button>
+          <button type="submit" className="btn btn-block btn-primary" id="button-admin-login">Login</button>
         </div>
 
         <div>

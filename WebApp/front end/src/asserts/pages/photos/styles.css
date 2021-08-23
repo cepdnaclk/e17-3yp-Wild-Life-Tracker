@@ -1,0 +1,14 @@
+#photos{
+	height: 100%;
+}
+.delete,.download{
+	background-color: #355c7d;
+  	border-color: #355c7d;
+  	color: #ffffff;
+  	cursor: pointer;
+  	margin: 3%;
+}
+
+.delete:hover,.download:hover{
+	background-color: #45A29E;
+}

@@ -1,4 +1,4 @@
-#button-login{
+#button-admin-login{
   background-color: #355c7d;;
   border-color: #355c7d;;
   color: #ffffff;
@@ -8,15 +8,16 @@
 }
 
 
-#button-login:hover {
+#button-admin-login:hover {
   background-color: #45A29E;
 }
 
-#error-field{
+.admin-error{
+  font-size: 40px;
   color: red;
 }
 
-.error{
-  font-size: 40px;
+
+#admin-error-field{
   color: red;
 }
