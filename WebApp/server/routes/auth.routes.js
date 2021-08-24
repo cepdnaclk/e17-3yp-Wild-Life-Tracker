@@ -7,13 +7,14 @@ const adminSchema = require('../models/admin')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')        //new
+const fs = require('fs')                //used to delete the confirmation file when confirming rq
 
 const storage = multer.diskStorage({        //new   //to adjust how files get stored
     destination: function(req, file, cb){
         cb(null, './uploads/')
     },
     filename: function(req,file, cb){
-        cb(null, new Date().toISOString() + file.originalname)
+        cb(null,Date.now()+"_"+file.originalname)
     }
 })
 
@@ -198,7 +199,6 @@ router.post('/register-user',upload.single('verificationLetter'),(req,res,next)=
             //add the confirmation letter here (DONE)
             verificationLetter: req.file.path       //new
         })
-
         user.save().then((response) => {            //mongoose method to save
             res.status(201).json({
                 message: 'User created for confirmation',
@@ -260,6 +260,7 @@ router.route('/one-user').get(authorize, (req,res)=> {
 router.route('/accept-reg').delete(authorize, (req, res)=> {
     let clientRequest;
     let errorMessage;
+    let file;
     //find the request from confirm collection
     confirmationSchema.findOne({
         email: req.body.email
@@ -268,6 +269,17 @@ router.route('/accept-reg').delete(authorize, (req, res)=> {
         clientRequest = request;
         if(!request){
             errorMessage = "No request with given Email"; //if request not exist set error message
+        }
+        else{
+            file = clientRequest.verificationLetter;
+            fs.unlink(file, function (err) {
+                if (err){
+                    errorMessage = "Cannot find the file";
+                    throw err;
+                }
+                // if no error, file has been deleted successfully
+                console.log('File deleted!');
+            });
         }
         return confirmationSchema.deleteOne({
             email : request.email
