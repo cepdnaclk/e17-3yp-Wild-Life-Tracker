@@ -256,10 +256,10 @@
             <div class="row" id="tabs">
               <div class="col-lg-4">
                 <ul>
-                  <li><a href='#tabs-1'><img src="assets/images/tabs-first-icon-wb.png" alt="">Registration</a></li>
-                  <li><a href='#tabs-2'><img src="assets/images/tabs-first-icon-wb.png" alt="">Login</a></a></li>
-                  <li><a href='#tabs-3'><img src="assets/images/tabs-first-icon-wb.png" alt="">Researcher's UI</a></a></li>
-                  <li><a href='#tabs-4'><img src="assets/images/tabs-first-icon-wb.png" alt="">Administartor's UI</a></a></li>
+                  <li><a href='#tabs-1' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Registration</a></li>
+                  <li><a href='#tabs-2' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Login</a></a></li>
+                  <li><a href='#tabs-3' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Researcher's UI</a></a></li>
+                  <li><a href='#tabs-4' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Administartor's UI</a></a></li>
                 </ul>
               </div>
               <div class="col-lg-7">
@@ -316,14 +316,14 @@
                 </div>
     
                  <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
-                    <div class="col-lg-5">
+                    <div class="col-lg-4">
                         <ul>
                             <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active">
-                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>                 
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active" style="font-size: 1em;">
+                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>               
                             </li>
                             <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo">
+                                <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo" style="font-size: 1em;">
                                 <img src="assets/images/tabs-first-icon-hw.png" alt="">Connection And GPS unit</a>
                             </li>
                             <li>
@@ -338,39 +338,79 @@
                     </div>
 
 
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <section class='tabs-content'>
                       <article id='tabs-5' class="demo2">
-                        <img src="assets/images/Hardware/cam.jpg" style="border: 2px solid #555; width: 90%;" alt="First">
-                        <ul>
-                            <li>This unit handles the sensing and taking snapshots of wild animals accordingly.</li>
-                            <li>It is capable of getting clear shots, day as well as night.</li>
-                        </ul>
-    
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="assets/images/Hardware/cam.jpg" style="border: 2px solid #555; width: 90%;" alt="First">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>&emsp;This unit handles the sensing and taking snapshots of wild animals accordingly.
+                                        It is consist of <b>ESP32 Cam Board, PIR motion sensor(HC-SR501), Flash LED and a LDR</b>.
+                                        PIR sesor is capable of sensing motions within 7 meters and 120° range. This sensor will trigger the camera
+                                        to take photo and then a 30 second video is captured.
+                                    </br>&emsp;ESP32 cam board is consist of a powerfull image processing unit that allows to take very clear photos
+                                        and a SD card slot. The PIR sensor is directly connected to the ESP32 cam board. The captured photos are
+                                        stored in the SD card before send to the cloud database. Videos are not sent to cloud database they will be stored
+                                        in the SD card.
+                                    </br>&emsp;The LDR is used to monitor light conditions and according to those readings the LED flash will automatically turn on.
+                                        This allow us to capture clear photos in bad light conditions.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                       </article>
                       <article id='tabs-6' class="demo2" style="display:none;">
-                        <img src="assets/images/Hardware/gps.jpg" style="border: 2px solid #555; width: 90%;" alt="Second">
-                        <ul>
-                            <li>SIM800 module is used to communicate with the web server remotely in harsh environments. (No Wifi access etc.)</li>
-                            <li>GPS module is used to pinpoint the location more accurately.</li>
-                        </ul>
-                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="assets/images/Hardware/gps.jpg" style="border: 2px solid #555; width: 90%;" alt="Second">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        &emsp;The connection and GPS unit is consist of <b>SIM800L module and GPS module</b>.
+                                        The GPS module is used to get the best possible position information. User can check the exact
+                                        position of the device through the web app. The data observed by this GPS module is used to
+                                        pinpoint the location.
+                                    </br>&emsp;SIM800L module is used to communicate with the AWS server. This module allows for GPRS
+                                        transmissions without Wi-Fi. This module is very suitable for long range connections.   
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                       </article>
                       <article id='tabs-7' class="demo2" style="display:none;">
-                        <img src="assets/images/Hardware/power.jpg" style="border: 2px solid #555; width: 90%;" alt="Third">
-                        <ul>
-                            <li>Solar cell recharges the batteries when there is optimal sunlight.</li>
-                            <li>This generated power can be used to power the system very efficiently in harsh environments.</li>
-                        </ul>
-                       
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="assets/images/Hardware/power.jpg" style="border: 2px solid #555; width: 90%;" alt="Third">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        &emsp;The main components in this unit are <b>3.7V 1800mAh batteris, Solar panel, voltage regulator and battery charger</b>.
+                                        Solar cell recharges the batteries when there is optimal sunlight.
+                                        This generated power can be used to power the system very efficiently in harsh environments.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                       </article>
                       <article id='tabs-8' class="demo2" style="display:none;">
-                        <img src="assets/images/Hardware/datapro.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
-                        <ul>
-                            <li>ATmega328p chip will interconnect the above units and control the dataflow in desired manner.</li>
-                            <li>This Atmega328p chip is low budget, PCB friendly and energy efficient.</li>
-                        </ul>
-                        
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="assets/images/Hardware/datapro.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>
+                                        &emsp;ATmega328p chip will interconnect the above units and control the dataflow in desired manner.
+                                        This Atmega328p chip is low budget, PCB friendly and energy efficient. 
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                       </article>
                     </section>
                   
