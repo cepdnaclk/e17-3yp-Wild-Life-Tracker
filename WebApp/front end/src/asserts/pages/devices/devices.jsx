@@ -18,12 +18,11 @@ export default function Devices(){
 
   	return (
     	<div className='row' id='device-tab'>
-			<div className='col-12 col-md-6 text-center'>
+			<div className='col-11 col-md-8 text-center' id='connected'>
 				<h2>Devices</h2>
       			<DeviceUl data={devices} />
     		</div>
-    		<div className='col-12 col-md-6' id='dev-form'>
-    			<h2 >Add new device</h2>
+    		<div className='col-11 col-md-4' id='new-dev'>
 				<AddDeviceForm handleSubmit={addDevice} />
       		</div>
     	</div>
@@ -60,13 +59,14 @@ function AddDeviceForm(props) {
 	}
 
 	return(
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} id='dev-form'>
+			<h2>Add New Device</h2><br/>
   			<label htmlFor="id">Device id : &nbsp;</label>
   			<input type="text" id="id" name="id" onChange={handleChange}></input><br/><br/>
   			<label htmlFor="pw">Password : &nbsp; </label>
-  			<input type="text" id="pw" name="pw" onChange={handleChange}></input>
+  			<input type="text" id="pw" name="pw" onChange={handleChange}></input><br/>
 				
-			<button type="submit">Add</button>
+			<button className='btn download' type="submit">Add</button>
 		</form>
 	); 
  }

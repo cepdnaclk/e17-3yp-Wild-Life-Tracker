@@ -25,10 +25,7 @@ function Page() {
             Home
            <Link className="list-group-item list-group-item-action" to='/Login'> Login </Link>
            <Link className="list-group-item list-group-item-action" to='/Register'> Register </Link>
-           <Link className="list-group-item list-group-item-action" to='/Dashboard/profile'> Dashboard </Link>
-           <Link className="list-group-item list-group-item-action" to='/Admin/profile'> Admin-panel </Link>
-           <Link className="list-group-item list-group-item-action" to='/AdminLogin'> Admin-Login </Link>
-           <Link className="list-group-item list-group-item-action" to='/AdminRegiter'> Admin-Register </Link>       
+           <Link className="list-group-item list-group-item-action" to='/AdminLogin'> Admin-Login </Link>      
         </div>
       </div>
     </div>

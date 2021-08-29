@@ -75,15 +75,15 @@ export default function Users() {
     .catch(function (error) {
       //cookies.set('user', admin , { path: '/' });
       document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
-      document.getElementById('requests-list').className ='token-error';
+      document.getElementById("requests-list").style = "color:red; padding:10px; margin-top:50px; border-style:solid; border-color:red; border-radius:10px; background-color:pink;";
     }); 
 }
 
 	return(
 
-	<div className="container" onClick={getRequests()}>
+	<div onClick={getRequests()}>
 
-			<div className='row'>
+			<div className='row' id='buttons'>
 				<div className='col-6'>
 				</div>	
 				<div className='col-6'>
@@ -92,7 +92,7 @@ export default function Users() {
 				</div>
 			</div>
 
-		<div className='row'>
+		<div className='row' id="profiles">
 			<div className='col-11 col-md-4' id="requests">
 				
 				<div className="list-unstyled" id='requests-list'>
@@ -101,7 +101,7 @@ export default function Users() {
 
 			</div>
 
-			<div className="col-11 col-md-7" id="profile-informations">
+			<div className="col-11 col-md-8" id="profile-informations">
 			{/*profile informations are displayed in there*/}
 			</div>
 
