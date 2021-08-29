@@ -21,18 +21,27 @@
 
 
 }
+#buttons{
+	margin: 0;
+}
+
+#profiles{
+	background-color: #ffffff;
+	margin: 3%;
+	margin-top: 0;
+	padding: 2%;
+	height: 75vh;
+	border-radius: 20px;
+	color:#355c7d;
+}
 
 #requests{
-	background-color: #ffffff;
-	margin: 2%;
-	height: 75vh;
+	border-right-style: solid;
+	height: 70vh;
 	overflow-y: auto;
 }
 #profile-informations{
-	background-color: #ffffff;
-	padding: 5%;
-	margin: 2%;
-	height: 75vh;
+	height: 70vh;
 }
 .view{
 	background-color: #355c7d;
@@ -58,7 +67,7 @@
 }
 
 .letter{
-	height: 50vh;
+	height: 60vh;
 	border-style: solid;
 	cursor: pointer;
 

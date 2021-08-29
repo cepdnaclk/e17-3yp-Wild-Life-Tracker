@@ -1,19 +1,31 @@
 import { Link , BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
+import { ProSidebar, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
 import React, { useState } from "react";
+import { Helmet } from 'react-helmet';
 
 //import components
 import Profile from '../profile/profile';
 import Photos from '../photos/photos';
 import Devices from '../devices/devices';
+import Logout from '../logout/logout';
+
+import './styles.css';
 
 //import icons from react icons
 import { FaWifi, FaImage, FaBars, FaTimes, FaPhone } from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
+const  TITLE = 'Dashboard';
+
+//Modal.setAppElement('root');
 
 export default function Dashboard() {
   
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
    //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -21,24 +33,50 @@ export default function Dashboard() {
     const menuIconClick = () => {
     //condition checking to change state from true to false and vice versa
 
-        (menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true));
-      
-        
+        if(menuCollapse){
+          setMenuCollapse(false);
+          document.getElementById("content").style.marginLeft = "0px";
+          document.getElementById("sidebar").style.width = "0px";
+          document.getElementById("usr-x").style.display = 'none';
+          document.getElementById("usr-=").style.display = 'inline';
+        }
+        else{
+          setMenuCollapse(true);
+          document.getElementById("sidebar").style.width = "200px";
+          document.getElementById("content").style.marginLeft = "200px";
+          document.getElementById("usr-x").style.display = 'inline';
+          document.getElementById("usr-=").style.display = 'none';
+        } 
+            
       };
 
   return (
 
-  <div onLoad={function(){document.title = 'Dashboard'}}>
-    <Router>
+  <div>
 
-      <div id="header">
-        <ProSidebar collapsed={menuCollapse}>
+      {/*logout message box*/}
+      <Logout handleClose={handleClose} handleShow={handleShow} show={show}/>
+      
+      <Helmet>
+        <title>{ TITLE }</title>
+      </Helmet>
 
-          <SidebarHeader>
-            <div className="closemenu" onClick={menuIconClick}>
-              <FaTimes/>
-            </div>
-          </SidebarHeader>
+      <Router>
+       
+        <div className='row' id='content-header'>
+          <div className='col-4 col-md-1'>
+            <button onClick={menuIconClick} className='btn' id='button-user'>
+            <FaTimes id='usr-x'/> 
+            <FaBars id='usr-='/> Menu</button>
+          </div>
+
+          <div className='col-8 col-md-9 text-center'>
+            <h1 id='content-logo'>WildLife Tracker</h1>
+          </div>
+        </div>
+
+        <div id="usr-header">
+        <ProSidebar id="sidebar">
           
           <SidebarContent>
             <Menu iconShape="square">
@@ -64,7 +102,7 @@ export default function Dashboard() {
           
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} variant="primary" onClick={handleShow}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         
@@ -72,18 +110,7 @@ export default function Dashboard() {
 
       </div>
 
-      <div id='content' className='container-fluid'>
-
-          <div className='row' id='content-header'>
-            <div className='col-4 col-md-1'>
-              <button onClick={menuIconClick} className='btn' id='button'> <FaBars/> Menu</button>
-            </div>
-
-            <div className='col-8 col-md-9 text-center'>
-              <h1 id='content-logo'>WildLife Tracker</h1>
-            </div>
-
-          </div>
+      <div id='content'>
 
           <div className='row' id='content-body'>
             <Switch>
@@ -95,7 +122,8 @@ export default function Dashboard() {
 
       </div>
 
-    </Router>
+      </Router>
+
   </div>
   );
 }

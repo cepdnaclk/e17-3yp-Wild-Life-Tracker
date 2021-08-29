@@ -12,12 +12,17 @@
   background-color: #45A29E;
 }
 
-.admin-error{
-  font-size: 40px;
+#error-field{
+  display: none;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+  border-color: red;
+  background-color: #FAEBD7;
   color: red;
+  padding: 5px;
 }
 
-
-#admin-error-field{
-  color: red;
+#loader{
+  display: none;
 }

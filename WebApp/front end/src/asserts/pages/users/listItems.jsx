@@ -4,6 +4,8 @@ import Cookies from 'universal-cookie';
 
 import './styles.css';
 
+/*backend url*/
+const URL = process.env.REACT_APP_BACKEND_URL;
 
 /*cookies*/
 const cookies = new Cookies();
@@ -35,8 +37,8 @@ export default function ListItems(props){
 												<ul>  
 								      			<li>Name    : {user["name"]}</li>
       											<li>Email   : {user["email"]}</li>
-      											<li>Address : {user["address"]}</li>
-      											<li>Country : {user["country"]}</li> 
+      										 {/*<li>Address : {user["address"]}</li>
+      											<li>Country : {user["country"]}</li>*/} 
       									</ul>
       								</div>
       								<div className='col-12 col-md-6'>

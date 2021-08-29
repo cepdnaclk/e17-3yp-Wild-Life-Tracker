@@ -1,7 +1,9 @@
 #photos{
 	height: 100%;
+	margin: 5%;
 }
 .delete,.download{
+	font-size: 0.8em;
 	background-color: #355c7d;
   	border-color: #355c7d;
   	color: #ffffff;

@@ -12,12 +12,22 @@
   background-color: #45A29E;
 }
 
-.admin-reg-error{
-  font-size: 40px;
+#reg-error-field{
   color: red;
+  margin: 10px;
 }
 
-.admin-reg-success{
-  font-size: 40px;
-  color: yellow;
+#suc-field{
+  margin: 10px;
+}
+
+#msg-field{
+  text-align: center;
+}
+
+#suc-icon{
+  display: none;
+}
+#fail-icon{
+  display: none;
 }
