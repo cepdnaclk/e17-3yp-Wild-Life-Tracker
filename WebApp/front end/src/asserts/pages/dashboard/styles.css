@@ -2,13 +2,13 @@ html {
   overflow-y: scroll; 
 }
 
-#header {
+#usr-header {
 
     position: absolute;
     width: 0px;
   }
   
-#header .closemenu {
+#usr-header .closemenu {
     color: #fff;
     font-size: 50px;
     cursor: pointer;
@@ -16,95 +16,95 @@ html {
     margin-left: 12px;
   }
   
-#header .pro-sidebar {
+#usr-header .pro-sidebar {
     width: 100%;
     min-width: 100%;
-    height: 100vh;
+    height: 88vh;
   }
   
-#header .pro-sidebar.collapsed {
+#usr-header .pro-sidebar.collapsed {
     width: 220px;
     min-width: 220px;
   }
   
-#header .pro-sidebar-inner {
+#usr-header .pro-sidebar-inner {
     background-color: #45A29E;
 
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout {
+#usr-header .pro-sidebar-inner .pro-sidebar-layout {
     overflow-y: hidden;
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul {
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul {
     padding: 0 5px;
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
     color: #fff;
     margin: 10px 0px;
     font-weight: bold;
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
     background-color: #fff;
     color: #000;
     border-radius: 3px;
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
     color: #66FCF1
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
     background-color: #355c7d;
     color: #66FCF1
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul li :active{
+#usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :active{
     background-color: #1F2833!important;
   }
 
-#button {
+#button-user{
   background-color: #45A29E;
   color: #FFFFFF;
   cursor: pointer;
   width: 100%;
-  margin: 2%;
+  margin-left: 6%;
 }
 
 
-#button:hover {
+#button-user:hover {
   background-color: #1F2833;
-  color: #66FCF1
+  color: #66FCF1;
 }
+
+#content{
+    background-color: #1F2833;
+    transition: margin-left 0.3s;
+    max-width: vw;
+}
+
 
 #content-header{
     height: 10vh;
     background-color:#355c7d;
     align-items: center;
+    max-width: 100vw;
 }
 
 #content-body{
     background-color:#1F2833 ;
-    align-items: center;
-    min-height: 90vh;
+    min-height: 88vh;
 }
 
 #content-logo{
     color: #66FCF1
 }
 
-.error-token{
-  font-size: 40px;
-  color: red;
-  border-style: solid;
-  border-radius: 25px;
-  margin: 10%;
-  padding: 5%;
-  background-color: yellow;
+#usr-x{
+    display: none;
 }
-
 
 /*
 @media only screen and (max-width: 720px) {

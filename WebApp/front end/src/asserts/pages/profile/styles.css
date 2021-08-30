@@ -1,14 +1,20 @@
-#profile{
+#Home{
 	background-color: #ffffff;
-	margin: 4%;
+	margin: 3%;
 	padding: 2%;
 	min-height: 70vh;
-	height: 100%;
-
+	border-radius: 20px;
+	color:#355c7d;
 }
 
-#profile .pic{
-	width: 100%;
+#profile{
+	border-right: solid;
+	height: 410px;
+	width: 300px;
+}
+
+#pic{
+	width: 40%;
 }
 
 #profile-info{

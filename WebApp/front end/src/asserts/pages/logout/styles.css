@@ -1,0 +1,20 @@
+.mymodal {
+    color: #ffffff;
+    background-color: #45A29E;
+    border-style: solid;
+    background-color: ;
+
+}
+
+#modal-button{
+  font-size:small;
+  background-color:#355c7d;
+  color: #ffffff;
+  margin:10px;
+  margin-top: 0;
+  width: 60px;
+}
+
+#modal-button:hover{
+  background-color: red;
+}

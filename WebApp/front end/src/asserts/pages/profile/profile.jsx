@@ -19,34 +19,55 @@ export default function Profile(props) {
 	return(
 
 	<div>
-		<div className='row'>
-
-			<div className='col-10 col-md-5' id="profile">
-				
-				<div className='row'>
-					<div className='col-12 col-md-4'>
-						<img src="https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg" className="pic" alt="pp"></img>
+		<div className='row' id="Home">
+			<div className='col-4' id='profile'>
+				<img src="https://www.pngitem.com/pimgs/b/146-1468479_profile-icon-png.png" className="rounded-circle" id="pic" alt="pp"></img>
+					<div>
+	  					<h3>{name}</h3>
+						<h4>{email}</h4>
+					{/*	<li>Joined: {joined}</li>
+						<li>Photos: {photos}</li>*/}
 					</div>
-
-					<div className='col-12 col-md-8'>
-						<ul className="list-unstyled">
-							<li>Name  : {name}</li>
-							<li>Email : {email}</li>
-							<li>Joined: {joined}</li>
-							<li>Photos: {photos}</li>
-						</ul>
-						
-					</div>
-				</div>
 
 			</div>
+			<div className='col-8'>
+				<h3>Features</h3><br/>
+				<table>
+					<tr>
+						<td>
+							<h5>Remotely Controlable</h5>
+							<p>Researcher can monitor the station through the web app after it is successfully established in researching area.</p>
+						</td>
+						<td>
+							<h5>Solar Power</h5>
+							<p>The stations are powerd by battaries. A solar cell system is used to recharge them.</p>
+						</td>
+					</tr>
 
-			<div className="col-10 col-md-5" id="profile-info">
+					<tr>
+						<td>
+							<h5>High Performance Camera Module</h5>
+							<p>A powerful camera unit to capture perfect photos in any lighting condition. Also provides video recording facilities, recorded videos are stored in the own memory of station.
 
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>							
+						</td>
+						<td>
+							<h5>Durable</h5>
+							<p>Can be set up in any environment. Made with highly durable and waterproof materials so that animals and unforgiving weather can't damage it.</p>							
+						</td>
+					</tr>
 
-</p>
-
+					<tr>
+						<td>
+							<h5>Tracking System</h5>
+							<p>Pinpoint the exact location of the station. The most active station can be observed by the Web App.</p>							
+						</td>
+						<td>
+							<h5>Self Storage In Stations</h5>
+							<p>Data obtained by the system is stored in itself when there is no connection with the database.</p>							
+						</td>
+					</tr>
+				</table>
 			</div>
 
 		</div>

@@ -1,15 +1,19 @@
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 import Template from '../template';
 import Logo from '../logo';
 
 import './styles.css'
 
+import { FaCheckCircle, FaExclamationCircle  } from "react-icons/fa";
+
 /*backend url*/
 const URL = process.env.REACT_APP_BACKEND_URL;
 
+const  TITLE = 'Admin Sign-up';
 
 /*export registration page*/
 export default function AdminRegister() {
@@ -20,6 +24,9 @@ export default function AdminRegister() {
   //return template --> left side = logo , right side = registration form 
   return (
     <div>
+        <Helmet>
+          <title>{ TITLE }</title>
+        </Helmet>
       <Template left={logo} right={form} />
     </div>
   );
@@ -60,27 +67,36 @@ function AdminForm() {
   
     /*if successfull*/
     .then(function (response) {
-      document.getElementById('admin-reg-form').innerHTML = "Your registration has been done.";
-      document.getElementById('admin-reg-form').className ='admin-reg-success';
-
+      document.getElementById('admin-reg-form').style.display = "none";
+      document.getElementById('msg').id ='suc-field';
+      document.getElementById('suc-icon').style.display = "block";
+      document.getElementById('suc-field').innerHTML = "You have successfully regitered as an admin";
     })
   
     /**if failed*/
     .catch(function (error) {
-      document.getElementById('admin-reg-form').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
-      document.getElementById('admin-reg-form').className ='admin-reg-error';
-    });
+      document.getElementById('admin-reg-form').style.display = "none";
+      document.getElementById('msg').id ='reg-error-field';
+      document.getElementById('fail-icon').style.display = "block";
+      document.getElementById('reg-error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+     });
 
   }
 
 
   /*registration form*/
   return (
-    <div id='admin-reg-form'>
-      <form onSubmit={handleSubmit}>
+    <div>
+
+      <div id='msg-field'>
+        <div id='suc-icon'><FaCheckCircle size={70}/></div>
+        <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+        <div id='msg'></div>
+      </div>
+      <form onSubmit={handleSubmit} id='admin-reg-form'>
 
         <div className="text-center">
-          <h1>Admin-Register</h1>
+          <h1>Admin Sign-up</h1>
         </div>
         
         <div className="mb-3">
@@ -113,7 +129,7 @@ function AdminForm() {
 
         <div>
           {/*<Link> tag is similar to <a> tag in HTML*/}
-          <small>Already have an account? <Link to='/Login'>Login</Link></small>
+          <small>Already have an account? <Link to='/AdminLogin'>Login</Link></small>
         </div>
 
       </form>

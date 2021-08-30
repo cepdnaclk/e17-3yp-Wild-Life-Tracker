@@ -19,7 +19,7 @@ html {
 #header .pro-sidebar {
     width: 100%;
     min-width: 100%;
-    height: 100vh;
+    height: 88vh;
   }
   
 #header .pro-sidebar.collapsed {
@@ -79,20 +79,30 @@ html {
   color: #66FCF1
 }
 
-#content-header{
+#admin-content{
+    background-color: #1F2833;
+    transition: margin-left 0.3s;
+}
+
+#admin-content-header{
     height: 10vh;
     background-color:#355c7d;
     align-items: center;
+    max-width: 100vw;
 }
 
-#content-body{
+#admin-content-body{
     background-color:#1F2833 ;
-    align-items: center;
-    min-height: 90vh;
+    min-height: 88vh;
+    max-width: 100vw;
 }
 
-#content-logo{
+#admin-content-logo{
     color: #66FCF1
+}
+
+#admin-usr-x{
+    display: none;
 }
 
 /*

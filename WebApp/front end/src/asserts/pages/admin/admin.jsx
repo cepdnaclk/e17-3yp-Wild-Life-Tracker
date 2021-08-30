@@ -1,10 +1,12 @@
 import { Link , BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
+import { ProSidebar, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
 import React, { useState } from "react";
+import { Helmet } from 'react-helmet';
 
 //import components
 import Profile from '../profile/profile';
 import Users from '../users/users';
+import Logout from '../logout/logout';
 
 //import stylesheets
 import 'react-pro-sidebar/dist/css/styles.css';
@@ -14,9 +16,14 @@ import "./styles.css";
 import { FaUsers, FaBars, FaTimes } from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
+const  TITLE = 'Admin panel';
 
 /*export admin component*/
 export default function Admin() {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
   
    //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
@@ -25,23 +32,50 @@ export default function Admin() {
     const menuIconClick = () => {
     //condition checking to change state from true to false and vice versa
 
-        (menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true));
+        if(menuCollapse){
+          setMenuCollapse(false);
+          document.getElementById("admin-content").style.marginLeft = "0px";
+          document.getElementById("admin-sidebar").style.width = "0px";
+          document.getElementById("admin-usr-x").style.display = 'none';
+          document.getElementById("admin-usr-=").style.display = 'inline';
+        }
+        else{
+          setMenuCollapse(true);
+          document.getElementById("admin-sidebar").style.width = "200px";
+          document.getElementById("admin-content").style.marginLeft = "200px";
+          document.getElementById("admin-usr-x").style.display = 'inline';
+          document.getElementById("admin-usr-=").style.display = 'none';
+        } 
               
       };
 
   return (
 
-  <div onLoad={function(){document.title = 'Admin-panel'}}>
+  <div>
+
+      {/*logout message box*/}
+      <Logout handleClose={handleClose} handleShow={handleShow} show={show}/>    
+
+      <Helmet>
+        <title>{ TITLE }</title>
+      </Helmet>
+    
     <Router>
 
-      <div id="header">
-        <ProSidebar collapsed={menuCollapse}>
+       <div className='row' id='admin-content-header'>
+          <div className='col-4 col-md-1'>
+            <button onClick={menuIconClick} className='btn' id='button-user'>
+            <FaTimes id='admin-usr-x'/> 
+            <FaBars id='admin-usr-='/> Menu</button>
+          </div>
 
-          <SidebarHeader>
-            <div className="closemenu" onClick={menuIconClick}>
-              <FaTimes/>
-            </div>
-          </SidebarHeader>
+          <div className='col-8 col-md-9 text-center'>
+            <h1 id='content-logo'>WildLife Tracker</h1>
+          </div>
+        </div>
+
+      <div id="header">
+        <ProSidebar id='admin-sidebar'>
           
           <SidebarContent>
             <Menu iconShape="square">
@@ -59,7 +93,7 @@ export default function Admin() {
           
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} variant="primary" onClick={handleShow}>Logout</MenuItem>
             </Menu>
           </SidebarFooter>
         
@@ -67,20 +101,9 @@ export default function Admin() {
 
       </div>
 
-      <div id='content' className='container-fluid'>
+      <div id='admin-content'>
 
-          <div className='row' id='content-header'>
-            <div className='col-4 col-md-1'>
-              <button onClick={menuIconClick} className='btn' id='button'> <FaBars/> Menu</button>
-            </div>
-
-            <div className='col-8 col-md-9 text-center'>
-              <h1 id='content-logo'>WildLife Tracker</h1>
-            </div>
-
-          </div>
-
-          <div className='row' id='content-body'>
+          <div className='row' id='admin-content-body'>
             <Switch>
               <Route exact path="/Admin/profile" component={Profile}/>
               <Route exact path="/Admin/users" component={Users}/>

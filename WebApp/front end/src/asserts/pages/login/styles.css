@@ -1,6 +1,6 @@
 #button-login{
-  background-color: #355c7d;;
-  border-color: #355c7d;;
+  background-color: #355c7d;
+  border-color: #355c7d;
   color: #ffffff;
   cursor: pointer;
   width: 100%;
@@ -13,10 +13,16 @@
 }
 
 #error-field{
+  display: none;
+  border-style: solid;
+  border-width: thin;
+  border-radius: 10px;
+  border-color: red;
+  background-color: #FAEBD7;
   color: red;
+  padding: 5px;
 }
 
-.error{
-  font-size: 40px;
-  color: red;
+#loader{
+  display: none;
 }
