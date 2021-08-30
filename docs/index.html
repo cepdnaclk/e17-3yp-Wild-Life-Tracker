@@ -249,11 +249,15 @@
                 </div>
             </div>
             
-             <div style="border-bottom: 25px solid #ffffff;">
-            <h2>Web Application</h2>
+            <div style="border-bottom: 25px solid #ffffff;">
+                <h2>Web Application</h2>
             </div>
 
             <div class="row" id="tabs">
+                <div style="text-align: center; " class="col-lg-12">
+                    <h3 style="padding: 2%;">Organization of the Web App</h3>
+                    <img src="assets/images/web/WebappOrg.jpg" style="padding: 2%;width: 80%;height: 80%;" alt="First">
+                </div>
               <div class="col-lg-4">
                 <ul>
                   <li><a href='#tabs-1' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Registration</a></li>
@@ -299,6 +303,25 @@
                   </article>
                 </section>
               </div>
+              <div style="text-align: center; " class="col-lg-12">
+                <h3 style="padding: 2%;">Database Schema</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <img src="assets/images/Database_Schema.png" style="padding: 2%;" alt="database">
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="assets/images/mongodb.png" style="width: 50%;height: 50%;" alt="mongo">
+                            <p style="font-size: 1em;text-align: left;">
+                                &emsp;We use MongoDB as our database managment system. Because of its scalability,
+                                its powerful querying capabilities and the fexibility it provides for modele and
+                                manipulate data structures.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             </div>
         </div>
     </section>
@@ -306,13 +329,13 @@
     <!-- ***** Hardware units ***** -->
     <section class="section" id="design">
         <div class="container" style="margin-top: 5%;">
-            <h2>Organization of the Hardware System</h2>
-
+            <h2>Hardware</h2>
+            <h3 style="text-align: center;">Organization of the Hardware System</h3>
             <div class="container">
                 
-                <img src="assets/images/HardwareOrg.jpg" style="width: 100%;" alt="hardware diagram">
+                <img src="assets/images/HardwareOrg.jpg" style="width: 100%;padding: 2%;" alt="hardware diagram">
                 <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
-                    <h2>Hardware Implementation</h2>
+                    <h3 style="text-align: center;">Hardware Implementation</h3>
                 </div>
     
                  <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
@@ -401,12 +424,16 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <img src="assets/images/Hardware/datapro.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
+                                    <img src="assets/images/Hardware/SIM800L.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
                                 </div>
                                 <div class="col-lg-6">
                                     <p>
-                                        &emsp;ATmega328p chip will interconnect the above units and control the dataflow in desired manner.
-                                        This Atmega328p chip is low budget, PCB friendly and energy efficient. 
+                                        &emsp;ESP32-SIM800L module is the main component in this unit. It interconnects all the units
+                                        and gathering data from other units to send to the AWS IoT core. This module consist of inbuilt
+                                        SIM800L module which capable of sending and receiving GPRS data without WiFi.
+                                        </br>&emsp;All MQTT certificate and GPS data are stored in inbuilt 4MB flash of ESP32-SIM800L module.
+                                        Stored GPS data are used to check whether there is a defferance between new readings. 
+                                        If there is a difference GPS data is sent to the cloud.
                                     </p>
                                 </div>
                             </div>
@@ -437,54 +464,81 @@
                             <tbody>
                                 <tr>
                                     <td style="font-size:20px"><b>Hardware Component</b></td>
+                                    <td style="font-size:20px"><b>Amount</b></td>
                                     <td style="font-size:20px"><b>Price(Rs)</b></td>
+                                    <td style="font-size:20px"><b>Place</b></td>
                                 </tr>
                                 <tr>
                                     <td>Infrared PIR motion Sensor</td>
-                                    <td>325.00</td>
+                                    <td>1</td>
+                                    <td>235.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
                                     <td>ESP32 Cam Board</td>
+                                    <td>1</td>
                                     <td>1890.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
                                     <td>FTDI connector</td>
+                                    <td>1</td>
                                     <td>470.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
-                                    <td>Sim800L V2.0 GSm GPRS Module</td>
-                                    <td>1790.00</td>
+                                    <td>ESP32-SIM800L module</td>
+                                    <td>1</td>
+                                    <td>3250.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
                                     <td>Ublox NEO_6M GPS module</td>
-                                    <td>1390.00</td>
+                                    <td>1</td>
+                                    <td>985.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
                                     <td>1W LED</td>
-                                    <td>22.00</td>
-                                </tr><tr>
-                                    <td>ATmega328p-pu chip</td>
-                                    <td>375.00</td>
+                                    <td>1</td>
+                                    <td>25.00</td>
+                                    <td>tronics.lk</td>
+                                </tr>
+                                <tr>
+                                    <td>LDR</td>
+                                    <td>1</td>
+                                    <td>10.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
                                     <td>Solar Panel (>6V) 165mA</td>
+                                    <td>1</td>
                                     <td>560.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
                                     <td>Battery Charger</td>
-                                    <td>120.00</td>
+                                    <td>1</td>
+                                    <td>90.00</td>
+                                    <td>tronics.lk</td>
                                 </tr>
                                 <tr>
-                                    <td>3.7V 1800mAh batteris*2</td>
-                                    <td>550.00</td>
+                                    <td>3.7V 4800mAh batteris</td>
+                                    <td>2</td>
+                                    <td>700.00</td>
+                                    <td>nilambaraelectronics.com</td>
                                 </tr>
                                 <tr>
                                     <td>Other Expenditures</td>
-                                    <td>1000.00</td>
+                                    <td>-</td>
+                                    <td>1500.00</td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size:15px"><b>TOTAL</b></td>
-                                    <td style="font-size:15px"><u><b>8402.00</b></u></td>
+                                    <td style="font-size:15px;"><b>TOTAL</b></td>
+                                    <td></td>
+                                    <td style="font-size:15px"><u><b>9715.00</b></u></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
