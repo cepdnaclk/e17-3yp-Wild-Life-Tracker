@@ -238,223 +238,284 @@
 
     <!-- ***** design Start ***** -->
     <section class="section" id="design">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="section-heading">
-                        <h2>Project <em>Design</em></h2>
-                        <img src="assets/images/line-dec.png" alt="">
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="border-bottom: 25px solid #ffffff;">
-                <h2>Web Application</h2>
-            </div>
-
-            <div class="row" id="tabs">
-                <div style="text-align: center; " class="col-lg-12">
-                    <h3 style="padding: 2%;">Organization of the Web App</h3>
-                    <img src="assets/images/web/WebappOrg.jpg" style="padding: 2%;width: 80%;height: 80%;" alt="First">
-                </div>
-              <div class="col-lg-4">
-                <ul>
-                  <li><a href='#tabs-1' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Registration</a></li>
-                  <li><a href='#tabs-2' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Login</a></a></li>
-                  <li><a href='#tabs-3' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Researcher's UI</a></a></li>
-                  <li><a href='#tabs-4' class="demo"><img src="assets/images/tabs-first-icon-wb.png" alt="">Administartor's UI</a></a></li>
-                </ul>
-              </div>
-              <div class="col-lg-7">
-                <section class='tabs-content'>
-                  <article id='tabs-1'>
-                    <img src="assets/images/web/register.jpg" style="border: 2px solid #555;" alt="First">
-                    <p><br>It is normal registration. But, reseachers have to provid a <b>legal document for prove he is a real reseacher</b>. example : Document that issued by the Department of wildlife.<br><br>
-                    An administrator will accept the registration after confirming all information are correct and legal.
-                    </p>
-
-                  </article>
-                  <article id='tabs-2'>
-                    <img src="assets/images/web/login.jpg" style="border: 2px solid #555;" alt="Second">
-                    <p>
-                        <br>Users can login to the sytem by providing <b>username</b> and <b>password</b>.
-                        <br>Only, the users who are registered and approved by the administrator will be able to log in.
-                    </p>
-                    
-                  </article>
-                  <article id='tabs-3'>
-                    <img src="assets/images/web/client.jpg" style="border: 2px solid #555;" alt="Third">
-                    <p>
-                     <br>
-                        There are special two tabs.<br>
-                        <b>Connected devices - </b>
-                        Used to connect IOT device and web application. This can be done by using the using ID and password of the device.<br><br>
-                        <b>Photos - </b>
-                        All the photos are shown in this tab.   
-                    </p>
-                   
-                  </article>
-                  <article id='tabs-4'>
-                    <img src="assets/images/web/admin.jpg" style="border: 2px solid #555;" alt="Fourth">
-                    <p>
-                    <br>Admins have to check the application for registrations. If all information is legal and correct, then they can approve.
-                    </p>
-                  </article>
-                </section>
-              </div>
-              <div style="text-align: center; " class="col-lg-12">
-                <h3 style="padding: 2%;">Database Schema</h3>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <img src="assets/images/Database_Schema.png" style="padding: 2%;" alt="database">
-                        </div>
-                        <div class="col-lg-4">
-                            <img src="assets/images/mongodb.png" style="width: 50%;height: 50%;" alt="mongo">
-                            <p style="font-size: 1em;text-align: left;">
-                                &emsp;We use MongoDB as our database managment system. Because of its scalability,
-                                its powerful querying capabilities and the fexibility it provides for modele and
-                                manipulate data structures.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ***** Hardware units ***** -->
-    <section class="section" id="design">
-        <div class="container" style="margin-top: 5%;">
-            <h2>Hardware</h2>
-            <h3 style="text-align: center;">Organization of the Hardware System</h3>
+        <section>
             <div class="container">
-                
-                <img src="assets/images/HardwareOrg.jpg" style="width: 100%;padding: 2%;" alt="hardware diagram">
-            
                 <div class="row">
-                    <div class="col-lg-12" style="text-align: center;">
-                        <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
-                            <h3 style="text-align: center;">Algorithm that runs in the camera unit</h3>
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="section-heading">
+                            <h2>Project <em>Design</em></h2>
+                            <img src="assets/images/line-dec.png" alt="">
+                            <p></p>
                         </div>
-                        <img src="assets/images/Algorithm.png" style="width: 60%;height: 70%;" alt="First">
                     </div>
-                </div>
-
-                <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
-                    <h3 style="text-align: center;">Hardware Implementation</h3>
                 </div>
     
-                 <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
+                <div class="design_sub" style="border-bottom: 25px solid #ffffff;">
+                    <h2>Web Application</h2>
+                </div>
+    
+                <div class="row" id="tabs">
+                    <div style="text-align: center; " class="col-lg-12">
+                        <h3 style="padding: 2%;">Organization of the Web App</h3>
+                        <img src="assets/images/web/WebappOrg.jpg" style="padding: 2%;width: 80%;height: 80%;" alt="First">
+                    </div>
                     <div class="col-lg-4">
                         <ul>
-                            <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active" style="font-size: 1em;">
-                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>               
-                            </li>
-                            <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo" style="font-size: 1em;">
-                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Connection And GPS unit</a>
-                            </li>
-                            <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo">
-                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Power unit</a>
-                            </li>
-                            <li>
-                                <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo">
-                                <img src="assets/images/tabs-first-icon-hw.png" alt="">Data processing unit</a>
-                            </li>  
+                            <li><a href='#tabs-1' class="demo"><img src="assets/images/tabs-first-icon-wb.png"
+                                        alt="">Registration</a></li>
+                            <li><a href='#tabs-2' class="demo"><img src="assets/images/tabs-first-icon-wb.png"
+                                        alt="">Login</a></a></li>
+                            <li><a href='#tabs-3' class="demo"><img src="assets/images/tabs-first-icon-wb.png"
+                                        alt="">Researcher's UI</a></a></li>
+                            <li><a href='#tabs-4' class="demo"><img src="assets/images/tabs-first-icon-wb.png"
+                                        alt="">Administartor's UI</a></a></li>
                         </ul>
                     </div>
-
-
-                  <div class="col-lg-8">
-                    <section class='tabs-content'>
-                      <article id='tabs-5' class="demo2">
+                    <div class="col-lg-7">
+                        <section class='tabs-content'>
+                            <article id='tabs-1'>
+                                <img src="assets/images/web/register.jpg" style="border: 2px solid #555;" alt="First">
+                                <p><br>It is normal registration. But, reseachers have to provid a <b>legal document for
+                                        prove he is a real reseacher</b>. example : Document that issued by the Department
+                                    of wildlife.<br><br>
+                                    An administrator will accept the registration after confirming all information are
+                                    correct and legal.
+                                </p>
+    
+                            </article>
+                            <article id='tabs-2'>
+                                <img src="assets/images/web/login.jpg" style="border: 2px solid #555;" alt="Second">
+                                <p>
+                                    <br>Users can login to the sytem by providing <b>username</b> and <b>password</b>.
+                                    <br>Only, the users who are registered and approved by the administrator will be able to
+                                    log in.
+                                </p>
+    
+                            </article>
+                            <article id='tabs-3'>
+                                <img src="assets/images/web/client.jpg" style="border: 2px solid #555;" alt="Third">
+                                <p>
+                                    <br>
+                                    There are special two tabs.<br>
+                                    <b>Connected devices - </b>
+                                    Used to connect IOT device and web application. This can be done by using the using ID
+                                    and password of the device.<br><br>
+                                    <b>Photos - </b>
+                                    All the photos are shown in this tab.
+                                </p>
+    
+                            </article>
+                            <article id='tabs-4'>
+                                <img src="assets/images/web/admin.jpg" style="border: 2px solid #555;" alt="Fourth">
+                                <p>
+                                    <br>Admins have to check the application for registrations. If all information is legal
+                                    and correct, then they can approve.
+                                </p>
+                            </article>
+                        </section>
+                    </div>
+                    <div style="text-align: center; " class="col-lg-12">
+                        <h3 style="padding: 2%;">Database Schema</h3>
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="assets/images/Hardware/cam.jpg" style="border: 2px solid #555; width: 90%;" alt="First">
+                                <div class="col-lg-8">
+                                    <img src="assets/images/Database_Schema.png" style="padding: 2%;" alt="database">
                                 </div>
-                                <div class="col-lg-6">
-                                    <p>&emsp;This unit handles the sensing and taking snapshots of wild animals accordingly.
-                                        It is consist of <b>ESP32 Cam Board, PIR motion sensor(HC-SR501), Flash LED and a LDR</b>.
-                                        PIR sesor is capable of sensing motions within 7 meters and 120° range. This sensor will trigger the camera
-                                        to take photo and then a 30 second video is captured.
-                                    </br>&emsp;ESP32 cam board is consist of a powerfull image processing unit that allows to take very clear photos
-                                        and a SD card slot. The PIR sensor is directly connected to the ESP32 cam board. The captured photos are
-                                        stored in the SD card before send to the cloud database. Videos are not sent to cloud database they will be stored
-                                        in the SD card.
-                                    </br>&emsp;The LDR is used to monitor light conditions and according to those readings the LED flash will automatically turn on.
-                                        This allow us to capture clear photos in bad light conditions.
+                                <div class="col-lg-4">
+                                    <img src="assets/images/mongodb.png" style="width: 50%;height: 50%;" alt="mongo">
+                                    <p style="font-size: 1em;text-align: left;">
+                                        &emsp;We use MongoDB as our database managment system. Because of its scalability,
+                                        its powerful querying capabilities and the fexibility it provides for modele and
+                                        manipulate data structures.
                                     </p>
                                 </div>
                             </div>
                         </div>
-                      </article>
-                      <article id='tabs-6' class="demo2" style="display:none;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="assets/images/Hardware/gps.jpg" style="border: 2px solid #555; width: 90%;" alt="Second">
-                                </div>
-                                <div class="col-lg-6">
-                                    <p>
-                                        &emsp;The connection and GPS unit is consist of <b>SIM800L module and GPS module</b>.
-                                        The GPS module is used to get the best possible position information. User can check the exact
-                                        position of the device through the web app. The data observed by this GPS module is used to
-                                        pinpoint the location.
-                                    </br>&emsp;SIM800L module is used to communicate with the AWS server. This module allows for GPRS
-                                        transmissions without Wi-Fi. This module is very suitable for long range connections.   
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                      </article>
-                      <article id='tabs-7' class="demo2" style="display:none;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="assets/images/Hardware/power.jpg" style="border: 2px solid #555; width: 90%;" alt="Third">
-                                </div>
-                                <div class="col-lg-6">
-                                    <p>
-                                        &emsp;The main components in this unit are <b>3.7V 1800mAh batteris, Solar panel, voltage regulator and battery charger</b>.
-                                        Solar cell recharges the batteries when there is optimal sunlight.
-                                        This generated power can be used to power the system very efficiently in harsh environments.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                      </article>
-                      <article id='tabs-8' class="demo2" style="display:none;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="assets/images/Hardware/SIM800L.jpg" style="border: 2px solid #555; width: 90%;" alt="Fourth">
-                                </div>
-                                <div class="col-lg-6">
-                                    <p>
-                                        &emsp;ESP32-SIM800L module is the main component in this unit. It interconnects all the units
-                                        and gathering data from other units to send to the AWS IoT core. This module consist of inbuilt
-                                        SIM800L module which capable of sending and receiving GPRS data without WiFi.
-                                        </br>&emsp;All MQTT certificate and GPS data are stored in inbuilt 4MB flash of ESP32-SIM800L module.
-                                        Stored GPS data are used to check whether there is a defferance between new readings. 
-                                        If there is a difference GPS data is sent to the cloud.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                      </article>
-                    </section>
-                  
+    
+                    </div>
                 </div>
-                
             </div>
-        </div>
+        </section>
+    
+        <!-- ***** Hardware units ***** -->
+        <section>
+            <div class="container" style="margin-top: 5%;">
+                <div class="design_sub" style="border-bottom: 25px solid #ffffff;">
+                    <h2>Hardware</h2>
+                </div>
+                <h3 style="text-align: center;">Organization of the Hardware System</h3>
+                <div class="container">
+    
+                    <img src="assets/images/HardwareOrg.jpg" style="width: 100%;padding: 2%;" alt="hardware diagram">
+    
+                    <div class="row">
+                        <div class="col-lg-12" style="text-align: center;">
+                            <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
+                                <h3 style="text-align: center;">Algorithm that runs in the camera unit</h3>
+                            </div>
+                            <img src="assets/images/Algorithm.png" style="width: 60%;height: 70%;" alt="First">
+                        </div>
+                    </div>
+    
+                    <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
+                        <h3 style="text-align: center;">Hardware Implementation</h3>
+                    </div>
+    
+                    <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
+                        <div class="col-lg-4">
+                            <ul>
+                                <li>
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active"
+                                        style="font-size: 1em;">
+                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>
+                                </li>
+                                <li>
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo"
+                                        style="font-size: 1em;">
+                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Connection And GPS unit</a>
+                                </li>
+                                <li>
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo">
+                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Power unit</a>
+                                </li>
+                                <li>
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo">
+                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Data processing unit</a>
+                                </li>
+                            </ul>
+                        </div>
+    
+    
+                        <div class="col-lg-8">
+                            <section class='tabs-content'>
+                                <article id='tabs-5' class="demo2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <img src="assets/images/Hardware/cam.jpg"
+                                                    style="border: 2px solid #555; width: 90%;" alt="First">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>&emsp;This unit handles the sensing and taking snapshots of wild animals
+                                                    accordingly.
+                                                    It is consist of <b>ESP32 Cam Board, PIR motion sensor(HC-SR501), Flash
+                                                        LED and a LDR</b>.
+                                                    PIR sesor is capable of sensing motions within 7 meters and 120° range.
+                                                    This sensor will trigger the camera
+                                                    to take photo and then a 30 second video is captured.
+                                                    </br>&emsp;ESP32 cam board is consist of a powerfull image processing
+                                                    unit that allows to take very clear photos
+                                                    and a SD card slot. The PIR sensor is directly connected to the ESP32
+                                                    cam board. The captured photos are
+                                                    stored in the SD card before send to the cloud database. Videos are not
+                                                    sent to cloud database they will be stored
+                                                    in the SD card.
+                                                    </br>&emsp;The LDR is used to monitor light conditions and according to
+                                                    those readings the LED flash will automatically turn on.
+                                                    This allow us to capture clear photos in bad light conditions.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id='tabs-6' class="demo2" style="display:none;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <img src="assets/images/Hardware/gps.jpg"
+                                                    style="border: 2px solid #555; width: 90%;" alt="Second">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>
+                                                    &emsp;The connection and GPS unit is consist of <b>SIM800L module and
+                                                        GPS module</b>.
+                                                    The GPS module is used to get the best possible position information.
+                                                    User can check the exact
+                                                    position of the device through the web app. The data observed by this
+                                                    GPS module is used to
+                                                    pinpoint the location.
+                                                    </br>&emsp;SIM800L module is used to communicate with the AWS server.
+                                                    This module allows for GPRS
+                                                    transmissions without Wi-Fi. This module is very suitable for long range
+                                                    connections.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id='tabs-7' class="demo2" style="display:none;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <img src="assets/images/Hardware/power.jpg"
+                                                    style="border: 2px solid #555; width: 90%;" alt="Third">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>
+                                                    &emsp;The main components in this unit are <b>3.7V 1800mAh batteris,
+                                                        Solar panel, voltage regulator and battery charger</b>.
+                                                    Solar cell recharges the batteries when there is optimal sunlight.
+                                                    This generated power can be used to power the system very efficiently in
+                                                    harsh environments.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article id='tabs-8' class="demo2" style="display:none;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <img src="assets/images/Hardware/SIM800L.jpg"
+                                                    style="border: 2px solid #555; width: 90%;" alt="Fourth">
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p>
+                                                    &emsp;ESP32-SIM800L module is the main component in this unit. It
+                                                    interconnects all the units
+                                                    and gathering data from other units to send to the AWS IoT core. This
+                                                    module consist of inbuilt
+                                                    SIM800L module which capable of sending and receiving GPRS data without
+                                                    WiFi.
+                                                    </br>&emsp;All MQTT certificate and GPS data are stored in inbuilt 4MB
+                                                    flash of ESP32-SIM800L module.
+                                                    Stored GPS data are used to check whether there is a defferance between
+                                                    new readings.
+                                                    If there is a difference GPS data is sent to the cloud.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </section>
+    
+                        </div>
+    
+                    </div>
+                </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="design_sub">
+                    <h2>Testing Plan</h2>
+                </div>
+                <div class="container">
+                    <div class="row" style="text-align: center;margin-top: 2%;margin-bottom: 2%;">
+                        <div class="col-lg-4" style="background-color: #555;">
+                            <h4>Unit testing</h4>
+                            
+                        </div>
+                        <div class="col-lg-4" style="background-color: rgb(250, 92, 0);">
+                            <h4>Intergrated testing</h4>
+                        </div>
+                        <div class="col-lg-4" style="background-color: #555;">
+                            <h4>End to End</h4>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </section>
     </section>
     
     <!-- ***** budget ***** -->

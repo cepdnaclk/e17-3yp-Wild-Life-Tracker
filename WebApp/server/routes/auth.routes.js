@@ -37,6 +37,7 @@ const upload = multer({storage: storage, limits: {
 //This folder is not publically accesibleby deafault (Therfore turn it to a static folder)
 
 const authorize = require('../middleware/auth')     //Authentication middleware that we created
+const admin_authorize = require('../middleware/auth_admin') 
 const { Router } = require('express')
 
 const router = express.Router();
@@ -68,7 +69,8 @@ router.post('/signin-admin',(req,res,next)=>{
         //on sucessful auth the server creates a JET token or else an error
         let jwtToken = jwt.sign({           //Auth sucess (This is about jwt)
             email: getUser.email,           // .sign takes the payload, secret and option
-            userId: getUser._id
+            userId: getUser._id,
+            isAdmin : true
         },"longer-secret-is-better",{
             expiresIn: '2h'                    //after 2h token is expired
         })
@@ -221,7 +223,7 @@ router.post('/register-user',upload.single('verificationLetter'),(req,res,next)=
 })
 
 //dummy(get all the users) endpoints with authentication (only one route still) This is for admin confirmation
-router.route('/all-user-admin').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
+router.route('/all-user-admin').get(admin_authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
     confirmationSchema.find((error, response) => {          //finds documents
         if (error) {
             return next(error)
@@ -257,7 +259,7 @@ router.route('/one-user').get(authorize, (req,res)=> {
 })
     
 //accepting a user registration
-router.route('/accept-reg').delete(authorize, (req, res)=> {
+router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     let clientRequest;
     let errorMessage;
     let file;
