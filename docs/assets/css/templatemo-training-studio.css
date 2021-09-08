@@ -57,6 +57,14 @@ figure, header, nav, section, article, aside, footer, figcaption {
   height: 0;
 }
 
+.design_sub{
+  background-color: #ff0707;
+  color: rgb(255, 255, 255);
+  padding: 3%;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .clearfix {
   display: inline-block;
 }
