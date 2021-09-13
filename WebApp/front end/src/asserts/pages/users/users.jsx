@@ -16,25 +16,21 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 var users = [];
 
 const Accept = (evt) =>{
-
-	const data = {
-      			'email': cookies.get('selected')
-      			};
-
-    axios.get(`${URL}api/auth/accept-reg`,data,{
-
-      headers: {
-        'x-auth-token' : cookies.get('token')
-      }
-
-
-    })
+	axios.delete(`${URL}api/auth/accept-reg`, {
+		headers: {
+			'x-auth-token' : cookies.get('token')
+		},
+		data: {
+			'email': cookies.get('selected')
+		}
+	})
     .then(function (response) {
-      document.getElementById('requests-list').innerHTML = "successfull";
+		console.log(response);
+      	document.getElementById('requests-list').innerHTML = "successfull";
     })
   
     .catch(function (error) {
-    	console.log(data);
+		console.log(error);
       //cookies.set('user', admin , { path: '/' });
       //document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
       //document.getElementById('requests-list').className ='token-error';

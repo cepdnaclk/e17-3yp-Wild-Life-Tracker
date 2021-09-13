@@ -17,6 +17,7 @@ module.exports = (req,res,next) => {
         }
         next()                                  //execute other lines in the pipeline
     }catch(error){
+        console.log("error occurred");
         res.status(401).json({
             message: "No token. Cannot Authorize",
             error: error
