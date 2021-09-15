@@ -5,7 +5,8 @@ middleware -> check authentication between the routes (In the middleware.js, we 
         JWT Authentication Middleware: verify SignUp, verify token
     Authorization Middleware: check User’s roles with record in database
 models -> data models
-routes -> 
+routes -> for express routes
+cert -> SSL certification
 
 ## Notes
 
