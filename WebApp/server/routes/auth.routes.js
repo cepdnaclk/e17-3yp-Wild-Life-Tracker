@@ -4,6 +4,8 @@ const express = require('express')
 const userSchema = require('../models/users')
 const confirmationSchema = require('../models/confirmation')
 const adminSchema = require('../models/admin')
+const deviceSchema = require('../models/device')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')        //new
@@ -234,6 +236,59 @@ router.route('/all-user-admin').get(admin_authorize, (req, res)=> {         // f
     })
 })
 
+//route to connect a device with a user profile
+//inserts the serial number of the device into user document
+router.route('/connect-device').put(authorize, (req,res)=>{
+    let status_c=500;
+    //find the device by serial_number
+    deviceSchema.findOne({
+        serial_number: req.body.serial_number
+    })
+    .then(device =>{
+        if(!device){
+            //if device with the given serial not in database throw error
+            status_c = 404
+            throw new Error("No device with given serial number!!")
+        }else{
+            //check password
+            return bcrypt.compare(req.body.password, device.password)
+        }
+    })
+    .then(response =>{
+        if(!response){
+            //if password is incorrect
+            status_c = 403
+            throw new Error("Incorrect password!!")
+        }
+        else{
+            //if password is correct update user profile
+            userSchema.updateOne(
+                {"email":req.body.email},{"$push":{"devices":req.body.serial_number}}
+            )
+            .then((result) =>{
+                if(result.nModified==0){
+                    status_c = 404
+                    throw new Error("No user with given email!!")
+                }
+                return res.status(201).json({
+                    status: "Success",
+                    message: "Device connected",
+                });
+            })
+            .catch((err)=>{
+                return res.status(status_c).json({
+                    message:err.message
+                });
+            })
+        }
+    })
+    .catch((err) => {
+        return res.status(status_c).json({
+            message:err.message
+        });
+    }) 
+})
+
 //dummy (get info of a specific user) -> This is still wrong
 router.route('/one-user').get(authorize, (req,res)=> {
     //console.log(req.userEmail)
@@ -318,7 +373,8 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     })
     .catch((err) => {
         res.status(500).json({
-            message: errorMessage
+            message: errorMessage,
+            dara : err
         })
     })           
 })

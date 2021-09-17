@@ -23,11 +23,11 @@ let deviceSchema = new Schema(
         },
         location: { //this will hold the location of device
             longitude:{
-                type: SchemaTypes.Double,
+                type: Number,
                 required: false
             },
             latitude: {
-                type: SchemaTypes.Double,
+                type: Number,
                 required: false
             }
         }
