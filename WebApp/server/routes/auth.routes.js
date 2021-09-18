@@ -236,58 +236,7 @@ router.route('/all-user-admin').get(admin_authorize, (req, res)=> {         // f
     })
 })
 
-//route to connect a device with a user profile
-//inserts the serial number of the device into user document
-router.route('/connect-device').put(authorize, (req,res)=>{
-    let status_c=500;
-    //find the device by serial_number
-    deviceSchema.findOne({
-        serial_number: req.body.serial_number
-    })
-    .then(device =>{
-        if(!device){
-            //if device with the given serial not in database throw error
-            status_c = 404
-            throw new Error("No device with given serial number!!")
-        }else{
-            //check password
-            return bcrypt.compare(req.body.password, device.password)
-        }
-    })
-    .then(response =>{
-        if(!response){
-            //if password is incorrect
-            status_c = 403
-            throw new Error("Incorrect password!!")
-        }
-        else{
-            //if password is correct update user profile
-            userSchema.updateOne(
-                {"email":req.body.email},{"$push":{"devices":req.body.serial_number}}
-            )
-            .then((result) =>{
-                if(result.nModified==0){
-                    status_c = 404
-                    throw new Error("No user with given email!!")
-                }
-                return res.status(201).json({
-                    status: "Success",
-                    message: "Device connected",
-                });
-            })
-            .catch((err)=>{
-                return res.status(status_c).json({
-                    message:err.message
-                });
-            })
-        }
-    })
-    .catch((err) => {
-        return res.status(status_c).json({
-            message:err.message
-        });
-    }) 
-})
+
 
 //dummy (get info of a specific user) -> This is still wrong
 router.route('/one-user').get(authorize, (req,res)=> {
@@ -379,5 +328,153 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     })           
 })
 
+// DEVICE ROUTES
+/*
+api/auth/photos_list        (List the url of photos)
+api/auth/devices_list       (List the devices)   
+api/auth/add_new_device     (Add a new deivce from user)
+api/auth/remove_device      (remove a new device from user)
+api/auth/delete_photo       (To delete a photo)
+*/
+
+//route to connect a device with a user profile
+//inserts the serial number of the device into user document
+router.route('/connect-device').put(authorize, (req,res)=>{
+    let status_c=500;
+    //find the device by serial_number
+    deviceSchema.findOne({
+        serial_number: req.body.serial_number
+    })
+    .then(device =>{
+        if(!device){
+            //if device with the given serial not in database throw error
+            status_c = 404
+            throw new Error("No device with given serial number!!")
+        }else{
+            //check password
+            return bcrypt.compare(req.body.password, device.password)
+        }
+    })
+    .then(response =>{
+        if(!response){
+            //if password is incorrect
+            status_c = 403
+            throw new Error("Incorrect password!!")
+        }
+        else{
+            //if password is correct update user profile
+            userSchema.updateOne(
+                {"email":req.body.email},{"$push":{"devices":req.body.serial_number}}
+            )
+            .then((result) =>{
+                if(result.nModified==0){
+                    status_c = 404
+                    throw new Error("No user with given email!!")
+                }
+                return res.status(201).json({
+                    status: "Success",
+                    message: "Device connected",
+                });
+            })
+            .catch((err)=>{
+                return res.status(status_c).json({
+                    message:err.message
+                });
+            })
+        }
+    })
+    .catch((err) => {
+        return res.status(status_c).json({
+            message:err.message
+        });
+    }) 
+})
+
+//dummy(get all the users) endpoints with authentication (only one route still) This is for admin confirmation
+router.route('/photos_list').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
+    
+    //variables
+    let getUser;            //hold the  user
+    let serialNumberArray;  //hold the device number array
+    let photos;
+    
+    userSchema.findOne({            //functin in mongoose
+        email: req.userEmail        //get the email from the req body
+    })
+    .then(user => {
+        if (!user){     //if no user
+            return res.status(401).json({          //parse to json file
+                message: "Authentication failed"
+            })
+        }
+        getUser = user;
+        serialNumberArray = user.devices
+        //console.log(serialNumberArray)
+
+        if(serialNumberArray == null){
+            return res.status(200).json({
+                message: "No devices connected"
+            })
+        }
+
+        /*
+        
+        */
+        
+        //console.log(photos)
+
+        return serialNumberArray
+        
+        
+    })
+    /*
+    .then(numArray => {
+        //console.log(numArray)
+        
+        numArray.forEach(element => {
+            
+            console.log(element)
+            console.log("************")
+            
+            deviceSchema.findOne({
+                serial_number: element
+            })
+            .then(device => {
+                if(!device){
+                    return res.status(401).json({          //parse to json file
+                        message: "No devices with the provided IDs"
+                    })
+                }
+
+                photos.push(device.photos)
+                console.log(photos)
+                return photos
+            })
+            */
+            /*
+            .catch((err) => {
+                return res.status(403).json({
+                    message:err.message
+                });
+            })
+        })
+        
+    })
+    */
+    .then(photos => {
+        return res.status(200).json({
+            deviceArray: photos
+        })
+    })
+
+    /*
+    .catch((err) => {
+        return res.status(403).json({
+            message:err.message
+        });
+    })
+    */
+    
+})
 
 module.exports = router
