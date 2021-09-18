@@ -1,37 +1,46 @@
+const { Double } = require("mongodb");
 const mongoose  = require("mongoose");
 const uniqueValidator = require('mongoose-unique-validator')
 
-//user data model
-const Schema = mongoose.Schema;     //to create schema
 
-let userSchema = new Schema(
+const Schema = mongoose.Schema;
+const SchemaTypes = mongoose.Schema.Types;
+
+let deviceSchema = new Schema(
     {
-        name: {
-            type: String,
-            required: true
-        },
-        email: {
-            type: String,
-            unique: true,
-            required: true
-        },
         password: {
             type: String,
             required: true
         },
-        devices: {
-            type: [Number]
+        serial_number: {
+            type: Number,
+            unique: true,
+            required: true
+        },
+        photos: { //this will hold the link to uploaded photos
+            type: String,
+            required: true
+        },
+        location: { //this will hold the location of device
+            longitude:{
+                type: Number,
+                required: false
+            },
+            latitude: {
+                type: Number,
+                required: false
+            }
         }
     },
     {
-        collection: 'users'     //name the collection
+        collection: 'device'     //collection name is device
     }
 )
 
-userSchema.plugin(uniqueValidator, {message: 'Email already exist'})        //add the plugin to user schema
+deviceSchema.plugin(uniqueValidator, {message: 'cannot have two device with same serial'}) // the serial number must be a unique value      
 
 //to export
-module.exports = mongoose.model('User',userSchema)      
+module.exports = mongoose.model('Device',deviceSchema)      
 
 /*
 Example from Docs
