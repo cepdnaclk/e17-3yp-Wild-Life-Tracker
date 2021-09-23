@@ -77,6 +77,8 @@ const sendMail = (email,subject,body,res) =>{
 
 const authorize = require('../middleware/auth')     //Authentication middleware that we created
 const admin_authorize = require('../middleware/auth_admin') 
+//device auth
+const authorize_device = require('../middleware/auth_device')
 const { Router } = require('express')
 const { getMaxListeners } = require('../models/users')
 
@@ -423,8 +425,8 @@ router.route('/connect-device').put(authorize, (req,res)=>{
     }) 
 })
 
-//dummy(get all the users) endpoints with authentication (only one route still) This is for admin confirmation
-router.route('/device_list').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
+//route to get all the devices of a user
+router.route('/devices_list').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
     
     //variables
     let getUser;            //hold the  user
@@ -495,18 +497,60 @@ router.route('/device_list').get(authorize, (req, res)=> {         // from .rout
     })
     */
     .then(devices => {
-        return res.status(200).json({
+
+        //create a jwt for devices
+        let jwtToken = jwt.sign({           //Auth sucess (This is about jwt)
+            /*
+            email: getUser.email,           // .sign takes the payload, secret and option
+            userId: getUser._id
+            */
+            deviceArray: devices
+        },"longer-secret-is-better",{
+            expiresIn: '2h'                    //after 2h token is expired
+        })
+
+        res.status(200).json({          
+            token: jwtToken,        //client gets the JWT token in the response body
+            expiresIn: 6600,        //client stores that token in local storage
             deviceArray: devices
         })
-    })
+        /*
+        return res.status(200).json({
 
-    /*
+            deviceArray: devices
+        })
+        */
+    })
     .catch((err) => {
         return res.status(403).json({
             message:err.message
         });
     })
-    */
+    
+//Route to get all the photos of one device
+router.route('/device_photos').get(authorize_device, (req,res) => {
+    
+    //console.log(req.devices)
+
+    deviceSchema.findOne({
+        serial: req.devices[1]
+    })
+    .then(device => {
+        if(!device){
+            return res.status(401).json({          //parse to json file
+                message: "No devices with the provided IDs"
+            })
+        }
+
+        return res.status(200).json({
+            message: "Still dummy",
+            device: device 
+        })
+    })
+})
+
+
+
     
 })
 
