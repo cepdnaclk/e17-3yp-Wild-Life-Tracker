@@ -10,6 +10,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')        //new
 const fs = require('fs')                //used to delete the confirmation file when confirming rq
+const nodemailer = require('nodemailer')
+
+
 
 const storage = multer.diskStorage({        //new   //to adjust how files get stored
     destination: function(req, file, cb){
@@ -38,9 +41,44 @@ const upload = multer({storage: storage, limits: {
 })      //new       //saves files to the uploads
 //This folder is not publically accesibleby deafault (Therfore turn it to a static folder)
 
+const sendMail = (email,subject,body,res) =>{
+    let mailTransporter = nodemailer.createTransport({
+        service: process.env.MAIL_SERVER,
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASSWORD
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+      
+    let mailDetails = {
+        from: process.env.MAIL_FROM,
+        to: email,
+        subject: subject,
+        html: body
+    };
+      
+    mailTransporter.sendMail(mailDetails, function(err, data) {
+        if(err) {
+            console.log('Error Occurs');
+            console.log(err);
+            res.status(404).json({
+                message: 'Email not Sent',
+            });
+        } else {
+            res.status(200).json({
+                message: 'Email Sent',
+            });
+        } 
+    });
+}
+
 const authorize = require('../middleware/auth')     //Authentication middleware that we created
 const admin_authorize = require('../middleware/auth_admin') 
 const { Router } = require('express')
+const { getMaxListeners } = require('../models/users')
 
 const router = express.Router();
 
@@ -174,13 +212,6 @@ router.post('/register-admin',(req,res,next)=>{
                 message: 'Admin created',
                 result: response
             })
-            /*
-            .catch((error) => {
-                res.status(500).json({
-                    error
-                })
-            })
-            */
         })
         .catch((error) => {
             res.status(500).json({
@@ -208,13 +239,6 @@ router.post('/register-user',upload.single('verificationLetter'),(req,res,next)=
                 message: 'User created for confirmation',
                 result: response
             })
-            /*
-            .catch((error) => {
-                res.status(500).json({
-                    error
-                })
-            })
-            */
         })
         .catch((error) => {
             res.status(500).json({
@@ -311,8 +335,15 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
                     })
                     //save user       
                     user.save().then((response) => {
+                        body =  `
+                                    <h1>Wild life tracker</h1>
+                                    <p>Your request to Wildlife tracker has been confirmed by an admin!!!</p>
+                                    <p>you can log into the system using your credentials</p>
+                                `;
+                        sendMail(req.body.email,"User registration confirmed",body,res);
+                        
                         res.status(201).json({
-                            message: 'User registratio confirmed',
+                            message: 'User registration confirmed',
                             result: response
                         })
                     })           
@@ -323,10 +354,12 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     .catch((err) => {
         res.status(500).json({
             message: errorMessage,
-            dara : err
+            data : err
         })
     })           
 })
+
+
 
 // DEVICE ROUTES
 /*
@@ -478,3 +511,6 @@ router.route('/device_list').get(authorize, (req, res)=> {         // from .rout
 })
 
 module.exports = router
+
+
+
