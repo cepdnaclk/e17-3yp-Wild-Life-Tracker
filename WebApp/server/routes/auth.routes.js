@@ -391,7 +391,7 @@ router.route('/connect-device').put(authorize, (req,res)=>{
 })
 
 //dummy(get all the users) endpoints with authentication (only one route still) This is for admin confirmation
-router.route('/photos_list').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
+router.route('/device_list').get(authorize, (req, res)=> {         // from .route can create chainable route handlers (like get post put altogether --> see docs)
     
     //variables
     let getUser;            //hold the  user
@@ -461,9 +461,9 @@ router.route('/photos_list').get(authorize, (req, res)=> {         // from .rout
         
     })
     */
-    .then(photos => {
+    .then(devices => {
         return res.status(200).json({
-            deviceArray: photos
+            deviceArray: devices
         })
     })
 
