@@ -528,12 +528,18 @@ router.route('/devices_list').get(authorize, (req, res)=> {         // from .rou
     })
     
 //Route to get all the photos of one device
-router.route('/device_photos').get(authorize_device, (req,res) => {
+router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {       //device_photos/1
     
     //console.log(req.devices)
+    //console.log(req.params)
+
+    let {deviceID} = req.params
+    //console.log(deviceID)
+
+    //console.log(req.devices[1])         //this is a test
 
     deviceSchema.findOne({
-        serial: req.devices[1]
+        serial_number: req.devices[deviceID]
     })
     .then(device => {
         if(!device){
