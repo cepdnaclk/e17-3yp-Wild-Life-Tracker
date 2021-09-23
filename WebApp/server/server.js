@@ -10,7 +10,7 @@ const fs = require('fs')        //for file handeling
 const connectDB = require('./config/db')            //get DB
 const auth = require('./routes/auth.routes')        //get routes
 
-dotenv.config({path: './config/config.env'})        //get the configured env vars
+dotenv.config({path: './config/configurations.env'})        //get the configured env vars
 
 connectDB();        //to connect the DB
 
