@@ -663,7 +663,34 @@ router.route('/send-mail').post(admin_authorize, (req, res)=> {
     
 })*/
 
+//route to delete a user
+router.route('/delete_user').post(authorize, (req,res)=>{
+    /*
+    Deletes the first document that matches conditions from the collection.
+    Behaves like remove(), but deletes at most one document regardless of the single option.
+    Returns the query
+    */
+    userSchema.deleteOne({
+        email: req.userEmail
+    })
+    .then(user => {
+        if (!user){     //if no user
+            return res.status((401).json({          //parse to json file
+                message: "Authentication failed"
+            }))
+        }
 
+        return res.status(200).json({
+            message: "Sucessfully deleted the accout"
+        })
+    })
+    .catch((err) => {
+        res.status(500).json({
+            message: err.meddage,
+            data: err
+        })
+    })
+})
 
 
 
