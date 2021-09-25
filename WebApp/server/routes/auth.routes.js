@@ -639,7 +639,7 @@ router.route('/delete_photo/:device&:photoURL').get(authorize_deivce, (req,res) 
             })
         }
         else{
-            
+            //continue from here
         }
 
     })
