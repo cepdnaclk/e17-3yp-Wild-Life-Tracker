@@ -528,6 +528,9 @@ router.route('/devices_list').get(authorize, (req, res)=> {         // from .rou
         });
     })
     
+})
+
+
 //Route to get all the photos of one device
 router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {       //device_photos/1
     
@@ -593,8 +596,6 @@ router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
 
 
 
-    
-})
 
 module.exports = router
 
