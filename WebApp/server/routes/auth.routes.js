@@ -414,11 +414,12 @@ router.route('/reject-reg').post(admin_authorize, (req,res)=>{
 
 // DEVICE ROUTES
 /*
-api/auth/photos_list        (List the url of photos)
+api/auth/device_photos        (List the url of photos of a device)
 api/auth/devices_list       (List the devices)   
 api/auth/add_new_device     (Add a new deivce from user)
 api/auth/remove_device      (remove a new device from user)
 api/auth/delete_photo       (To delete a photo)
+api/auth/device_location    (get the xy coordinates)
 */
 
 //route to connect a device with a user profile
@@ -576,6 +577,9 @@ router.route('/devices_list').get(authorize, (req, res)=> {         // from .rou
         });
     })
     
+})
+
+
 //Route to get all the photos of one device
 router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {       //device_photos/1
     
@@ -598,15 +602,46 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
         }
 
         return res.status(200).json({
-            message: "Still dummy",
-            device: device 
+            message: "Device Photos",
+            device: device,
+            photos: device.photos 
         })
     })
+    .catch((err) => {
+        return res.status(403).json({
+            message:err.message
+        });
+    })
 })  
-
 })
 
+//to give the location
+router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
 
+    let {deviceID} = req.params
+
+    deviceSchema.findOne({
+        serial_number: req.devices[deviceID]
+    })
+    .then(device => {
+        if(!device){
+            return res.status(401).json({          //parse to json file
+                message: "No devices with the provided IDs"
+            })
+        }
+
+        return res.status(200).json({
+            message: "Still dummy",
+            device: device,
+            photos: device.location 
+        })
+    })
+    .catch((err) => {
+        return res.status(403).json({
+            message:err.message
+        });
+    })
+})
 
 /*//this route is for testing mail sending 
 router.route('/send-mail').post(admin_authorize, (req, res)=> {
@@ -628,6 +663,10 @@ router.route('/send-mail').post(admin_authorize, (req, res)=> {
     sendMail(req.body.email,"User registration confirmed",body,res); 
     
 })*/
+
+
+
+
 
 module.exports = router
 
