@@ -74,7 +74,18 @@
     |                     |hardware device      |registration approval|
     |3. Test sensors and  |integration.         |                     |
     |hardware components  |                     |3. Check data flow   |
-    |                     |                     |from devices to cloud|      
+    |                     |                     |from devices to cloud| 
+
+#### Testing Tools   
+1. Frontend Testing
+    - Selenium automated testing framework is used to test the frontend of the web app. 
+    - Selinium supports vast amout of different browsers and platforms. Also, it supports testing scripts written in multiple languages.
+    - Form submissions, form validations, response handling functionalities and other front end functionalities are tested using Selenium.
+
+2. Backend Testing
+    - Postman API testing tool is used to test the backend of the web application.
+    - Postman allows to send HTTP requests using a GUI which makes it easier to test the REST API.
+    - Postman is used to test routings in the backend, authentication and authorization, error handlings ans sending responses in the API.
 ## System Overview
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/images/System%20Overview.PNG)
 
