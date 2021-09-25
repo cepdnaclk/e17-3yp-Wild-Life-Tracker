@@ -550,7 +550,8 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
 
         return res.status(200).json({
             message: "Still dummy",
-            device: device 
+            device: device,
+            photos: device.photos 
         })
     })
 })
