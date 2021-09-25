@@ -613,7 +613,6 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
         });
     })
 })  
-})
 
 //to give the location
 router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
