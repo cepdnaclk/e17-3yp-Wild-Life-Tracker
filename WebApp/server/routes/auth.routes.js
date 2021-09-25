@@ -57,21 +57,30 @@ const sendMail = (email,subject,body,res) =>{
         from: process.env.MAIL_FROM,
         to: email,
         subject: subject,
-        html: body
+        attachments: [{
+            filename: 'header.gif',
+            path: __dirname +'/email templates/header.gif',
+            cid: 'header' //same cid value as in the html img src
+        }],
+        html: `<div style="background-color: rgba(160, 209, 255, 0.849);padding:2%;margin: 2%;border-radius: 20px;">
+                    <div>
+                        <img src="cid:header" style="width: 100%;"/>
+                    </div>`
+                    + body +
+                `</div>`
     };
       
-    mailTransporter.sendMail(mailDetails, function(err, data) {
-        if(err) {
-            console.log('Error Occurs');
+    mailTransporter.sendMail(mailDetails,(err,data)=>{
+        if(err){
             console.log(err);
-            res.status(404).json({
-                message: 'Email not Sent',
-            });
-        } else {
-            res.status(200).json({
-                message: 'Email Sent',
-            });
-        } 
+            res.status(201).json({
+                message: subject+": email not sent!! to client",
+            })
+        }else{
+            res.status(201).json({
+                message: subject+": email sent!! to client",
+            })
+        }
     });
 }
 
@@ -161,7 +170,7 @@ router.post('/signin-user',(req,res,next)=>{
     })
     .then(response => {
         if(!response){
-            return res.status(401).json({           //wrong password
+            return res.status(403).json({           //wrong password
                 message: "Authentication Faild"
             })
         }
@@ -291,7 +300,6 @@ router.route('/one-user').get(authorize, (req,res)=> {
 //accepting a user registration
 router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     let clientRequest;
-    let errorMessage;
     let file;
     //find the request from confirm collection
     confirmationSchema.findOne({
@@ -300,17 +308,15 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     .then(request=>{
         clientRequest = request;
         if(!request){
-            errorMessage = "No request with given Email"; //if request not exist set error message
+            throw new Error("No request with given Email"); //if request not exist set error message
         }
         else{
             file = clientRequest.verificationLetter;
             fs.unlink(file, function (err) {
-                if (err){
-                    errorMessage = "Cannot find the file";
-                    throw err;
-                }
                 // if no error, file has been deleted successfully
-                console.log('File deleted!');
+                if (err){
+                    throw new Error("Cannot find the file to delete");
+                }
             });
         }
         return confirmationSchema.deleteOne({
@@ -337,12 +343,12 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
                     })
                     //save user       
                     user.save().then((response) => {
-                        body =  `
+                        /*let body =  `
                                     <h1>Wild life tracker</h1>
                                     <p>Your request to Wildlife tracker has been confirmed by an admin!!!</p>
                                     <p>you can log into the system using your credentials</p>
                                 `;
-                        sendMail(req.body.email,"User registration confirmed",body,res);
+                        sendMail(req.body.email,"User registration confirmed",body,res);*/
                         
                         res.status(201).json({
                             message: 'User registration confirmed',
@@ -355,10 +361,53 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
     })
     .catch((err) => {
         res.status(500).json({
-            message: errorMessage,
+            message: err.message,
             data : err
         })
     })           
+})
+
+//this route is for reject client request
+//need email and reason for rejecting from the body
+router.route('/reject-reg').post(admin_authorize, (req,res)=>{
+    let status_code;
+    confirmationSchema.findOne({
+        email: req.body.email
+    })
+    .then(request =>{
+        if(!request){
+            status_code =401;
+            throw new Error("No user with given email!");
+        }
+        else{
+            file = clientRequest.verificationLetter;
+            fs.unlink(file, function (err) {
+                status_code =401;
+                if (err){
+                    throw new Error("Cannot find the file to delete");
+                }
+            });
+        }
+
+        return confirmationSchema.deleteOne({
+            email: req.body.email
+        })
+    })
+    .then(delResult=>{
+        if(delResult.deletedCount === 1){
+            res.status(200).json({
+                message: "Client request deleted!!"
+            })
+        }else{
+            status_code= 500;
+            throw new Error("Client request deletion failed!");
+        }
+    })
+    .catch(err=>{
+        res.status(status_code).json({
+            message : err.message
+        })
+    })
 })
 
 
@@ -563,6 +612,7 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
             message:err.message
         });
     })
+})  
 })
 
 //to give the location
@@ -591,8 +641,29 @@ router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
             message:err.message
         });
     })
-
 })
+
+/*//this route is for testing mail sending 
+router.route('/send-mail').post(admin_authorize, (req, res)=> {
+    let name = "John Doe";
+    
+    let body =  `
+                <div style="border-radius: 25px;padding: 2%;font-size: 1em;font-size: 1.5em;">
+                    <div>
+                        <h2>`
+                            +name+
+                        `</h2>
+                        <p>&emsp;Your request to wildlife tracking system has been confirmed by an admin.</p>
+                    </div>
+                </div>
+                `
+            ;
+                        
+    
+    sendMail(req.body.email,"User registration confirmed",body,res); 
+    
+})*/
+
 
 
 
