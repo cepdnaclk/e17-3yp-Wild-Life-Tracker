@@ -614,6 +614,37 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
     })
 })  
 
+
+//route to delete photos
+router.route('/delete_photo/:device&:photoURL').get(authorize_deivce, (req,res) => {
+    let {deviceID} = req.params.device
+    let {photoURL} = req.params.photoURL
+
+    deviceSchema.findOne({
+        serial_number: req.devices[deviceID]
+    })
+    .then(device => {
+        if(!device){
+            return res.status(401).json({          //parse to json file
+                message: "No devices with the provided IDs"
+            })
+        }
+
+        return device.photos
+    })
+    .then(photoArray => {
+        if(!photoArray){
+            return res.status(401).json({
+                message: "No photos found"
+            })
+        }
+        else{
+            
+        }
+
+    })
+})
+
 //to give the location
 router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
 
