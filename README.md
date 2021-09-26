@@ -14,8 +14,9 @@
 4. [Hardware List](#Hardware-List)
 5. [System Overview](#System-Overview)
 6. [Hardware Design](#Hardware-Design)
-7. [Implementation](#Implementation)
-8. [Links](#links)
+7. [Testing Plan](#Testing-Plan)
+8. [Implementation](#Implementation)
+9. [Links](#links)
 
 ---
 
@@ -59,6 +60,32 @@
     | 3.7V 1800mAh batteris        |   2       | 225 LKR    | 550 LKR  |
     | Other Expenditures           |   1       | 1000 LKR   | 1000 LKR |
 
+## Testing Plan
+    | Unit Testing        | Integration Testing | End to End Testing  |
+    |---------------------|:-------------------:|:-------------------:|
+    |                     |                     |                     |
+    |1. Testing           |1. Test front end and|1. Test overall      |  
+    |functianlity of each |back end integration.|functionality of the |
+    |page of the web app. |                     |web app and hardware |
+    |                     |2. Test database and |device.              |
+    |2. Test login,       |backend integration. |                     |
+    |registration and form|                     |2. Check user        | 
+    |validations.         |3. Test web app and  |registration,        |
+    |                     |hardware device      |registration approval|
+    |3. Test sensors and  |integration.         |                     |
+    |hardware components  |                     |3. Check data flow   |
+    |                     |                     |from devices to cloud| 
+
+#### Testing Tools   
+1. Frontend Testing
+    - Selenium automated testing framework is used to test the frontend of the web app. 
+    - Selinium supports vast amout of different browsers and platforms. Also, it supports testing scripts written in multiple languages.
+    - Form submissions, form validations, response handling functionalities and other front end functionalities are tested using Selenium.
+
+2. Backend Testing
+    - Postman API testing tool is used to test the backend of the web application.
+    - Postman allows to send HTTP requests using a GUI which makes it easier to test the REST API.
+    - Postman is used to test routings in the backend, authentication and authorization, error handlings ans sending responses in the API.
 ## System Overview
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/images/System%20Overview.PNG)
 

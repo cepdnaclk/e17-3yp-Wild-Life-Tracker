@@ -614,6 +614,37 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
     })
 })  
 
+
+//route to delete photos
+router.route('/delete_photo/:device&:photoURL').get(authorize_deivce, (req,res) => {
+    let {deviceID} = req.params.device
+    let {photoURL} = req.params.photoURL
+
+    deviceSchema.findOne({
+        serial_number: req.devices[deviceID]
+    })
+    .then(device => {
+        if(!device){
+            return res.status(401).json({          //parse to json file
+                message: "No devices with the provided IDs"
+            })
+        }
+
+        return device.photos
+    })
+    .then(photoArray => {
+        if(!photoArray){
+            return res.status(401).json({
+                message: "No photos found"
+            })
+        }
+        else{
+            //continue from here
+        }
+
+    })
+})
+
 //to give the location
 router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
 
@@ -663,7 +694,34 @@ router.route('/send-mail').post(admin_authorize, (req, res)=> {
     
 })*/
 
+//route to delete a user
+router.route('/delete_user').post(authorize, (req,res)=>{
+    /*
+    Deletes the first document that matches conditions from the collection.
+    Behaves like remove(), but deletes at most one document regardless of the single option.
+    Returns the query
+    */
+    userSchema.deleteOne({
+        email: req.userEmail
+    })
+    .then(user => {
+        if (!user){     //if no user
+            return res.status((401).json({          //parse to json file
+                message: "Authentication failed"
+            }))
+        }
 
+        return res.status(200).json({
+            message: "Sucessfully deleted the accout"
+        })
+    })
+    .catch((err) => {
+        res.status(500).json({
+            message: err.meddage,
+            data: err
+        })
+    })
+})
 
 
 
