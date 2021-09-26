@@ -18,7 +18,7 @@ let deviceSchema = new Schema(
             required: true
         },
         photos: { //this will hold the link to uploaded photos
-            type: String,
+            type: [String],
             required: true
         },
         location: { //this will hold the location of device
