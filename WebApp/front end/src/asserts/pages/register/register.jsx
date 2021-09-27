@@ -52,16 +52,67 @@ function Form() {
    //update states for changes
    const handleChange = e => {
             const { name, value } = e.target;
-            setData(prevState => ({
+
+            if(name==="password"){
+
+                if(value.length>=8){
+                  document.getElementById('button-reg').classList.remove("disabled");
+                  document.getElementById('Password1').classList.remove("is-invalid");      
+       
+                  setData(prevState => ({
+                  ...prevState,
+                  [name]: value
+                }));
+
+              }else{
+                document.getElementById('pwmsg').innerHTML ="password must be at least 8 characters";
+                document.getElementById('Password1').className += " is-invalid";
+                document.getElementById('button-reg').className += ' disabled';
+              }
+
+            }else if(name==="cpassword"){
+
+              if(data['password'] === value){
+                document.getElementById('button-reg').classList.remove("disabled");
+                document.getElementById('Password1').classList.remove("is-invalid");
+                document.getElementById('Password2').classList.remove("is-invalid");
+            
+                setData(prevState => ({
                 ...prevState,
                 [name]: value
-            }));
-        };
+                }));
+         
+              }else{
+                document.getElementById('pwmsg').innerHTML = "";
+                document.getElementById('Password1').className += " is-invalid";
+                document.getElementById('Password2').className += " is-invalid";
+                document.getElementById('button-reg').className += ' disabled';
+              }
 
+            }else{
+                setData(prevState => ({
+                ...prevState,
+                [name]: value
+                }));
+            }
+
+            if(data['name'].length===0 || data['email'].length===0 || data['password'].length===0){
+              document.getElementById('button-reg').className += ' disabled';
+            }
+        };
 
   //update file when uploaded
   const handleFileChange = e => {
-      setfile(e.target.files[0]);
+      var extension = e.target.files[0].name.split('.').pop()
+      
+      if(extension === "png" || extension === "jpg" || extension === "jpeg"){
+        setfile(e.target.files[0]);
+        document.getElementById('validatedCustomFile').classList.remove("is-invalid");
+        document.getElementById('button-reg').classList.remove("disabled");  
+      }else{
+        document.getElementById('validatedCustomFile').className += " is-invalid";
+        document.getElementById('button-reg').className += ' disabled';
+      }
   }
 
 
@@ -104,7 +155,6 @@ function Form() {
       document.getElementById('fail-icon').style.display = "block";
       document.getElementById('reg-error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
     });
-
   }
 
 
@@ -144,18 +194,23 @@ function Form() {
           <label htmlFor="Password1" className="form-label">Password</label>
           <input type="password" className="form-control" id="Password1"
           name="password" onChange={handleChange} required></input>
+          <div className="invalid-feedback" id='pwmsg'>
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="Password2" className="form-label">Confirm Password</label>
           <input type="password" className="form-control" id="Password2"
           name="cpassword" onChange={handleChange} required></input>
+          <div className="invalid-feedback">
+            password doesn't match          
+          </div>
         </div>
 
         <label className="custom-file-label" htmlFor="validatedCustomFile">Confirmation Letter</label>
         <div className="mb-3">
           <input type="file" className="custom-file-input" id="validatedCustomFile" onChange={handleFileChange} required ></input>
-          <div className="invalid-feedback">Choose Correct Format</div>
+          <div className="invalid-feedback">Choose Correct Format (File allowed: png, jpg or jpeg)</div>
         </div>
  
         <div className="d-grid gap-2">

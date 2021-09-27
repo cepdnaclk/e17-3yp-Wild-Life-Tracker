@@ -50,11 +50,57 @@ function AdminForm() {
    //update states for changes
    const handleChange = e => {
             const { name, value } = e.target;
-            setData(prevState => ({
+
+            if(name==="password"){
+
+                if(value.length>=8){
+                  document.getElementById('admin-button-reg').classList.remove("disabled");
+                  document.getElementById('Password1').classList.remove("is-invalid");      
+       
+                  setData(prevState => ({
+                  ...prevState,
+                  [name]: value
+                }));
+
+              }else{
+                document.getElementById('admin-pwmsg').innerHTML ="password must be at least 8 characters";
+                document.getElementById('Password1').className += " is-invalid";
+                document.getElementById('admin-button-reg').className += ' disabled';
+              }
+
+            }else if(name==="cpassword"){
+
+              if(data['password'] === value){
+                document.getElementById('admin-button-reg').classList.remove("disabled");
+                document.getElementById('Password1').classList.remove("is-invalid");
+                document.getElementById('Password2').classList.remove("is-invalid");
+            
+                setData(prevState => ({
                 ...prevState,
                 [name]: value
-            }));
+                }));
+         
+              }else{
+                document.getElementById('admin-pwmsg').innerHTML = "";
+                document.getElementById('Password1').className += " is-invalid";
+                document.getElementById('Password2').className += " is-invalid";
+                document.getElementById('admin-button-reg').className += ' disabled';
+              }
+
+            }else{
+                setData(prevState => ({
+                ...prevState,
+                [name]: value
+                }));
+            }
+
+            if(data['name'].length===0 || data['email'].length===0 || data['password'].length===0 || data['password']!==data['cpassword']){
+              document.getElementById('admin-button-reg').className += ' disabled';
+            }else{
+              document.getElementById('admin-button-reg').classList.remove("disabled");
+            }
         };
+
 
 
   //when submit button clicked
@@ -68,7 +114,6 @@ function AdminForm() {
     /*if successfull*/
     .then(function (response) {
       document.getElementById('admin-reg-form').style.display = "none";
-      document.getElementById('msg').id ='suc-field';
       document.getElementById('suc-icon').style.display = "block";
       document.getElementById('suc-field').innerHTML = "You have successfully regitered as an admin";
     })
@@ -76,7 +121,6 @@ function AdminForm() {
     /**if failed*/
     .catch(function (error) {
       document.getElementById('admin-reg-form').style.display = "none";
-      document.getElementById('msg').id ='reg-error-field';
       document.getElementById('fail-icon').style.display = "block";
       document.getElementById('reg-error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
      });
@@ -91,7 +135,8 @@ function AdminForm() {
       <div id='msg-field'>
         <div id='suc-icon'><FaCheckCircle size={70}/></div>
         <div id='fail-icon'><FaExclamationCircle size={70}/></div>
-        <div id='msg'></div>
+        <div id='reg-error-field'></div>
+        <div id='suc-field'></div>
       </div>
       <form onSubmit={handleSubmit} id='admin-reg-form'>
 
@@ -115,12 +160,17 @@ function AdminForm() {
           <label htmlFor="Password1" className="form-label">Password</label>
           <input type="password" className="form-control" id="Password1"
           name="password" onChange={handleChange}></input>
+          <div className="invalid-feedback" id='admin-pwmsg'>
+          </div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="Password2" className="form-label">Confirm Password</label>
           <input type="password" className="form-control" id="Password2"
           name="cpassword" onChange={handleChange}></input>
+          <div className="invalid-feedback">
+            password doesn't match          
+          </div>
         </div>
  
         <div className="d-grid gap-2">

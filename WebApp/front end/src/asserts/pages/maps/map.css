@@ -1,0 +1,8 @@
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+
+.leaflet-container{
+	margin: 2%;
+	width: 95vw;
+	height: 80vh;
+	border-radius: 20px;
+}
