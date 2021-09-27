@@ -14,7 +14,8 @@ export default function ProtectedRouteAdmin({ component: Component, ...restOfPro
     <Route
       {...restOfProps}
       render={(props) =>
-        isSigned? <Component {...props} /> : <Redirect to="/AdminLogin" />
+        <Component {...props} />
+        /*isSigned? <Component {...props} /> : <Redirect to="/AdminLogin" />*/
       }
     />
   );

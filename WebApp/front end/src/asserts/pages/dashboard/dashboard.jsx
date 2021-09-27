@@ -8,11 +8,12 @@ import Profile from '../profile/profile';
 import Photos from '../photos/photos';
 import Devices from '../devices/devices';
 import Logout from '../logout/logout';
+import SimpleMap from '../maps/SimpleMap';
 
 import './styles.css';
 
 //import icons from react icons
-import { FaWifi, FaImage, FaBars, FaTimes, FaPhone } from "react-icons/fa";
+import { FaWifi, FaImage, FaBars, FaTimes, FaPhone, FaMapMarker} from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Dashboard';
@@ -92,6 +93,10 @@ export default function Dashboard() {
               <MenuItem icon={<FaImage />}>Photos
               <Link to='/dashboard/photos'></Link>
               </MenuItem>
+
+              <MenuItem icon={<FaMapMarker />}>Locations
+              <Link to='/dashboard/locations'></Link>
+              </MenuItem>              
             
               <MenuItem icon={<FaPhone />}>Contact us
               <Link to=''></Link>
@@ -117,6 +122,7 @@ export default function Dashboard() {
               <Route exact path="/dashboard/profile" component={Profile}/>
               <Route exact path="/dashboard/photos" component={Photos}/>
               <Route exact path="/dashboard/devices" component={Devices}/>
+              <Route exact path="/dashboard/locations" component={SimpleMap}/>
             </Switch>
           </div>
 

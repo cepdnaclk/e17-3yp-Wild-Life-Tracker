@@ -111,7 +111,7 @@ function Form() {
           <h1>Sign-in</h1>
 
         {/*loding animation - initially it is hidden*/}
-        <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
+          <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
         <div id='error-field'></div>
         </div>
         
