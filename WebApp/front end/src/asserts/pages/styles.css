@@ -1,5 +1,5 @@
 #left{
-   background-color:#355c7d;
+   background-color:#188459;
 }
 
 #right{
@@ -19,8 +19,11 @@
 .form{
       border-style: solid;
       border-radius: 20px;
-      border-color:  #355c7d;
-      color: #355c7d;
+      border-color:  #205c41;
+      color: #000000;
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
 
       align-items: center;
       padding: 4%;
