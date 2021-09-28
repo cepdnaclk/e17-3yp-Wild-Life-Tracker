@@ -108,9 +108,11 @@ const router = express.Router();
 //formvalidation added
 router.post('/signin-admin',urlencodedParser,[
 
-    check('email', 'Email is not valid')
+    check('email', 'Email is not valid, Please enter a valid Email')
         .isEmail()
-        .normalizeEmail()
+        .normalizeEmail(),
+    check('password', 'Please enter a password or Email address')
+        .exists()
 
 ],(req,res,next)=>{
 
@@ -186,7 +188,7 @@ router.post('/signin-user',urlencodedParser,[
         .isEmail()
         .normalizeEmail(),
     
-    check('password', 'Enter a password')
+    check('password', 'Please enter a valid password or email')
         .exists()
 
 ],(req,res,next)=>{
@@ -306,7 +308,25 @@ router.post('/register-admin',urlencodedParser,[
 
 
 // Signup 
-router.post('/register-user',upload.single('verificationLetter'),(req,res,next)=>{
+router.post('/register-user',upload.single('verificationLetter'),urlencodedParser,[
+
+    
+    //input validation
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail(),
+    
+    check('name', 'The username must be 5+ characters long and can contain only Alphanumeric characters')
+        .exists()
+        .isLength({min: 5})
+        .isAlphanumeric(),
+
+    check('password', 'Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 ')
+        .exists()
+        .isLength({min: 8})
+
+
+],(req,res,next)=>{
     bcrypt.hash(req.body.password, 10).then((hash)=>{        // .hash(data, salt, cb) -> look into salt
         const user = new confirmationSchema({                       //create a user for the DB entry
             name: req.body.name,

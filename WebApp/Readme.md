@@ -34,3 +34,10 @@ x-access-token: [header].[payload].[signature]
 ### Express
 Via Express routes, HTTP request that matches a route will be checked by CORS Middleware before coming to Security layer.
 
+### express-validator
+This npm package is used for input validation at the backend.
+Provides an extra layer of security against attacks.
+
+## body-parser
+This package is used to turn the req body into JSON type objects.
+
