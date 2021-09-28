@@ -50,8 +50,32 @@ function AdminForm() {
    //update states for changes
    const handleChange = e => {
             const { name, value } = e.target;
-
-            if(name==="password"){
+            //eslint-disable-next-line
+            let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let namecheck = /^[a-zA-Z\s]*$/;
+            
+            if(name==="name"){
+              if(value.length>40){
+                document.getElementById('admin-namemsg').innerHTML ="The name must be less than 40 characters.";
+                document.getElementById('fullName').className += " is-invalid";
+                document.getElementById('admin-button-reg').className += ' disabled';
+              }else{
+                if(namecheck.test(value)){
+                  document.getElementById('admin-button-reg').classList.remove("disabled");
+                  document.getElementById('fullName').classList.remove("is-invalid");      
+       
+                  setData(prevState => ({
+                    ...prevState,
+                    [name]: value
+                  }));
+                }else{
+                  document.getElementById('admin-namemsg').innerHTML ="The name can only contain letters";
+                  document.getElementById('fullName').className += " is-invalid";
+                  document.getElementById('admin-button-reg').className += ' disabled';
+                }
+              }
+            }
+            else if(name==="password"){
 
                 if(value.length>=8){
                   document.getElementById('admin-button-reg').classList.remove("disabled");
@@ -68,7 +92,23 @@ function AdminForm() {
                 document.getElementById('admin-button-reg').className += ' disabled';
               }
 
-            }else if(name==="cpassword"){
+            }
+            else if(name==="email"){
+              if(emailCheck.test(value)){
+                document.getElementById('admin-button-reg').classList.remove("disabled");
+                document.getElementById('Email1').classList.remove("is-invalid");
+                setData(prevState => ({
+                ...prevState,
+                [name]: value
+                }));
+              }
+              else{
+                document.getElementById('admin-emailmsg').innerHTML ="email is not valid enter a valid email";
+                document.getElementById('Email1').className += " is-invalid";
+                document.getElementById('admin-button-reg').className += ' disabled';
+              }
+            }
+            else if(name==="cpassword"){
 
               if(data['password'] === value){
                 document.getElementById('admin-button-reg').classList.remove("disabled");
@@ -148,12 +188,14 @@ function AdminForm() {
           <label htmlFor="fullName" className="form-label">Full Name</label>
           <input type="Name" className="form-control" id="fullName"
           name="name" onChange={handleChange}></input>
+          <div className="invalid-feedback" id='admin-namemsg'></div>
         </div>
 
         <div className="mb-3">
           <label htmlFor="Email1" className="form-label">Email</label>
           <input type="email" className="form-control" id="Email1" aria-describedby="emailHelp"
           name="email" onChange={handleChange}></input>
+          <div className="invalid-feedback" id='admin-emailmsg'></div>
         </div>
   
         <div className="mb-3">

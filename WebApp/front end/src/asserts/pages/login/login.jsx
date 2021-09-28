@@ -58,10 +58,34 @@ function Form() {
    //update changes
    const handleChange = e => {
             const { name, value } = e.target;
-            setData(prevState => ({
+            //eslint-disable-next-line
+            let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(name==="email"){
+              if(emailCheck.test(value)){
+                document.getElementById('button-login').classList.remove("disabled");
+                document.getElementById('exampleInputEmail1').classList.remove("is-invalid");
+                setData(prevState => ({
                 ...prevState,
                 [name]: value
-            }));
+                }));
+              }
+              else{
+                document.getElementById('emailmsg').innerHTML ="email is not valid! enter a valid email";
+                document.getElementById('exampleInputEmail1').className += " is-invalid";
+                document.getElementById('button-login').className += ' disabled';
+              }
+            }else{
+              setData(prevState => ({
+                ...prevState,
+                [name]: value
+              }));
+            }
+
+            if(data['email'].length===0 || data['password'].length===0){
+              document.getElementById('button-login').className += ' disabled';
+            }else{
+              document.getElementById('button-login').classList.remove("disabled");
+            }
         };
 
   //submit - post
@@ -119,6 +143,7 @@ function Form() {
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
           name="email" onChange={handleChange} required></input>
+          <div className="invalid-feedback" id='emailmsg'></div>
         </div>
   
         <div className="mb-3">

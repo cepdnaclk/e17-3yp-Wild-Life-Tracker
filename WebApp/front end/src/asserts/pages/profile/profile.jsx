@@ -3,17 +3,17 @@ import Cookies from 'universal-cookie';
 
 import './styles.css';
 
-var name : '';
-var email : '';
-var joined : '';
-var photos : 0;
+//var name = '';
+//var email = '';
+//var joined : '';
+//var photos : 0;
 
 
 export default function Profile(props) {
 
 	const cookies = new Cookies();
-	name = cookies.get('name');
-	email = cookies.get('email');
+	var name = cookies.get('name');
+	var email = cookies.get('email');
 
 
 	return(
@@ -47,9 +47,8 @@ export default function Profile(props) {
 					<tr>
 						<td>
 							<h5>High Performance Camera Module</h5>
-							<p>A powerful camera unit to capture perfect photos in any lighting condition. Also provides video recording facilities, recorded videos are stored in the own memory of station.
-
-</p>							
+							<p>A powerful camera unit to capture perfect photos in any lighting condition.
+								Also provides video recording facilities, recorded videos are stored in the own memory of station.</p>							
 						</td>
 						<td>
 							<h5>Durable</h5>
