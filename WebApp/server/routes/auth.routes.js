@@ -1,6 +1,12 @@
 //auth routes
 
 const express = require('express')
+
+//body-parser
+const bodyParser = require('body-parser')
+//express-validation
+const {check, validationResult } = require('express-validator')
+
 const userSchema = require('../models/users')
 const confirmationSchema = require('../models/confirmation')
 const adminSchema = require('../models/admin')
@@ -12,7 +18,11 @@ const multer = require('multer')        //new
 const fs = require('fs')                //used to delete the confirmation file when confirming rq
 const nodemailer = require('nodemailer')
 
-
+//for the bodyParser
+/*
+Returns middleware that only parses urlencoded bodies.
+*/
+const urlencodedParser = bodyParser.urlencoded({extended: false})
 
 const storage = multer.diskStorage({        //new   //to adjust how files get stored
     destination: function(req, file, cb){
@@ -95,7 +105,22 @@ const router = express.Router();
 
 //For admin sign in
 //For Sign-In user
-router.post('/signin-admin',(req,res,next)=>{
+//formvalidation added
+router.post('/signin-admin',urlencodedParser,[
+
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+
+],(req,res,next)=>{
+
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
     let getUser;                      //let allows to declare vars that are limited to the scope of a block statement
 
     adminSchema.findOne({            //functin in mongoose
@@ -153,7 +178,27 @@ router.post('/signin-admin',(req,res,next)=>{
 
 
 //For Sign-In user
-router.post('/signin-user',(req,res,next)=>{
+//with input validation
+router.post('/signin-user',urlencodedParser,[
+
+    //input validation
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail(),
+    
+    check('password', 'Enter a password')
+        .exists()
+
+],(req,res,next)=>{
+
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
+
     let getUser;                      //let allows to declare vars that are limited to the scope of a block statement
 
     userSchema.findOne({            //functin in mongoose
@@ -210,7 +255,32 @@ router.post('/signin-user',(req,res,next)=>{
 
 //Admin signup
 // Signup 
-router.post('/register-admin',(req,res,next)=>{
+//with form validation
+router.post('/register-admin',urlencodedParser,[
+
+    //input validation
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail(),
+    
+    check('name', 'The username must be 5+ characters long and can contain only Alphanumeric characters')
+        .exists()
+        .isLength({min: 5})
+        .isAlphanumeric(),
+
+    check('password', 'Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 ')
+        .exists()
+        .isLength({min: 8})
+
+],(req,res,next)=>{
+
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
     bcrypt.hash(req.body.password, 10).then((hash)=>{        // .hash(data, salt, cb) -> look into salt
         const user = new adminSchema({                       //create a user for the DB entry
             name: req.body.name,
@@ -616,7 +686,7 @@ router.route('/device_photos/:deviceID').get(authorize_device, (req,res) => {   
 
 
 //route to delete photos
-router.route('/delete_photo/:device&:photoURL').get(authorize_deivce, (req,res) => {
+router.route('/delete_photo/:device&:photoURL').get(authorize_device, (req,res) => {
     let {deviceID} = req.params.device
     let {photoURL} = req.params.photoURL
 
