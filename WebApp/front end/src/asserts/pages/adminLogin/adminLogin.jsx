@@ -4,6 +4,8 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
+import { Button } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 //import components
 import Template from '../template';
@@ -167,6 +169,13 @@ function Form() {
           Forgot password? <a href="#fogotPW">Password Recovery</a></small>
         </div>
       </form>
+      <Button
+					color="secondary"
+					variant="contained"
+					href="/"
+					id="backButton"
+					endIcon={<ArrowBackIcon/>}
+				>Back</Button>
      </div> 
     );
   }
