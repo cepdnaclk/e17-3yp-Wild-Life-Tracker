@@ -31,6 +31,17 @@
    padding-top: 5%;
 }
 
+
+.form{
+      border-style: solid;
+      border-radius: 20px;
+      border-color:  #205c41;
+      color: #000000;
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+}
+
 #title{
    font-size: 4em;
    text-align: center;
