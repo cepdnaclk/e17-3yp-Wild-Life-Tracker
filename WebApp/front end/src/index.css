@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@media screen and (min-height: 500px) and (min-width: 600px){
+  .home{
+    padding-top: 40%;
+  }
+}
+
+.home{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 6em;
+}
+

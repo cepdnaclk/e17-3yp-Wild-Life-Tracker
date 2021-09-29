@@ -1,5 +1,18 @@
 import React from 'react';
 import './styles.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette:{
+    primary:{
+      main: '#188459',
+    },
+    secondary:{
+      main: '#e9c437',
+    },
+  },
+});
+
 
 export default function Template(props) {
 
@@ -8,23 +21,25 @@ export default function Template(props) {
 * Usage : <Template left='left_content' right='right_content'/>
 */
   return (
-    <div className="container-fluid h-100">
-    <div className="row min-vh-100 flex-column flex-md-row">
+    <ThemeProvider theme={theme}>
+      <div className="container-fluid h-100">
+        <div className="row min-vh-100 flex-column flex-md-row">
 
-        {/*left side of the template*/}
-        <aside className="col-12 col-md-4 p-0 flex-shrink-1" id="left">
-            <div className="text-center logo">
-              	{props.left}
+          {/*left side of the template*/}
+          <aside className="col-12 col-md-8 flex-shrink-1" id="left">
+            <div className="logo">
+              {props.left}
             </div>
-        </aside>
+          </aside>
 
-        {/*right side of the template*/}
-        <main className="col" id="right">
-          <div className="form">
-                {props.right}
-          </div>          
-        </main>
-    </div>
-</div>
+          {/*right side of the template*/}
+          <main className="col-12 col-md-4" id="right">
+            <div className="form">
+              {props.right}
+            </div>
+          </main>
+        </div>
+      </div>
+    </ThemeProvider>
   );
 }

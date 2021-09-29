@@ -1,20 +1,36 @@
 #left{
-   background-color:#188459;
+   background-image: url("../Pics/BTP.jpg");
+   margin: 0%;
+   padding: 0%;
 }
 
 #right{
-   background-color:#ffffff;  
+   background-color:#ffffff;
+   margin: 0%;
+   padding: 0%;
+}
+
+#contactButton{
+   position:relative;
+   left: 40%;  
+}
+
+#contactButton.hover{
+   color: #22470f;
 }
 
 
+#homeButton{
+   position:relative;
+   left: 5%;
+   top: 10%;
+}
+
 .logo{
-   text-decoration: 'none';
-   font-size: 6vw;
-   font-family:Fantasy;
    color: #ffffff;
-   margin-top: 5vw;
-   margin-bottom: 5vw;
-   }
+   padding-top: 5%;
+}
+
 
 .form{
       border-style: solid;
@@ -24,30 +40,60 @@
       font-family: 'Montserrat';
       font-style: normal;
       font-weight: 500;
+}
 
+#title{
+   font-size: 4em;
+   text-align: center;
+   text-decoration: underline;
+   padding-top: 5%;
+}
+
+#title span{
+   text-decoration: none;
+   color: #7eb9a3;
+}
+
+.form{
       align-items: center;
-      padding: 4%;
-      margin-top: 3vh;
-   }
+      padding: 5%;
+}
+
+#animatedText{
+   text-align: center;
+   color: #ecfd00;
+   padding-top: 5%;
+}
+
+#docButtonCon{
+   text-align: center;
+   padding-top: 5%;
+   padding-bottom: 5%;
+}
+
+#text{
+   padding-top: 3%;
+   text-align: center;
+}
 
 @media screen and (min-height: 500px) and (min-width: 600px){
    .logo{
-
-      text-decoration: 'none';
-      font-size: 6vw;
-      font-family:Fantasy;
-      color: #ffffff;
-      margin-top: calc(50vh - 2em);
-   }
-
-   .logo:hover{
+      width: 100%;
+      height: 100%;
+      background-image: url('../Pics/BT.jpg');  
       color: #ffffff;
    }
-
    .form{
-      padding: 4%;
-      margin-left: 22%;
-      margin-top: 3vh;
-      width: 36vw;
+      background-color: #ffffff;
+      width:100%;
+      height: 100%;   
+   }
+
+   #title{
+      font-size: 6em;
+   }
+
+   .footer{
+      margin-top: 30%;
    }
 }
