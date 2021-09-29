@@ -5,6 +5,23 @@ import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
 
+
+//material UI components
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+//import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 //import components
 import Template from '../template';
 import Logo from '../logo';
@@ -126,16 +143,24 @@ function Form() {
     }); 
   }
 
+  //material UI
+  
+  
   return (
     
     <div id='log-form'>
 
       <form onSubmit={handleSubmit}>
         <div className="text-center">
-          <h1>Sign-in</h1>
+          
+        <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
 
         {/*loding animation - initially it is hidden*/}
-          <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
+        
+        
+        <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
         <div id='error-field'></div>
         </div>
         
@@ -169,3 +194,4 @@ function Form() {
      </div> 
     );
   }
+  
