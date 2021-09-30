@@ -45,3 +45,8 @@ This package is used to turn the req body into JSON type objects.
 Amazone cloud storage system that allows us to easily store files in the cloud.
 (Store images)
 
+## IAM service
+Identity and acess management console
+Create a policy
+Create a user for the web app and add the policy
+
