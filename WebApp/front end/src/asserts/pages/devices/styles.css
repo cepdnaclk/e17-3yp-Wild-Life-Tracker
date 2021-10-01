@@ -1,10 +1,4 @@
 #device-tab{
-	background-color: #ffffff;
-	margin: 3%;
-	padding: 2%;
-	height: 75vh;
-	border-radius: 20px;
-	color:#355c7d;
 }
 
 #device-list{
@@ -13,8 +7,7 @@
 }
 
 #connected{
-	min-height: 20vh;
-	border-right-style: solid;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
@@ -23,12 +16,52 @@
 }
 
 .device{
-	border-style: solid;
-	border-radius: 20px;
-	padding: 1%;
+	background-color: #ffffff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 2%;
 	margin: 2%;
+}
+
+.device:hover{
+	cursor: pointer;
+}
+
+.activedev{
+	background-color: green;
 }
 
 #dev-form{
 	margin: 5%;
+	border-style: solid;
+	border-radius: 20px;
 }
+#addDevice{
+	display: none;
+}
+
+.download{
+  font-size:small;
+  margin:10px;
+  width: 60px;
+}
+
+.img-thumbnail{
+	cursor: pointer;
+}
+.img-thumbnail:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.8s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+}
+

@@ -183,7 +183,7 @@ function Form() {
         </div>
  
         <div className="d-grid gap-2">
-          <button type="submit" className="btn btn-block btn-primary" id="button-login">Login</button>
+          <button type="submit" className="btn btn-block" id="button-login">Login</button>
         </div>
 
         <div>

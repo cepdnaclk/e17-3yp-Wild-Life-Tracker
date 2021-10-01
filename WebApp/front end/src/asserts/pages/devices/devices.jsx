@@ -1,30 +1,102 @@
-import React, { useState} from 'react';
-//import React from "react";
-//import axios from 'axios';
-//import Cookies from 'universal-cookie';
-//import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+import ReactDOM from 'react-dom';
 import './styles.css';
+import { FaPlus } from "react-icons/fa";
 
+/*cookies*/
+const cookies = new Cookies();
+
+/*backend url*/
+const URL = process.env.REACT_APP_BACKEND_URL;
+
+var deviceIdList = [];
+
+var photos = [
+	 "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
+	 "https://images.unsplash.com/photo-1549480017-d76466a4b7e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=738&q=80",
+	 "https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
+	 "https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=713&q=80",
+	 "https://images.unsplash.com/photo-1545063914-a1a6ec821c88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
+	 "https://images.unsplash.com/photo-1535941339077-2dd1c7963098?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80",
+	 "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80",
+	 "https://images.unsplash.com/photo-1517486430290-35657bdcef51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80",
+	 "https://images.unsplash.com/photo-1543782248-03e2c5a93e18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=751&q=80"
+];
 
 export default function Devices(){
 
-	const deviceIdList = ['12345'];
+	useEffect(() => {
+		
+
+			
+			axios.get(`${URL}api/auth/devices_list`, {
+				headers: {
+					'x-auth-token' : cookies.get('token')
+				}
+			})
+    
+    		.then(function (response) {
+  				cookies.set('newtoken', response.data.token , { path: '/' });
+				for(var i=response.data.deviceArray.length-1 ; i>=0 ; i--){
+					if(devices.indexOf(response.data.deviceArray[i]) === -1){  
+						setDevices([...devices, response.data.deviceArray[i]]);}
+				}
+    		})
+  
+    		.catch(function (error) {
+				console.log(error);
+      			//cookies.set('user', admin , { path: '/' });
+      			//document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+      			//document.getElementById('requests-list').className ='token-error';
+    		}); 
+		
+
+  	});
+
+	function toggleform(){
+		document.getElementById('addDevice').style.display==='block' ? 
+		document.getElementById('addDevice').style.display = 'none' : 
+		document.getElementById('addDevice').style.display = 'block';
+	}
 
   	const [devices, setDevices] = useState(deviceIdList);
 
   	function addDevice(device) {
-    	if(device.localeCompare('')!==0)setDevices([...devices, device]);
+		axios.put(`${URL}api/auth/connect-device`, device ,{
+			headers: {
+				'x-auth-token' : cookies.get('token')
+			}
+		})
+    
+    	.then(function (response) {
+			console.log(response);
+    	})
+  
+    	.catch(function (error) {
+			console.log(error);
+      		//cookies.set('user', admin , { path: '/' });
+      		//document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+      		//document.getElementById('requests-list').className ='token-error';
+    	});
+    	document.getElementById('addDevice').style.display='none';
   	}
 
   	return (
     	<div className='row' id='device-tab'>
-			<div className='col-11 col-md-8 text-center' id='connected'>
+			<div className='col-11 col-md-4 text-center' id='connected'>
 				<h2>Devices</h2>
       			<DeviceUl data={devices} />
+      			<button className="btn btn-success" onClick={()=>toggleform()}><FaPlus/></button>
+    				<div id="addDevice">
+    					<AddDeviceForm handleSubmit={addDevice} />
+    				</div>
     		</div>
-    		<div className='col-11 col-md-4' id='new-dev'>
-				<AddDeviceForm handleSubmit={addDevice} />
-      		</div>
+    		<div className='col-11 col-md-8 text-center'>
+				<h2>Photos</h2>
+				<div className ='row' id='photos'></div>
+      	</div>
     	</div>
   	);
 }
@@ -33,7 +105,46 @@ export default function Devices(){
 function DeviceUl(props){
 
 	const arr = props.data;
-	const deviceList = arr.map((val, index) =><li key={index} className='device'>Device: {val}</li>);
+	const deviceList = arr.map((val, index) =><li key={index} className='device' id={index}
+
+		onClick={()=>{
+
+			for (var i = arr.length - 1; i >= 0; i--) {
+				document.getElementById(i).classList.remove("activedev");
+			}document.getElementById(index).className+=' activedev';
+
+
+			axios.get(`${URL}api/auth/device_photos/${index}`, {
+				headers: {
+					'x-auth-token' : cookies.get('newtoken')
+				}
+			})
+    
+    		.then(function (response) {
+  		
+    			const photoList = photos.map((val, index) =>
+
+				<div className="col-sm-6 col-md-4 col-lg-2"><img src ={val} key={index} alt={index} className="img-thumbnail"></img>
+				</div>
+				);
+
+				ReactDOM.render(photoList, document.getElementById('photos'));
+
+				
+   	 	})
+  
+    		.catch(function (error) {
+				console.log(error);
+      		//cookies.set('user', admin , { path: '/' });
+      		//document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+      		//document.getElementById('requests-list').className ='token-error';
+    		}); 
+
+
+			}			
+		}
+
+		>Device: {val}</li>);
 	return <ul id='device-list'>{deviceList}</ul>;
 
 };
@@ -41,32 +152,46 @@ function DeviceUl(props){
 //form
 function AddDeviceForm(props) {
 
-  	const [id, setId] = useState('');
-  	const [pw, setPw] = useState('');
+   const [newDev, setNewDev] = useState({
+
+    serial_number : "" ,
+    password : ""
+
+   });
 
   	function handleChange(e){ 
 		const { name, value } = e.target;
-		if(name.localeCompare('id')===0){setId(value);}
-		if(name.localeCompare('pw')===0){setPw(value);}
+        setNewDev(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
 	} 
 
 	function handleSubmit(e){ 
 		
-		props.handleSubmit(id);
-		setId('');
-		setPw('');
+		props.handleSubmit(newDev);
+		setNewDev({
+		    serial_number : "" ,
+    		password : "" });
 		e.preventDefault();
 	}
 
 	return(
 		<form onSubmit={handleSubmit} id='dev-form'>
-			<h2>Add New Device</h2><br/>
-  			<label htmlFor="id">Device id : &nbsp;</label>
-  			<input type="text" id="id" name="id" onChange={handleChange}></input><br/><br/>
-  			<label htmlFor="pw">Password : &nbsp; </label>
-  			<input type="text" id="pw" name="pw" onChange={handleChange}></input><br/>
-				
-			<button className='btn download' type="submit">Add</button>
+			<br/>
+			<div className="d-flex justify-content-center">
+			<table>
+				<tr>
+					<td><label htmlFor="id">Serial Number :</label></td>
+					<td><input type="text" id="id" name="serial_number" onChange={handleChange}></input></td>
+				</tr>
+				<tr>
+					<td><label htmlFor="pw">Password :</label></td>
+					<td><input type="text" id="pw" name="password" onChange={handleChange}></input></td>
+				</tr>
+			</table>	
+			</div>
+			<button className="btn btn-success download" type="submit">Add</button>
 		</form>
 	); 
  }
