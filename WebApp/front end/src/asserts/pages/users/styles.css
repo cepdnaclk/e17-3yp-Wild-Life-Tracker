@@ -1,46 +1,42 @@
 .items{
-	border-style: solid;
-	border-color: black;
-	border-radius: 25px;
+	
+	background-color: #ffffff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-size: 90%;
 	color: black;
-	margin: 10%;
 	padding: 5%;
+	margin-bottom: 5%;
+	transition: background-color 1s ease-out 100ms;
+	cursor: pointer;
+}
+.items:hover{
+	
+  	background-color: green;
+
 }
 
 .items-active{
 
 	background-color: #355c7d;
-	border-style: solid;
-	border-color: black;
-	border-radius: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-size: 90%;
 	color: black;
-	margin: 10%;
 	padding: 5%;
-
+	margin-bottom: 5%;
+	cursor: pointer;
 
 }
 #buttons{
 	margin: 0;
 }
 
-#profiles{
-	background-color: #ffffff;
-	margin: 3%;
-	margin-top: 0;
-	padding: 2%;
-	height: 75vh;
-	border-radius: 20px;
-	color:#355c7d;
-}
-
 #requests{
-	border-right-style: solid;
-	height: 70vh;
-	overflow-y: auto;
+	padding: 5%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	min-height: 88vh;
 }
 #profile-informations{
+	margin-top: 10vh;
 	height: 70vh;
 }
 .view{
@@ -79,4 +75,8 @@
 
 .none-style-list{
 	list-style: none;
+}
+
+#textarea{
+	display: none;
 }

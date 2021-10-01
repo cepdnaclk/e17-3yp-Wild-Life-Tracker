@@ -1,6 +1,6 @@
 #button-reg{
-  background-color: #355c7d;
-  border-color: #355c7d;
+  background-color: #22470F;
+  border-color: #205c41;
   color: #ffffff;
   cursor: pointer;
   width: 100%;
@@ -9,7 +9,7 @@
 
 
 #button-reg:hover {
-  background-color: #45A29E;
+  background-color: #22470F;
 }
 
 #reg-error-field{
