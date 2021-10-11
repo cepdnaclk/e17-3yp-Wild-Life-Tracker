@@ -169,13 +169,6 @@ function Form() {
           Forgot password? <a href="#fogotPW">Password Recovery</a></small>
         </div>
       </form>
-      <Button
-					color="secondary"
-					variant="contained"
-					href="/"
-					id="backButton"
-					endIcon={<ArrowBackIcon/>}
-				>Back</Button>
-     </div> 
+    </div> 
     );
   }
