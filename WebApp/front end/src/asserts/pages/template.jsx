@@ -26,14 +26,14 @@ export default function Template(props) {
         <div className="row min-vh-100 flex-column flex-md-row">
 
           {/*left side of the template*/}
-          <aside className="col-12 col-md-8 flex-shrink-1" id="left">
+          <aside className="col-12 col-lg-8 flex-shrink-1" id="left">
             <div className="logo">
               {props.left}
             </div>
           </aside>
 
           {/*right side of the template*/}
-          <main className="col-12 col-md-4" id="right">
+          <main className="col-12 col-lg-4" id="right">
             <div className="form">
               {props.right}
             </div>

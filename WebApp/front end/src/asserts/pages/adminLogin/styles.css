@@ -1,6 +1,5 @@
 #button-admin-login{
-  background-color: #355c7d;;
-  border-color: #355c7d;;
+  background-color: #188459;
   color: #ffffff;
   cursor: pointer;
   width: 100%;
@@ -9,7 +8,7 @@
 
 
 #button-admin-login:hover {
-  background-color: #45A29E;
+  background-color: #205C41;
 }
 
 #error-field{
