@@ -50,3 +50,5 @@ Identity and acess management console
 Create a policy
 Create a user for the web app and add the policy
 
+## AWS SDK
+npm package to use the AWS services
