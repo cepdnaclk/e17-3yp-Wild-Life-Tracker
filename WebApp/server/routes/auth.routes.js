@@ -12,6 +12,9 @@ const confirmationSchema = require('../models/confirmation')
 const adminSchema = require('../models/admin')
 const deviceSchema = require('../models/device')
 
+//AWS s3 buckets
+const s3Bucket = require('../config/s3')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')        //new
