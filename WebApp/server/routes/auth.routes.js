@@ -11,6 +11,8 @@ const userSchema = require('../models/users')
 const confirmationSchema = require('../models/confirmation')
 const adminSchema = require('../models/admin')
 const deviceSchema = require('../models/device')
+const passwordRSSchema = require('../models/passwordRS')
+
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -51,7 +53,7 @@ const upload = multer({storage: storage, limits: {
 })      //new       //saves files to the uploads
 //This folder is not publically accesibleby deafault (Therfore turn it to a static folder)
 
-const sendMail = (email,subject,body,res) =>{
+const sendMail = (email,subject,body) =>{
     let mailTransporter = nodemailer.createTransport({
         service: process.env.MAIL_SERVER,
         auth: {
@@ -68,28 +70,30 @@ const sendMail = (email,subject,body,res) =>{
         to: email,
         subject: subject,
         attachments: [{
-            filename: 'header.gif',
-            path: __dirname +'/email templates/header.gif',
+            filename: 'header.jpg',
+            path: __dirname +'/email_headers/header.jpg',
             cid: 'header' //same cid value as in the html img src
         }],
-        html: `<div style="background-color: rgba(160, 209, 255, 0.849);padding:2%;margin: 2%;border-radius: 20px;">
-                    <div>
-                        <img src="cid:header" style="width: 100%;"/>
-                    </div>`
-                    + body +
-                `</div>`
+        html:   `
+                    <div style="background:linear-gradient(45deg,#01da25,#063b0a);margin: 2%;margin-left:10%;margin-right:10%;padding-top:5%;padding-bottom:5%;padding-left:10%;padding-right: 10%;">
+                        <table>
+                            <tr>
+                                <img src="cid:header" style="width: 100%">
+                            </tr>
+                            <tr>
+                                ${body}  
+                            </tr>
+                        </table>
+                    </div>
+                `
     };
       
     mailTransporter.sendMail(mailDetails,(err,data)=>{
         if(err){
+            console.log("email not sent");
             console.log(err);
-            res.status(201).json({
-                message: subject+": email not sent!! to client",
-            })
         }else{
-            res.status(201).json({
-                message: subject+": email sent!! to client",
-            })
+            console.log("email sent");
         }
     });
 }
@@ -130,15 +134,16 @@ router.post('/signin-admin',urlencodedParser,[
     })
     .then(user => {
         if (!user){     //if no user
-            return res.status((401).json({          //parse to json file
+            return res.status(401).json({          //parse to json file
                 message: "Authentication failed"
-            }))
+            })
         }
         getUser = user;
         return bcrypt.compare(req.body.password, user.password)     //compare the password
     })
     .then(response => {
         if(!response){
+            console.log("pw wrong")
             return res.status(401).json({           //wrong password
                 message: "Authentication Faild"
             })
@@ -171,9 +176,9 @@ router.post('/signin-admin',urlencodedParser,[
         */
     })
     .catch((err)=>{                         //this should come after then (When I add this here works fine)
+        console.log(err)
         return res.status(401).json({
             message: "Authentication Failed",
-            error: err
         })
     })
 })
@@ -254,6 +259,274 @@ router.post('/signin-user',urlencodedParser,[
         })
     })
 })
+
+//route for password reset requests - users
+router.post('/user-password-reset-rq',urlencodedParser,[
+    //input validation
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+],(req,res,next)=>{
+
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
+    //find user with provided email
+    userSchema.findOne({            
+        email: req.body.email       
+    })
+    .then(user => {
+        if (!user){     //if no user
+            return res.status(401).json({          //parse to json file
+                message: "No user with given email!!"
+            })
+        }
+
+        //if a user exists create a token
+        let jwtToken = jwt.sign({        
+            email: user.email,
+            isadmin: 0,        
+        },"longer-secret-is-better",{
+            expiresIn: 1800                   //after 0.5h token is expired
+        });
+
+        let link = `http://localhost//:3000/password-rest/${user.email}/${jwtToken}`;
+
+        let body =  `
+                        <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
+                            <h2>Hi, ${user.name} </h2>
+                            <p>
+                                A password reset event has been triggered. The password reset window is limited to half an hour.
+                            </p>
+                            <p>
+                                If you do not reset your password within 30 minutes, you will need to submit a new request.
+                            </p>
+                            <p>
+                                To complete the password reset process, click the link below.
+                            </p>
+                            <div style="text-align: center;">
+                                <a href="${link}"
+                                    style="
+                                    margin-top: 15px;
+                                    background:linear-gradient(45deg,#00ff00,#2fa500);color: white;border-style: hidden;
+                                    text-decoration: none;
+                                    padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
+                                    font-size: 1.1em;
+                                    border-radius: 50px;"
+                                    onMouseOver="this.style.background='linear-gradient(45deg,#cc00ff,#5900fd)'"
+                                    onMouseOut="this.style.background='linear-gradient(45deg,#00ff00,#2fa500)'">
+                                    Click Here
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                        
+
+        //new document to password reset collection
+        const request = new passwordRSSchema({                       
+            email: req.body.email,
+            token: jwtToken       
+        })
+        //save in DB
+        request.save().then((response) => {             
+            sendMail(user.email,"User registration confirmed",body);
+            res.status(201).json({
+                message: 'The password rest link is sent to Your email!',
+                data: jwtToken
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message:'Password reset faild'
+            })
+        })
+
+    })
+})
+
+//route for password reset requests - Admins
+router.post('/admin-password-reset-rq',urlencodedParser,[
+    //input validation
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+],(req,res,next)=>{
+
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
+    //find user with provided email
+    adminSchema.findOne({            
+        email: req.body.email       
+    })
+    .then(user => {
+        if (!user){     //if no user
+            return res.status(401).json({          //parse to json file
+                message: "No user with given email!!"
+            })
+        }
+
+        //if a user exists create a token
+        let jwtToken = jwt.sign({        
+            email: user.email,
+            isadmin: 1,        
+        },"longer-secret-is-better",{
+            expiresIn: 1800                   //after 0.5h token is expired
+        });
+
+        let link = `http://localhost//:3000/password-rest/${user.email}/${jwtToken}`;
+
+        let body =  `
+                        <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
+                            <h2>Hi, ${user.name} </h2>
+                            <p>
+                                A password reset event has been triggered. The password reset window is limited to half an hour.
+                            </p>
+                            <p>
+                                If you do not reset your password within 30 minutes, you will need to submit a new request.
+                            </p>
+                            <p>
+                                To complete the password reset process, click the link below.
+                            </p>
+                            <div style="text-align: center;">
+                                <a href="${link}"
+                                    style="
+                                    margin-top: 15px;
+                                    background:linear-gradient(45deg,#00ff00,#2fa500);color: white;border-style: hidden;
+                                    text-decoration: none;
+                                    padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
+                                    font-size: 1.1em;
+                                    border-radius: 50px;"
+                                    onMouseOver="this.style.background='linear-gradient(45deg,#cc00ff,#5900fd)'"
+                                    onMouseOut="this.style.background='linear-gradient(45deg,#00ff00,#2fa500)'">
+                                    Click Here
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                        
+
+        //new document to password reset collection
+        const request = new passwordRSSchema({                       
+            email: req.body.email,
+            token: jwtToken       
+        })
+        //save in DB
+        request.save().then((response) => {             
+            sendMail(user.email,"User registration confirmed",body);
+            res.status(201).json({
+                message: 'The password rest link is sent to Your email!',
+                data: jwtToken
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({
+                message:'Password reset faild'
+            })
+        })
+
+    })
+})
+
+router.post('/password-reset/:email/:token',urlencodedParser,[
+    check('password', 'Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 ')
+        .exists()
+        .isLength({min: 8})
+],(req,res,next)=>{
+    //for the form validation error handeling
+    const errors = validationResult(req)
+    
+    if(!errors.isEmpty()){
+        console.log("validation error")
+        return res.status(422).jsonp(errors.array())
+    }
+
+    try{
+        const token = req.params.token
+        jwt.verify(token, "longer-secret-is-better")
+        const decodedToken = jwt.decode(token);
+        const isadmin = decodedToken.isadmin;
+
+        passwordRSSchema.findOne({           
+            email: req.params.email,
+            token: token        
+        })
+        .then(request=>{
+            if(!request){
+                throw new Error("Invalid link");
+            }
+
+            if(!isadmin){
+                userSchema.findOne({
+                    email : decodedToken.email
+                })
+                .then(user=>{
+                    if(!user){
+                        throw new Error("Invalid link");
+                    }
+                    bcrypt.hash(req.body.password, 10).then(hash=>{
+                        user.password = hash;
+                        user.save().then(response => {
+                            request.delete(); 
+                            res.status(201).json({
+                                message: 'Passwor reset successful',
+                            })
+                        })
+                        .catch(error => {
+                            throw error;
+                        })
+                    })
+                })
+                
+            }
+            else{
+                adminSchema.findOne({
+                    email : decodedToken.email
+                })
+                .then(admin=>{
+                    if(!admin){
+                        throw new Error("Invalid link");
+                    }
+                    bcrypt.hash(req.body.password, 10).then(hash=>{
+                        admin.password = hash;
+                        admin.save().then(response => {
+                            request.delete(); 
+                            res.status(201).json({
+                                message: 'Passwor reset successful',
+                            })
+                        })
+                        .catch(error => {
+                            throw error;
+                        })
+                    })
+                })
+            }
+        }).catch(error =>{
+            return res.status(401).json({
+                message: "Link is not valid or expired try again"
+            })
+        })
+    }catch(error){
+        return res.status(401).json({
+            message: "Link is not valid or expired try again"
+        })
+    }
+
+})
+
+
+
+
 
 //Admin signup
 // Signup 
@@ -763,7 +1036,7 @@ router.route('/device_location/:deviceID').get(authorize_device, (req, res) => {
     })
 })
 
-/*//this route is for testing mail sending 
+//this route is for testing mail sending 
 router.route('/send-mail').post(admin_authorize, (req, res)=> {
     let name = "John Doe";
     
@@ -780,9 +1053,11 @@ router.route('/send-mail').post(admin_authorize, (req, res)=> {
             ;
                         
     
-    sendMail(req.body.email,"User registration confirmed",body,res); 
-    
-})*/
+    sendMail(req.body.email,"User registration confirmed",body); 
+    return res.status(200).json({
+        message: "email in progress"
+    })
+})
 
 //route to delete a user
 router.route('/delete_user').post(authorize, (req,res)=>{
