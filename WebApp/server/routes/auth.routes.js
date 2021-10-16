@@ -14,6 +14,10 @@ const deviceSchema = require('../models/device')
 const passwordRSSchema = require('../models/passwordRS')
 
 
+//AWS s3 buckets
+//const s3Bucket = require('../config/s3')
+const {getFileStream} = require('../config/s3')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')        //new
@@ -1088,6 +1092,19 @@ router.route('/delete_user').post(authorize, (req,res)=>{
     })
 })
 
+/*
+//dummy route for S3 images
+router.get('/images/:key', (req, res) => {
+    //get the key from the params
+    const key = req.params.key
+
+    const readStream = getFileStream(key)
+
+    //pipe the readstream
+    readStream.pipe(res)
+
+})
+*/
 
 
 module.exports = router
