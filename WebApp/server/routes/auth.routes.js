@@ -79,7 +79,7 @@ const sendMail = (email,subject,body) =>{
             cid: 'header' //same cid value as in the html img src
         }],
         html:   `
-                    <div style="background:linear-gradient(45deg,#01da25,#063b0a);margin: 2%;margin-left:10%;margin-right:10%;padding-top:5%;padding-bottom:5%;padding-left:10%;padding-right: 10%;">
+                    <div style="background:linear-gradient(45deg,#188459,#22470f);margin: 2%;margin-left:10%;margin-right:10%;padding-top:5%;padding-bottom:5%;padding-left:10%;padding-right: 10%;">
                         <table>
                             <tr>
                                 <img src="cid:header" style="width: 100%">
@@ -298,7 +298,7 @@ router.post('/user-password-reset-rq',urlencodedParser,[
             expiresIn: 1800                   //after 0.5h token is expired
         });
 
-        let link = `http://localhost//:3000/password-rest/${user.email}/${jwtToken}`;
+        let link = `${process.env.PASSWORD_RESET_LINK}/${user.email}/${jwtToken}`;
 
         let body =  `
                         <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
@@ -321,8 +321,7 @@ router.post('/user-password-reset-rq',urlencodedParser,[
                                     padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
                                     font-size: 1.1em;
                                     border-radius: 50px;"
-                                    onMouseOver="this.style.background='linear-gradient(45deg,#cc00ff,#5900fd)'"
-                                    onMouseOut="this.style.background='linear-gradient(45deg,#00ff00,#2fa500)'">
+                                >
                                     Click Here
                                 </a>
                             </div>
@@ -387,7 +386,7 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
             expiresIn: 1800                   //after 0.5h token is expired
         });
 
-        let link = `http://localhost//:3000/password-rest/${user.email}/${jwtToken}`;
+        let link = `${process.env.PASSWORD_RESET_LINK}/${user.email}/${jwtToken}`;
 
         let body =  `
                         <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
@@ -410,8 +409,7 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
                                     padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
                                     font-size: 1.1em;
                                     border-radius: 50px;"
-                                    onMouseOver="this.style.background='linear-gradient(45deg,#cc00ff,#5900fd)'"
-                                    onMouseOut="this.style.background='linear-gradient(45deg,#00ff00,#2fa500)'">
+                                >
                                     Click Here
                                 </a>
                             </div>
@@ -426,7 +424,7 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
         })
         //save in DB
         request.save().then((response) => {             
-            sendMail(user.email,"User registration confirmed",body);
+            sendMail(user.email,"Password Reset",body);
             res.status(201).json({
                 message: 'The password rest link is sent to Your email!',
                 data: jwtToken
@@ -710,12 +708,47 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
                     })
                     //save user       
                     user.save().then((response) => {
-                        /*let body =  `
-                                    <h1>Wild life tracker</h1>
-                                    <p>Your request to Wildlife tracker has been confirmed by an admin!!!</p>
-                                    <p>you can log into the system using your credentials</p>
-                                `;
-                        sendMail(req.body.email,"User registration confirmed",body,res);*/
+                        let body =  `
+                                        <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
+                                            <h2>Hi ${clientRequest.name},</h2>
+                                            <p>&emsp;Thank you for choosing us as your researching partner!!</p>
+                                            <p>&emsp;Your request to wildlife tracker has been accepted by an admin.
+                                                Now you can login and and connect your device(s) with your profile and 
+                                                use services provide by us
+                                                to have a safe and successful researching.If you have any questions, 
+                                                please contact us using provided email.
+                                                We are always happy to help!
+                                            </p>
+                                            <p>
+                                                Take care!
+                                            </p>
+                                            <div style="text-align: center;">
+                                                <a href="${process.env.USER_LOGIN_LINK}"
+                                                    style="margin-bottom: 15px;
+                                                    background:#e9c437;color: white;border-style: hidden;
+                                                    text-decoration: none;
+                                                    padding-top: 10px;padding-bottom: 10px;padding-left: 75px;padding-right: 75px;
+                                                    margin-right: 5px;
+                                                    font-size: 1.1em;
+                                                    border-radius: 50px;"
+                                                >
+                                                    Login
+                                                </a>
+                                                <a href="mailto:${process.env.CONTACT_MAIL_LINK}"
+                                                    style="
+                                                    margin-top: 25px;
+                                                    background: #205C41;color: white;border-style: hidden;
+                                                    text-decoration: none;
+                                                    padding-top: 10px;padding-bottom: 10px;padding-left: 57px;padding-right: 57px;
+                                                    margin-right: 5px;
+                                                    font-size: 1.1em;
+                                                    border-radius: 50px;"
+                                                >
+                                                    contact us</a>
+                                            </div>
+                                        </div>
+                                    `;
+                        sendMail(req.body.email,"User registration confirmed",body);
                         
                         res.status(201).json({
                             message: 'User registration confirmed',
@@ -737,7 +770,7 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
 //this route is for reject client request
 //need email and reason for rejecting from the body
 router.route('/reject-reg').post(admin_authorize, (req,res)=>{
-    let status_code;
+    let status_code=400,email,name;
     confirmationSchema.findOne({
         email: req.body.email
     })
@@ -747,7 +780,9 @@ router.route('/reject-reg').post(admin_authorize, (req,res)=>{
             throw new Error("No user with given email!");
         }
         else{
-            file = clientRequest.verificationLetter;
+            email = request.email;
+            name = request.name;
+            file = request.verificationLetter;
             fs.unlink(file, function (err) {
                 status_code =401;
                 if (err){
@@ -762,6 +797,46 @@ router.route('/reject-reg').post(admin_authorize, (req,res)=>{
     })
     .then(delResult=>{
         if(delResult.deletedCount === 1){
+            let body =  `
+                            <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
+                                <h2>Hi ${name},</h2>
+                                <p>&emsp;Your request to willife tracker has been rejected by an admin.</p>
+                                <p>&emsp;Reason: <u><B>${req.body.reason}</B></u>
+                                </p>
+                                <p>
+                                    &emsp;You have to submit a request again and make sure that all the details are correct.
+                                    If you want any help contact us.
+                                </P>
+                                <p>
+                                    Take care!
+                                </p>
+                                <div style="text-align: center;">
+                                    <a href="${process.env.USER_REGISTER_LINK}"
+                                        style="margin-bottom: 15px;
+                                        background:#e9c437;color: white;border-style: hidden;
+                                        text-decoration: none;
+                                        padding-top: 10px;padding-bottom: 10px;padding-left: 34px;padding-right: 34px;
+                                        margin-right: 5px;
+                                        font-size: 1.1em;
+                                        border-radius: 50px;"
+                                    >
+                                        Register Again
+                                    </a>
+                                    <a href="mailto:${process.env.CONTACT_MAIL_LINK}"
+                                        style="
+                                        margin-top: 25px;
+                                        background: #205C41;color: white;border-style: hidden;
+                                        text-decoration: none;
+                                        padding-top: 10px;padding-bottom: 10px;padding-left: 57px;padding-right: 57px;
+                                        margin-right: 5px;
+                                        font-size: 1.1em;
+                                        border-radius: 50px;"
+                                    >
+                                        contact us</a>
+                                </div>
+                            </div>   
+                        `
+            sendMail(email,"The registration Rejected",body);
             res.status(200).json({
                 message: "Client request deleted!!"
             })
@@ -771,6 +846,7 @@ router.route('/reject-reg').post(admin_authorize, (req,res)=>{
         }
     })
     .catch(err=>{
+        console.log(err);
         res.status(status_code).json({
             message : err.message
         })
@@ -1051,6 +1127,10 @@ router.route('/send-mail').post(admin_authorize, (req, res)=> {
                             +name+
                         `</h2>
                         <p>&emsp;Your request to wildlife tracking system has been confirmed by an admin.</p>
+                        <a href="${process.env.USER_REGISTER_LINK}">reg</a>
+                        <a href="${process.env.USER_LOGIN_LINK}">login</a>
+                        <a href="${process.env.PASSWORD_RESET_LINK}">pw reset</a>
+                        <a href="mailto:${process.env.CONTACT_MAIL_LINK}">mail</a>
                     </div>
                 </div>
                 `
