@@ -142,9 +142,9 @@ function Form() {
       <form onSubmit={handleSubmit}>
         <div className="text-center">
           
-        <Typography component="h1" variant="h5">
+        <h1>
             Sign in
-          </Typography>
+        </h1>
 
         {/*loding animation - initially it is hidden*/}
         
@@ -177,7 +177,7 @@ function Form() {
 
         <div>
           <small>Dont have an account? <Link to='/Register'> Register </Link><br/>
-          Forgot password? <a href="#fogotPW">Password Recovery</a></small>
+          Forgot password? <a href="/UserPasswordRec">Password Recovery</a></small>
         </div>
       </form>
      </div> 

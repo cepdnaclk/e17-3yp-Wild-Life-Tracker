@@ -4,8 +4,6 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
-import { Button } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 //import components
 import Template from '../template';
@@ -165,8 +163,9 @@ function Form() {
         </div>
 
         <div>
-          <small>Dont have an account? <Link to='/AdminRegister'> Register </Link><br/>
-          Forgot password? <a href="#fogotPW">Password Recovery</a></small>
+          <small>
+            Forgot password? <a href="/AdminPasswordRec">Password Recovery</a>
+          </small>
         </div>
       </form>
     </div> 

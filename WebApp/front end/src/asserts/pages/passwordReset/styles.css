@@ -1,0 +1,38 @@
+#button-submit{
+    background-color: #188459;
+    color: #ffffff;
+    cursor: pointer;
+    width: 100%;
+}
+
+#pwr{
+    margin-top: 40%;
+}
+
+  
+#button-submit:hover {
+    background-color: #205C41;
+}
+  
+  
+#suc-field{
+    margin: 10px;
+}
+#msg-field{
+    text-align: center;
+}
+  
+#suc-icon{
+    display: none;
+}
+#fail-icon{
+    display: none;
+}
+  
+#loader{
+    display: none;
+}
+  
+#conLet{
+    background-color: #e9c437;
+}
