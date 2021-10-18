@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
-import { Link,useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
-
+import Fade from 'react-reveal/Fade';
+import Tada from 'react-reveal/Tada';
+import { FaExclamationCircle  } from "react-icons/fa";
 //import components
 import Template from '../template';
 import Logo from '../logo';
@@ -29,7 +31,7 @@ const  TITLE = 'Admin Sign-in';
 export default function Login() {
 
   const logo = <Logo /> //logo of the page
-  const form = <Form/>;
+  const form = <Fade bottom><Form/></Fade>;
 
   //return template --> left side = logo , right side = login form 
   return (
@@ -94,7 +96,7 @@ function Form() {
 
     evt.preventDefault();
     document.getElementById('button-admin-login').className += ' disabled';
-    document.getElementById('error-field').style.display ='none';
+    document.getElementById('alogin-error-field').style.display ='none';
     document.getElementById('loader').style.display ='block';
 
     axios.post(`${URL}api/auth/signin-admin`,data)
@@ -112,15 +114,22 @@ function Form() {
         if(error.response){
           if(error.response.status===401){
             document.getElementById('loader').style.display ='none';
+            document.getElementById('al-form').style.display ='none';
+            document.getElementById('fail-icon').style.display ='block';
             document.getElementById('button-admin-login').className = document.getElementById('button-admin-login').className.replace("disabled", "");
-            document.getElementById('error-field').style.display ='block';
-            document.getElementById('error-field').innerHTML = "!!!Wrong username & password. Plesse try again!!!";
+            document.getElementById('alogin-error-field').style.display ='block';
+            document.getElementById('backToALogin').style.display ='block';
+            document.getElementById('resetPWAdmin').style.display ='block';
+            document.getElementById('alogin-error-field').innerHTML = "The username and password incorrecet. Try again.";
           }
         }else{
             document.getElementById('loader').style.display ='none';
+            document.getElementById('al-form').style.display ='none';
             document.getElementById('button-admin-login').className = document.getElementById('button-admin-login').className.replace("disabled", "");
-            document.getElementById('error-field').style.display ='block';
-            document.getElementById('error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+            document.getElementById('fail-icon').style.display ='block';
+            document.getElementById('alogin-error-field').style.display ='block';
+            document.getElementById('backToALogin').style.display ='block';
+            document.getElementById('alogin-error-field').innerHTML = "An Unexpected error occured. Try Again.";
         }
         
     });
@@ -130,16 +139,29 @@ function Form() {
   return ( 
     
     <div id='admin-log-form'>
-      <form onSubmit={handleSubmit}>
+      <div id='alogin-msg-field'>
+        <Tada>
+        <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+        <div id='alogin-error-field'></div>
+        <small>
+          <a id='backToALogin' href='/AdminLogin'>Login Again</a>
+          <div id='resetPWAdmin'>
+            Forgot password?
+            <a href='/AdminPasswordRec'>Change Password</a>
+          </div>
+        </small> 
+        </Tada>
+      </div>
+      
+      <form onSubmit={handleSubmit} id='al-form'>
         <div className="text-center">
           <h1>Admin Sign-in</h1>
-
+          <br></br>
           {/*loding animation - initially it is hidden*/}
-          <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
+          <div id='loader'><Loader type="ThreeDots" color="#188459" height={50} width={50}/></div>
+          <br></br>
         </div>
 
-        <div id='error-field'>
-        </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
           <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"

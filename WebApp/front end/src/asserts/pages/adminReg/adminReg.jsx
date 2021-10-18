@@ -2,10 +2,11 @@ import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-
+import Fade from 'react-reveal/Fade';
+import Tada from 'react-reveal/Tada';
 import Template from '../template';
 import Logo from '../logo';
-
+import Loader from "react-loader-spinner";
 import './styles.css'
 
 import { FaCheckCircle, FaExclamationCircle  } from "react-icons/fa";
@@ -19,7 +20,7 @@ const  TITLE = 'Admin Sign-up';
 export default function AdminRegister() {
   
   const logo = <Logo /> //logo of the page
-  const form = <AdminForm /> //registration form
+  const form = <Fade bottom><AdminForm /></Fade>; //registration form
 
   //return template --> left side = logo , right side = registration form 
   return (
@@ -109,17 +110,14 @@ function AdminForm() {
               }
             }
             else if(name==="cpassword"){
-
               if(data['password'] === value){
                 document.getElementById('admin-button-reg').classList.remove("disabled");
                 document.getElementById('Password1').classList.remove("is-invalid");
                 document.getElementById('Password2').classList.remove("is-invalid");
-            
                 setData(prevState => ({
-                ...prevState,
-                [name]: value
+                  ...prevState,
+                  [name]: value
                 }));
-         
               }else{
                 document.getElementById('admin-pwmsg').innerHTML = "";
                 document.getElementById('Password1').className += " is-invalid";
@@ -134,10 +132,8 @@ function AdminForm() {
                 }));
             }
 
-            if(data['name'].length===0 || data['email'].length===0 || data['password'].length===0 || data['password']!==data['cpassword']){
+            if(data['name'].length===0 || data['email'].length===0 || data['password'].length===0){
               document.getElementById('admin-button-reg').className += ' disabled';
-            }else{
-              document.getElementById('admin-button-reg').classList.remove("disabled");
             }
         };
 
@@ -147,7 +143,7 @@ function AdminForm() {
   const handleSubmit = (evt) => {
 
     evt.preventDefault(); //keep page without reload
-
+    document.getElementById('loader').style.display ='block';
     /*post request*/
     axios.post(`${URL}api/auth/register-admin`,data)
   
@@ -155,6 +151,7 @@ function AdminForm() {
     .then(function (response) {
       document.getElementById('admin-reg-form').style.display = "none";
       document.getElementById('suc-icon').style.display = "block";
+      document.getElementById('loginhere').style.display = "block";
       document.getElementById('suc-field').innerHTML = "You have successfully regitered as an admin";
     })
   
@@ -162,7 +159,8 @@ function AdminForm() {
     .catch(function (error) {
       document.getElementById('admin-reg-form').style.display = "none";
       document.getElementById('fail-icon').style.display = "block";
-      document.getElementById('reg-error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+      document.getElementById('contactus').style.display = "block";
+      document.getElementById('reg-error-field').innerHTML = "An unexpected error occured.Try again.";
      });
 
   }
@@ -172,16 +170,29 @@ function AdminForm() {
   return (
     <div id='add-reg'>
 
-      <div id='msg-field'>
-        <div id='suc-icon'><FaCheckCircle size={70}/></div>
-        <div id='fail-icon'><FaExclamationCircle size={70}/></div>
-        <div id='reg-error-field'></div>
-        <div id='suc-field'></div>
+      <div id='armsg-field'>
+        <Tada>
+          <div id='suc-icon'><FaCheckCircle size={70}/></div>
+          <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+          <div id='reg-error-field'></div>
+          <div id='suc-field'></div>
+          <small>
+              <div id='contactus'>
+                Do you want any help?
+                <a href='mailto: wildlifetrackeruop@gmail.com'>Contact Us</a>
+              </div>
+              <a id='loginhere' href='/AdminLogin'>Login From Here</a>
+          </small>
+        </Tada>
       </div>
       <form onSubmit={handleSubmit} id='admin-reg-form'>
 
         <div className="text-center">
           <h1>Admin Sign-up</h1>
+          <br></br>
+          {/*loding animation - initially it is hidden*/}
+          <div id='loader'><Loader type="ThreeDots" color="#188459" height={50} width={50}/></div>
+          <br></br>
         </div>
         
         <div className="mb-3">

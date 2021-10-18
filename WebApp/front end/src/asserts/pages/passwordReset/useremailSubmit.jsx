@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
-
-import { FaCheckCircle } from "react-icons/fa";
-
+import Fade from 'react-reveal/Fade';
+import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import Tada from 'react-reveal/Tada';
 //material UI components
 import Typography from '@mui/material/Typography';
 
@@ -31,7 +31,7 @@ const  TITLE = 'Password Reset';
 export default function userEmailSubmit() {
 
   const logo = <Logo /> //logo of the page
-  const form = <Form/>;
+  const form = <Fade bottom><Form/></Fade>;
 
   //return template --> left side = logo , right side = login form 
   return (
@@ -47,7 +47,7 @@ export default function userEmailSubmit() {
 
 
 function Form() {
-
+  
    //states
    const [data, setData] = useState({
 
@@ -60,7 +60,9 @@ function Form() {
             const { name, value } = e.target;
             //eslint-disable-next-line
             let emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            
+            if(data['email'].length===0){
+              document.getElementById('button-submit').className += ' disabled';
+            }
             if(emailCheck.test(value)){
                 document.getElementById('button-submit').classList.remove("disabled");
                 document.getElementById('exampleInputEmail1').classList.remove("is-invalid");
@@ -73,12 +75,6 @@ function Form() {
                 document.getElementById('emailmsg').innerHTML ="email is not valid! enter a valid email";
                 document.getElementById('exampleInputEmail1').className += " is-invalid";
                 document.getElementById('button-submit').className += ' disabled';
-            }
-
-            if(data['email'].length===0){
-              document.getElementById('button-submit').className += ' disabled';
-            }else{
-              document.getElementById('button-submit').classList.remove("disabled");
             }
         };
 
@@ -99,7 +95,7 @@ function Form() {
         document.getElementById('pw-reset-rq-form').style.display = "none";
         document.getElementById('suc-field').style.display = 'block';
         document.getElementById('suc-icon').style.display = "block";
-        document.getElementById('suc-field').innerHTML = "The password reset request has been sent. Check your emails to proceed<br>";
+        document.getElementById('suc-field').innerHTML = "The password reset request has been sent. Check your emails to proceed";
     })
   
     .catch(function (error) {
@@ -107,16 +103,23 @@ function Form() {
         if(error.response){
           if(error.response.status===401){
             document.getElementById('loader').style.display ='none';
+            document.getElementById('pw-reset-rq-form').style.display = "none";
             document.getElementById('button-submit').className = document.getElementById('button-submit').className.replace("disabled", "");
             document.getElementById('error-field').style.display ='block';
+            document.getElementById('contactus').style.display ='block';
+            document.getElementById('resendUR').style.display ='block';
+            document.getElementById('fail-icon').style.display ='block';
             document.getElementById('error-field').innerHTML = "The email you entered is not valid!!!";
           }
         }else{
             document.getElementById('loader').style.display ='none';
+            document.getElementById('pw-reset-rq-form').style.display = "none";
             document.getElementById('button-submit').className = document.getElementById('button-submit').className.replace("disabled", "");
             document.getElementById('error-field').style.display ='block';
-            document.getElementById('error-field').innerHTML = "Something went to wrong. Plesse try Again!!!";
-            
+            document.getElementById('fail-icon').style.display ='block';
+            document.getElementById('contactus').style.display ='block';
+            document.getElementById('resendUR').style.display ='block';
+            document.getElementById('error-field').innerHTML = "An unexpected error occured.Try again.";
         }
         
     }); 
@@ -129,8 +132,19 @@ function Form() {
     
     <div id='pwr'>
         <div id='msg-field'>
-            <div id='suc-icon'><FaCheckCircle size={70}/></div>
-            <div id='suc-field'></div>
+            <Tada>
+              <div id='suc-icon'><FaCheckCircle size={70}/></div>
+              <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+              <div id='suc-field'></div>
+              <div id='error-field'></div>
+              <small>
+                <a id='resendUR' href='/UserPasswordRec'>Resubmit a request.</a>
+                <div id='contactus'>
+                  Do you want guidance from us?
+                  <a href='mailto: wildlifetreackeruop@gmail.com'>contact us</a>
+                </div>
+              </small>
+            </Tada>
         </div>
         <form onSubmit={handleSubmit} id='pw-reset-rq-form'>
             <div className="text-center">
@@ -147,8 +161,8 @@ function Form() {
             {/*loding animation - initially it is hidden*/}
             
             
-            <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
-                <div id='error-field'></div>
+            <div id='loader'>
+              <Loader type="ThreeDots" color="#188459" height={50} width={50}/></div>  
             </div>
             
             <div className="mb-3">

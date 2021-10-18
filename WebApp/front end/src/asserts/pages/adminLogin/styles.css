@@ -10,15 +10,28 @@
   background-color: #205C41;
 }
 
-#error-field{
+#alogin-msg-field{
+  text-align: center;
+  padding: 10px;
+}
+
+#alogin-error-field{
   display: none;
-  border-style: solid;
-  border-width: thin;
-  border-radius: 10px;
-  border-color: red;
-  background-color: #FAEBD7;
+  margin: 20px;
+}
+
+
+#backToALogin{
+  display: none;
+}
+
+#resetPWAdmin{
+  display: none;
+}
+
+#fail-icon{
+  display: none;
   color: red;
-  padding: 5px;
 }
 
 #loader{
@@ -26,7 +39,11 @@
 }
 
 @media screen and (min-height: 500px) and (min-width: 800px){
-  #admin-log-form{
-    padding-top: 40%;
+  #al-form{
+    padding-top: 25%;
+  }
+  
+  #alogin-msg-field{
+    padding-top: 10%;
   }
 }

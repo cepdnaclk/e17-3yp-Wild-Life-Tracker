@@ -11,7 +11,6 @@
 }
 
 #reg-error-field{
-  color: red;
   margin: 10px;
 }
 
@@ -19,19 +18,39 @@
   margin: 10px;
 }
 
-#msg-field{
+#armsg-field{
   text-align: center;
 }
 
 #suc-icon{
   display: none;
+  color: #188459;
 }
 #fail-icon{
   display: none;
+  color: red;
+}
+
+#loader{
+  display: none;
+}
+
+#contactus{
+  display: none;
+}
+
+#loginhere{
+  display:none;
 }
 
 @media screen and (min-height: 500px) and (min-width: 800px){
-  #add-reg{
-    padding-top: 18%;
+  #admin-reg-form{
+    margin-top: 18%;
+  }
+  #suc-icon{
+    margin-top: 45%;
+  }
+  #fail-icon{
+    margin-top: 45%;
   }
 }

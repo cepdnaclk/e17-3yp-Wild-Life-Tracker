@@ -2,10 +2,10 @@ import React,{useState} from 'react';
 import {useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
-
+import Fade from 'react-reveal/Fade';
 import Template from '../template';
 import Logo from '../logo';
-
+import Tada from 'react-reveal/Tada';
 import './styles.css'
 
 import { FaCheckCircle, FaExclamationCircle  } from "react-icons/fa";
@@ -20,7 +20,7 @@ const  TITLE = 'Admin Sign-up';
 export default function passwordReset() {
   
   const logo = <Logo /> //logo of the page
-  const form = <PWresetForm /> //registration form
+  const form = <Fade bottom><PWresetForm /></Fade> //registration form
 
   //return template --> left side = logo , right side = registration form 
   return (
@@ -50,11 +50,9 @@ function PWresetForm() {
     //update states for changes
     const handleChange = e => {
                 const { name, value } = e.target;
-                
                 if(data['password'].length===0 || data['cpassword'].length===0){
                     document.getElementById('button-reset-pw').className += ' disabled';
                 }
-
                 if(name==="password"){
                     if(value.length>=8){
                         document.getElementById('Password1').classList.remove("is-invalid");      
@@ -113,6 +111,8 @@ function PWresetForm() {
             document.getElementById('loader').style.display ='none';
             document.getElementById('pw-reset-form').style.display = "none";
             document.getElementById('suc-icon').style.display = "block";
+            document.getElementById('suc-field').style.display = "block";
+            document.getElementById('backtoHome').style.display ='block';
             document.getElementById('suc-field').innerHTML = "The new password is set. You can now login using new credentials.";
         })
     
@@ -122,6 +122,9 @@ function PWresetForm() {
             document.getElementById('pw-reset-form').style.display = "none";
             document.getElementById('fail-icon').style.display = "block";
             document.getElementById('reset-error-field').innerHTML = "The link is not valid or expiered. Submit a new request.";
+            document.getElementById('backtoHome').style.display ='block';
+            document.getElementById('contactus').style.display ='block';
+            
         });
 
     }
@@ -131,17 +134,26 @@ function PWresetForm() {
     return (
         <div id='pwr'>
             <div id='msg-field'>
-                <div id='suc-icon'><FaCheckCircle size={70}/></div>
-                <div id='fail-icon'><FaExclamationCircle size={70}/></div>
-                <div id='reset-error-field'></div>
-                <div id='suc-field'></div>
+                <Tada>
+                    <div id='suc-icon'><FaCheckCircle size={70}/></div>
+                    <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+                    <div id='reset-error-field'></div>
+                    <div id='suc-field'></div>
+                    <small>
+                        <a id='backtoHome' href='/'>Go Back to Home.</a>
+                        <div id='contactus'>
+                        Do you want guidance from us?
+                        <a href='mailto: wildlifetreackeruop@gmail.com'>contact us</a>
+                        </div>
+                    </small>
+                </Tada>
             </div>
             <form onSubmit={handleSubmit} id='pw-reset-form'>
 
                 <div className="text-center">
                 <h1>Change Password</h1>
                 <p>Enter your new password.</p>
-                <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
+                <div id='loader'><Loader type="ThreeDots" color="#188459" height={50} width={50}/></div>
                 </div>
         
                 <div className="mb-3">

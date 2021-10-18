@@ -10,6 +10,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import ContactIcon from '@mui/icons-material/ContactMail';
 import Fab from '@mui/material/Fab';
+import Flip from 'react-reveal/Flip';
 
 const theme = createTheme({
   palette: {
@@ -25,8 +26,8 @@ const theme = createTheme({
 
 export default function App() {
 
-  const logo = <Logo />
-  const page = <Page />
+  const logo = <Flip left><Logo /></Flip>
+  const page = <Flip right><Page /></Flip>
 
   return (
     <ThemeProvider theme={theme}>
@@ -41,39 +42,39 @@ export default function App() {
 function Page() {
   return (
     <div onLoad={function () { document.title = 'Home' }} className="home">
-      <Typography variant="h6" component="h6">
-        Do you already have an account?
-      </Typography>
-      <Button
-        variant="contained"
-        startIcon={<LoginIcon />}
-        href='/Login'
-      >
-        Login
-      </Button>
-      <Typography variant="h6" component="h6">
-        Do you want to join with us?
-      </Typography>
-      <Button
-        variant="contained"
-        startIcon={<SinginIcon />}
-        color="secondary"
-        href='/Register'
-      >
-        Get started
-      </Button>
-      
-        <div class="footer">
-          <Tooltip title="Contact us">
-            <Fab
-              size="large"
-              href="mailto: wildlifetrackeruop@gmail.com"
-              id="contactButton"
-              style={{background:"#7eb9a3"}}>
-              <ContactIcon />
-            </Fab>
-          </Tooltip>
-        </div>
+        <Typography variant="h6" component="h6">
+          Do you already have an account?
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<LoginIcon />}
+          href='/Login'
+        >
+          Login
+        </Button>
+        <Typography variant="h6" component="h6">
+          Do you want to join with us?
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<SinginIcon />}
+          color="secondary"
+          href='/Register'
+        >
+          Get started
+        </Button>
+        
+          <div class="footer">
+            <Tooltip title="Contact us">
+              <Fab
+                size="large"
+                href="mailto: wildlifetrackeruop@gmail.com"
+                id="contactButton"
+                style={{background:"#7eb9a3"}}>
+                <ContactIcon />
+              </Fab>
+            </Tooltip>
+          </div>
     </div>
   );
 }
