@@ -3,7 +3,6 @@
   color: #ffffff;
   cursor: pointer;
   width: 100%;
-  margin: 2%;
 }
 
 
@@ -29,4 +28,10 @@
 }
 #fail-icon{
   display: none;
+}
+
+@media screen and (min-height: 500px) and (min-width: 800px){
+  #add-reg{
+    padding-top: 18%;
+  }
 }

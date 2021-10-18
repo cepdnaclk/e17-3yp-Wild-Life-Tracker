@@ -27,8 +27,7 @@ const  TITLE = 'Password Reset';
 
 
 
-/*export login page*/
-export default function Login() {
+export default function adminEmailSubmit() {
 
   const logo = <Logo /> //logo of the page
   const form = <Form/>;
@@ -135,20 +134,18 @@ function Form() {
         <form onSubmit={handleSubmit} id='pw-reset-rq-form'>
             <div className="text-center">
             
-            <h1>
-                Password Reset
-            </h1>
-            <br></br>
-            <Typography component="p" variant="p">
-                Enter the email that you have used to register in wildlife tracker to
-                proceed.
-            </Typography>
-            <br></br>
-            {/*loding animation - initially it is hidden*/}
-            
-            
-            <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
-                <div id='error-field'></div>
+              <h1>
+                  Password Reset
+              </h1>
+              <br></br>
+              <Typography component="p" variant="p">
+                  Enter the email that you have used to register in wildlife tracker to
+                  proceed.
+              </Typography>
+              <br></br>
+              {/*loding animation - initially it is hidden*/}
+              <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
+              <div id='error-field'></div>
             </div>
             
             <div className="mb-3">

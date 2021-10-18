@@ -28,7 +28,7 @@ const  TITLE = 'Password Reset';
 
 
 /*export login page*/
-export default function Login() {
+export default function userEmailSubmit() {
 
   const logo = <Logo /> //logo of the page
   const form = <Form/>;
@@ -45,7 +45,7 @@ export default function Login() {
 }
 
 
-/*login form implementation*/
+
 function Form() {
 
    //states

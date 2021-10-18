@@ -170,7 +170,7 @@ function AdminForm() {
 
   /*registration form*/
   return (
-    <div>
+    <div id='add-reg'>
 
       <div id='msg-field'>
         <div id='suc-icon'><FaCheckCircle size={70}/></div>

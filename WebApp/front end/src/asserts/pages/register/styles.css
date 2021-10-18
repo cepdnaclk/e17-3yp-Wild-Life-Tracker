@@ -3,7 +3,6 @@
   color: #ffffff;
   cursor: pointer;
   width: 100%;
-  margin: 2%;
 }
 
 
@@ -36,4 +35,11 @@
 
 #conLet{
   background-color: #e9c437;
+}
+
+
+@media screen and (min-height: 500px) and (min-width: 800px){
+  #reg{
+    padding-top: 15%;
+  }
 }
