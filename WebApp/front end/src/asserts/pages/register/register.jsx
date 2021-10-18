@@ -198,7 +198,7 @@ function Form() {
 
   /*registration form*/
   return (
-    <div>
+    <div id='reg'>
 
       <div id='msg-field'>
         <div id='suc-icon'><FaCheckCircle size={70}/></div>

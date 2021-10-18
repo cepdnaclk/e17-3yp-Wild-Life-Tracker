@@ -10,6 +10,7 @@ import Admin from './asserts/pages/admin/admin';
 import AdminReg from './asserts/pages/adminReg/adminReg';
 import UserPWREmail from './asserts/pages/passwordReset/useremailSubmit';
 import AdminPWREmail from './asserts/pages/passwordReset/adminemailSubmit';
+import PWreset from './asserts/pages/passwordReset/passwordReset';
 import ProtectedRouteAdmin from './protectedRouteAdmin';
 import ProtectedRouteUser from './protectedRouteUser';
 import reportWebVitals from './reportWebVitals';
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route exact path="/AdminRegister" component={AdminReg}/>
           <Route exact path="/UserPasswordRec" component={UserPWREmail}/>
           <Route exact path="/AdminPasswordRec" component={AdminPWREmail}/>
+          <Route exact path="/PasswordReset/:email/:token" component={PWreset}/>
       </Switch>
     </Router>,
   document.getElementById('root')

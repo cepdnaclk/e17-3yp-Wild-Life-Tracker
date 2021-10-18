@@ -24,3 +24,9 @@
 #loader{
   display: none;
 }
+
+@media screen and (min-height: 500px) and (min-width: 800px){
+  #admin-log-form{
+    padding-top: 40%;
+  }
+}

@@ -13,9 +13,12 @@ code {
 }
 
 
-@media screen and (min-height: 500px) and (min-width: 600px){
+@media screen and (min-height: 500px) and (min-width: 800px){
   .home{
     padding-top: 40%;
+  }
+  .footer{
+    margin-top: 30%;
   }
 }
 
@@ -24,5 +27,9 @@ code {
   height: 100%;
   text-align: center;
   line-height: 6em;
+}
+
+.footer{
+  margin-top: 0%;
 }
 

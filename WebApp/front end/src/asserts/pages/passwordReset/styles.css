@@ -6,9 +6,25 @@
 }
 
 #pwr{
-    margin-top: 40%;
+    margin-top: 10%;
 }
 
+#button-reset-pw{
+    background-color: #188459;
+    color: #ffffff;
+    cursor: pointer;
+    width: 100%;
+}
+  
+  
+#button-reset-pw:hover {
+    background-color: #205C41;
+}
+  
+#reset-error-field{
+    color: red;
+    margin: 10px;
+}
   
 #button-submit:hover {
     background-color: #205C41;
@@ -35,4 +51,10 @@
   
 #conLet{
     background-color: #e9c437;
+}
+
+@media screen and (min-height: 500px) and (min-width: 600px){
+    #pwr{
+        margin-top: 40%;
+    }
 }
