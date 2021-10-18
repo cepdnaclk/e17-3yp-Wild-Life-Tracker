@@ -74,7 +74,7 @@ export default function Admin() {
           </div>
         </div>
 
-      <div id="header">
+      <div id="header-admin">
         <ProSidebar id='admin-sidebar'>
           
           <SidebarContent>
