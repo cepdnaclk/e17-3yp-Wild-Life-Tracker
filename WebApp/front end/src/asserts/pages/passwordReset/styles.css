@@ -15,16 +15,20 @@
     cursor: pointer;
     width: 100%;
 }
-  
+
+#error-field{
+    display: none;
+    margin: 20px;
+}
+
+#backtoHome{
+    display: none;
+}
   
 #button-reset-pw:hover {
     background-color: #205C41;
 }
   
-#reset-error-field{
-    color: red;
-    margin: 10px;
-}
   
 #button-submit:hover {
     background-color: #205C41;
@@ -32,6 +36,7 @@
   
   
 #suc-field{
+    display: none;
     margin: 10px;
 }
 #msg-field{
@@ -40,8 +45,18 @@
   
 #suc-icon{
     display: none;
+    color: #188459;
 }
 #fail-icon{
+    display: none;
+    color: red;
+}
+
+#reset-error-field{
+    margin-top: 20px;
+}
+
+#resendUR{
     display: none;
 }
   
@@ -54,7 +69,10 @@
 }
 
 @media screen and (min-height: 500px) and (min-width: 600px){
-    #pwr{
-        margin-top: 40%;
+    #pw-reset-rq-form{
+        margin-top: 25%;
+    }
+    #pw-reset-form{
+        margin-top: 25%;
     }
 }

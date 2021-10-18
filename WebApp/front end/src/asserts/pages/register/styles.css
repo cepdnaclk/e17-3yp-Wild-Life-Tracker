@@ -10,23 +10,24 @@
   background-color: #205C41;
 }
 
-#reg-error-field{
-  color: red;
+#ureg-error-field{
   margin: 10px;
 }
 
 #suc-field{
   margin: 10px;
 }
-#msg-field{
+#urmsg-field{
   text-align: center;
 }
 
 #suc-icon{
   display: none;
+  color: #188459;
 }
 #fail-icon{
   display: none;
+  color: red;
 }
 
 #loader{
@@ -37,9 +38,21 @@
   background-color: #e9c437;
 }
 
+#backToRegister{
+  display: none;
+}
+
 
 @media screen and (min-height: 500px) and (min-width: 800px){
-  #reg{
+  #reg-form{
     padding-top: 15%;
+  }
+
+  #suc-icon{
+    margin-top: 20%;
+  }
+
+  #fail-icon{
+    margin-top: 20%;
   }
 }

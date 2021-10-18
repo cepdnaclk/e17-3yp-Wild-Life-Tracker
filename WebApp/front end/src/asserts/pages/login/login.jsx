@@ -4,10 +4,9 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
-
-
-//material UI components
-import Typography from '@mui/material/Typography';
+import Fade from 'react-reveal/Fade';
+import Tada from 'react-reveal/Tada';
+import { FaExclamationCircle  } from "react-icons/fa";
 
 
 
@@ -34,7 +33,7 @@ const  TITLE = 'Sign-in';
 export default function Login() {
 
   const logo = <Logo /> //logo of the page
-  const form = <Form/>;
+  const form = <Fade bottom><Form/></Fade>;
 
   //return template --> left side = logo , right side = login form 
   return (
@@ -99,7 +98,7 @@ function Form() {
 
     evt.preventDefault();
     document.getElementById('button-login').className += ' disabled';
-    document.getElementById('error-field').style.display ='none';
+    document.getElementById('ulogin-error-field').style.display ='none';
     document.getElementById('loader').style.display ='block';
 
     axios.post(`${URL}api/auth/signin-user`,data)
@@ -117,16 +116,23 @@ function Form() {
         if(error.response){
           if(error.response.status===401){
             document.getElementById('loader').style.display ='none';
+            document.getElementById('l-form').style.display ='none';
             document.getElementById('button-login').className = document.getElementById('button-login').className.replace("disabled", "");
-            document.getElementById('error-field').style.display ='block';
-            document.getElementById('error-field').innerHTML = "!!!Wrong username & password. Plesse try again!!!";
+            document.getElementById('fail-icon').style.display ='block';
+            document.getElementById('ulogin-error-field').style.display ='block';
+            document.getElementById('backToLogin').style.display ='block';
+            document.getElementById('resetPWUser').style.display ='block';
+            document.getElementById('ulogin-error-field').innerHTML = "The credentials you entered are not matching.<br/>Please try again.";
           }
-        }else{
-            document.getElementById('loader').style.display ='none';
-            document.getElementById('button-login').className = document.getElementById('button-login').className.replace("disabled", "");
-            document.getElementById('error-field').style.display ='block';
-            document.getElementById('error-field').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
-            
+        }
+        else{
+          document.getElementById('loader').style.display ='none';
+          document.getElementById('l-form').style.display ='none';
+          document.getElementById('button-login').className = document.getElementById('button-login').className.replace("disabled", "");
+          document.getElementById('fail-icon').style.display ='block';
+          document.getElementById('ulogin-error-field').style.display ='block';
+          document.getElementById('backToLogin').style.display ='block';
+          document.getElementById('ulogin-error-field').innerHTML = "An unexpected Error occured.Try Again.";  
         }
         
     }); 
@@ -138,19 +144,30 @@ function Form() {
   return (
     
     <div id='log-form'>
-
-      <form onSubmit={handleSubmit}>
-        <div className="text-center">
-          
-        <h1>
-            Sign in
-        </h1>
-
-        {/*loding animation - initially it is hidden*/}
-        
-        
-        <div id='loader'><Loader type="ThreeDots" color="#00BFFF" height={50} width={50}/></div>
-        <div id='error-field'></div>
+      
+      <div id='ulogin-msg-field'>
+        <Tada>
+        <div id='fail-icon'><FaExclamationCircle size={70}/></div>
+        <div id='ulogin-error-field'></div>
+        <small>
+          <a id='backToLogin' href='/Login'>Login Again</a>
+          <div id='resetPWUser'>
+             Forgot password?
+            <a href='/UserPasswordRec'>Change Password</a>
+          </div>
+        </small> 
+        </Tada>
+      </div>
+      
+      <form onSubmit={handleSubmit} id='l-form'>
+        <div className="text-center"> 
+          <h1>
+              Sign in
+          </h1>
+          <br></br>
+          {/*loding animation - initially it is hidden*/}
+          <div id='loader'><Loader type="ThreeDots" color="#188459" height={50} width={50}/></div>
+          <br></br>
         </div>
         
         <div className="mb-3">
@@ -177,7 +194,8 @@ function Form() {
 
         <div>
           <small>Dont have an account? <Link to='/Register'> Register </Link><br/>
-          Forgot password? <a href="/UserPasswordRec">Password Recovery</a></small>
+          Forgot password? <a href="/UserPasswordRec">Password Recovery</a><br />
+          <a href='/AdminLogin'>Admin</a></small>
         </div>
       </form>
      </div> 

@@ -10,15 +10,27 @@
   background-color: #205C41;
 }
 
-#error-field{
+#ulogin-error-field{
   display: none;
-  border-style: solid;
-  border-width: thin;
-  border-radius: 10px;
-  border-color: red;
-  background-color: #FAEBD7;
+  margin: 20px;
+}
+
+#backToLogin{
+  display: none;
+}
+
+#ulogin-msg-field{
+  text-align: center;
+  padding: 10px;
+}
+
+#resetPWUser{
+  display: none;
+}
+
+#fail-icon{
+  display: none;
   color: red;
-  padding: 5px;
 }
 
 #loader{
@@ -26,7 +38,7 @@
 }
 
 @media screen and (min-height: 600px) and (min-width: 800px){
-  #log-form{
-    padding-top: 30%;
+  #l-form{
+    padding-top: 25%;
   }
 }
