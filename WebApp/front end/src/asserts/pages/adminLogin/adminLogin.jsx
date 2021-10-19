@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
 import Fade from 'react-reveal/Fade';
 import Tada from 'react-reveal/Tada';
-import { FaExclamationCircle  } from "react-icons/fa";
+import { FaExclamationCircle , FaEye  } from "react-icons/fa";
 //import components
 import Template from '../template';
 import Logo from '../logo';
@@ -47,7 +47,6 @@ export default function Login() {
 
 /*login form implementation*/
 function Form() {
-
    const history = useHistory();
 
    //states
@@ -134,6 +133,16 @@ function Form() {
         
     });
   }
+
+  const showPW = (evt) =>{
+    var x = document.getElementById("exampleInputPassword1");
+    if (x.type === "password") {
+      x.type = "text";
+    }
+    else {
+      x.type = "password";
+    }
+  }
   
   
   return ( 
@@ -169,10 +178,11 @@ function Form() {
           <div className="invalid-feedback" id='emailmsg'></div>
         </div>
   
-        <div className="mb-3">
+        <div className="mb-3" id="aloginPW-field">
           <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
           <input type="password" className="form-control" id="exampleInputPassword1"
            name="password" onChange={handleChange} required></input>
+           <FaEye id="togglePW" size={25} onClick={showPW}/>
         </div>
   
         <div className="mb-3 form-check">

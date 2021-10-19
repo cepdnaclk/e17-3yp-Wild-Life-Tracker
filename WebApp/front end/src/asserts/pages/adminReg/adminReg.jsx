@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import Fade from 'react-reveal/Fade';
@@ -37,7 +37,7 @@ export default function AdminRegister() {
 
 /*registration form component*/
 function AdminForm() {
-
+   let {email,token} = useParams();
   /*initial states*/
    const [data, setData] = useState({
 
@@ -145,7 +145,7 @@ function AdminForm() {
     evt.preventDefault(); //keep page without reload
     document.getElementById('loader').style.display ='block';
     /*post request*/
-    axios.post(`${URL}api/auth/register-admin`,data)
+    axios.post(`${URL}api/auth/register-admin/${email}/${token}`,data)
   
     /*if successfull*/
     .then(function (response) {
