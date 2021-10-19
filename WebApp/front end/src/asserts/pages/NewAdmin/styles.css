@@ -1,0 +1,23 @@
+#newadminform-window{
+	height: 90vh;
+}
+
+#button-add{
+  background-color: #188459;
+  color: #ffffff;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+#button-add:hover {
+  background-color: #205C41;
+}
+
+#add-error-field{
+	display: none;
+}
+
+#fail-icon-2{
+	color: red;
+}

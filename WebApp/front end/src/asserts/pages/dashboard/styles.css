@@ -19,7 +19,7 @@ html {
 #usr-header .pro-sidebar {
     width: 100%;
     min-width: 100%;
-    height: 88vh;
+    height: 90vh;
   }
   
 #usr-header .pro-sidebar.collapsed {
@@ -95,7 +95,7 @@ html {
 
 #content-body{
     background-color:#ffffff ;
-    min-height: 88vh;
+    min-height: 90vh;
 }
 
 #content-logo{
