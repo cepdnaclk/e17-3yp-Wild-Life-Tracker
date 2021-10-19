@@ -7,13 +7,14 @@ import { Helmet } from 'react-helmet';
 import Profile from '../profile/profile';
 import Users from '../users/users';
 import Logout from '../logout/logout';
+import NewAdmin from '../NewAdmin/NewAdmin';
 
 //import stylesheets
 import 'react-pro-sidebar/dist/css/styles.css';
 import "./styles.css";
 
 //import icons from react icons
-import { FaUsers, FaBars, FaTimes } from "react-icons/fa";
+import { FaUsers, FaBars, FaTimes, FaPlus} from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Admin panel';
@@ -86,7 +87,11 @@ export default function Admin() {
             
               <MenuItem icon={<FaUsers />}>Users
                <Link to='/Admin/users'></Link>
-              </MenuItem>          
+              </MenuItem>
+
+              <MenuItem icon={<FaPlus />}>New Admin
+               <Link to='/Admin/newadmin'></Link>
+              </MenuItem>            
             
             </Menu>
           </SidebarContent>
@@ -107,6 +112,7 @@ export default function Admin() {
             <Switch>
               <Route exact path="/Admin/profile" component={Profile}/>
               <Route exact path="/Admin/users" component={Users}/>
+              <Route exact path="/Admin/newadmin" component={NewAdmin}/>
             </Switch>
           </div>
 
