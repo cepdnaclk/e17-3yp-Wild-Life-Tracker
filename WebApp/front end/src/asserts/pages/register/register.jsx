@@ -9,6 +9,8 @@ import Logo from '../logo';
 import Fade from 'react-reveal/Fade';
 import Tada from 'react-reveal/Tada';
 import './styles.css'
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 
@@ -16,6 +18,15 @@ import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 const URL = process.env.REACT_APP_BACKEND_URL;
 
 const  TITLE = 'Sign-up';
+
+const styles = theme => ({
+  field: {
+    margin: '10px 0',
+  },
+  countryList: {
+    ...theme.typography.body1,
+  },
+});
 
 /*export registration page*/
 export default function Register() {
@@ -38,7 +49,7 @@ export default function Register() {
 
 /*registration form component*/
 function Form() {
-
+   const [phone, setPhone] = useState();
   /*initial states*/
    const [data, setData] = useState({
 
@@ -159,11 +170,11 @@ function Form() {
   const handleSubmit = (evt) => {
 
     const fd = new FormData(); //create an form data object
-    
     /*append all data*/
     fd.append('name', data['name']);
     fd.append('email', data['email']);
     fd.append('password', data['password']);
+    fd.append('phonenumber',phone);
     fd.append('verificationLetter', file);
 
     document.getElementById('button-reg').className += ' disabled';
@@ -233,6 +244,20 @@ function Form() {
           <input type="email" className="form-control" id="Email1" aria-describedby="emailHelp"
           name="email" onChange={handleChange} required></input>
           <div className="invalid-feedback" id='emailmsg'></div>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="phoneN" className="form-label">Phone Number</label>
+          <PhoneInput
+            className="form-control"
+            name="phonenumber"
+            id="phonenumber"
+            inputStyle={{width:'100%'}}
+            country={'us'}
+            value={phone}
+            onChange={setPhone}
+            required
+          />
         </div>
   
         <div className="mb-3">

@@ -12,7 +12,7 @@ const confirmationSchema = require('../models/confirmation')
 const adminSchema = require('../models/admin')
 const deviceSchema = require('../models/device')
 const passwordRSSchema = require('../models/passwordRS')
-
+const pendingAdminSchema = require('../models/pendingAdmins')
 
 //AWS s3 buckets
 //const s3Bucket = require('../config/s3')
@@ -316,7 +316,7 @@ router.post('/user-password-reset-rq',urlencodedParser,[
                                 <a href="${link}"
                                     style="
                                     margin-top: 15px;
-                                    background:linear-gradient(45deg,#00ff00,#2fa500);color: white;border-style: hidden;
+                                    background:#e9c437;color: white;border-style: hidden;
                                     text-decoration: none;
                                     padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
                                     font-size: 1.1em;
@@ -336,10 +336,9 @@ router.post('/user-password-reset-rq',urlencodedParser,[
         })
         //save in DB
         request.save().then((response) => {             
-            sendMail(user.email,"User registration confirmed",body);
+            sendMail(user.email,"Password Reset",body);
             res.status(201).json({
                 message: 'The password rest link is sent to Your email!',
-                data: jwtToken
             })
         })
         .catch((error) => {
@@ -404,7 +403,7 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
                                 <a href="${link}"
                                     style="
                                     margin-top: 15px;
-                                    background:linear-gradient(45deg,#00ff00,#2fa500);color: white;border-style: hidden;
+                                    background:#e9c437;color: white;border-style: hidden;
                                     text-decoration: none;
                                     padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
                                     font-size: 1.1em;
@@ -426,8 +425,7 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
         request.save().then((response) => {             
             sendMail(user.email,"Password Reset",body);
             res.status(201).json({
-                message: 'The password rest link is sent to Your email!',
-                data: jwtToken
+                message: 'The password rest link is sent to Your email!'
             })
         })
         .catch((error) => {
@@ -455,7 +453,7 @@ router.post('/password-reset/:email/:token',urlencodedParser,[
 
     try{
         const token = req.params.token
-        jwt.verify(token, "longer-secret-is-better")
+        jwt.verify(token, "longer-secret-is-better");
         const decodedToken = jwt.decode(token);
         const isadmin = decodedToken.isadmin;
 
@@ -526,14 +524,10 @@ router.post('/password-reset/:email/:token',urlencodedParser,[
 
 })
 
-
-
-
-
 //Admin signup
 // Signup 
 //with form validation
-router.post('/register-admin',urlencodedParser,[
+router.post('/register-admin/:email/:token',urlencodedParser,[
 
     //input validation
     check('email', 'Email is not valid')
@@ -543,7 +537,7 @@ router.post('/register-admin',urlencodedParser,[
     check('name', 'The username must be 5+ characters long and can contain only Alphanumeric characters')
         .exists()
         .isLength({min: 5})
-        .isAlphanumeric(),
+        .isAlpha('en-US', {ignore: ' '}),
 
     check('password', 'Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 ')
         .exists()
@@ -558,25 +552,47 @@ router.post('/register-admin',urlencodedParser,[
         return res.status(422).jsonp(errors.array())
     }
 
-    bcrypt.hash(req.body.password, 10).then((hash)=>{        // .hash(data, salt, cb) -> look into salt
-        const user = new adminSchema({                       //create a user for the DB entry
-            name: req.body.name,
-            email: req.body.email,
-            password: hash          //password was hashed
+    try{
+        const token = req.params.token;
+        jwt.verify(token, "longer-secret-is-better");
+        pendingAdminSchema.findOne({           
+            email: req.params.email,
+            token: token        
+        })
+        .then(result1=>{
+            if(!result1){
+                return res.status(401).json({
+                    message: "Link is not valid or expired try again"
+                })
+            }
+            
+            bcrypt.hash(req.body.password, 10).then((hash)=>{        // .hash(data, salt, cb) -> look into salt
+                const user = new adminSchema({                       //create a user for the DB entry
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: hash          //password was hashed
+                })
+                user.save().then((response) => {            //mongoose method to save
+                    result1.delete();
+                    res.status(201).json({
+                        message: 'Admin created',
+                        result: response
+                    })
+                })
+                .catch((error) => {
+                    return res.status(500).json({
+                        error
+                    })
+                })
+            })  
         })
 
-        user.save().then((response) => {            //mongoose method to save
-            res.status(201).json({
-                message: 'Admin created',
-                result: response
-            })
+    }
+    catch(error){
+        return res.status(401).json({
+            message: "Link is not valid or expired try again"
         })
-        .catch((error) => {
-            res.status(500).json({
-                error
-            })
-        })
-    })           
+    }         
 })
 
 
@@ -594,7 +610,7 @@ router.post('/register-user',upload.single('verificationLetter'),urlencodedParse
     check('name', 'The username must be 5+ characters long and can contain only Alphanumeric characters')
         .exists()
         .isLength({min: 5})
-        .isAlphanumeric(),
+        .isAlpha('en-US', {ignore: ' '}),
 
     check('password', 'Password should be combination of one uppercase , one lower case, one special char, one digit and min 8 ')
         .exists()
@@ -606,6 +622,7 @@ router.post('/register-user',upload.single('verificationLetter'),urlencodedParse
         const user = new confirmationSchema({                       //create a user for the DB entry
             name: req.body.name,
             email: req.body.email,
+            phonenumber: req.body.phonenumber,
             password: hash,          //password was hashed
             //add the confirmation letter here (DONE)
             verificationLetter: req.file.path       //new
@@ -704,6 +721,7 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
                     const user = new userSchema({                   
                         name: clientRequest.name,
                         email: clientRequest.email,
+                        phonenumber: clientRequest.phonenumber,
                         password: clientRequest.password          
                     })
                     //save user       
@@ -765,6 +783,110 @@ router.route('/accept-reg').delete(admin_authorize, (req, res)=> {
             data : err
         })
     })           
+})
+
+//route for add a new admin
+router.route('/add-admin').post(admin_authorize,urlencodedParser,[
+    check('email', 'Email is not valid')
+        .isEmail()
+        .normalizeEmail()
+], (req,res)=>{
+    //for the form validation error handeling
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).jsonp(errors.array())
+    }
+
+    adminSchema.findOne({
+        email: req.body.email
+    }).then(result1=>{
+        if(result1){
+            return res.status(409).json({
+                message : "A admin with given email already exisits"
+            })
+        }
+        else{
+            pendingAdminSchema.findOne({
+                email: req.body.email
+            }).then(result2=>{
+                if(result2){
+                    result2.delete();
+                }
+                let jwtToken = jwt.sign({        
+                    email: req.body.email       
+                },"longer-secret-is-better",{
+                    expiresIn: 86400                 //after 1 day token is expired
+                });
+                
+                const request = new pendingAdminSchema({                       
+                    email: req.body.email,
+                    token: jwtToken       
+                });
+
+                let link = `${process.env.ADMIN_REGISTRATION_LINK}/${req.body.email}/${jwtToken}`;
+                let body =  `
+                        <div style="padding: 5%;background: rgb(255, 255, 255);font-size: 1.2em;">
+                            <h2>Hi, there </h2>
+                            <p>
+                                This is an invitation from wildlife tracker.
+                            </p>
+                            <p>
+                                You can join as an admin with us. The provided link is only valid for one day.
+                                Therfore, you have to register withn one day.
+                            </p>
+                            <p>
+                                To complete the registration process, click the link below.
+                            </p>
+                            <div style="text-align: center;">
+                                <a href="${link}"
+                                    style="
+                                    margin-top: 15px;
+                                    background:#e9c437;color: white;border-style: hidden;
+                                    text-decoration: none;
+                                    padding-top: 10px;padding-bottom: 10px;padding-left: 50px;padding-right: 50px;
+                                    font-size: 1.1em;
+                                    margin-right: 5px;
+                                    border-radius: 50px;"
+                                >
+                                    Click Here
+                                </a>
+                                <a href="mailto:${process.env.CONTACT_MAIL_LINK}"
+                                    style="
+                                    margin-top: 25px;
+                                    background: #205C41;color: white;border-style: hidden;
+                                    text-decoration: none;
+                                    padding-top: 10px;padding-bottom: 10px;padding-left: 57px;padding-right: 57px;
+                                    margin-right: 5px;
+                                    font-size: 1.1em;
+                                    border-radius: 50px;"
+                                >
+                                    Contact us
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                request.save().then(response => {             
+                    sendMail(req.body.email,"Invitaion for become an admin",body);
+                    res.status(201).json({
+                        message: 'The registration link is sent'
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                    res.status(500).json({
+                        message:'The invitation failed'
+                    })
+                })
+
+            })
+        }
+    })
+    .catch(err=>{
+        res.status(400).json({
+            message : err.message
+        })
+    })
 })
 
 //this route is for reject client request
@@ -846,7 +968,6 @@ router.route('/reject-reg').post(admin_authorize, (req,res)=>{
         }
     })
     .catch(err=>{
-        console.log(err);
         res.status(status_code).json({
             message : err.message
         })

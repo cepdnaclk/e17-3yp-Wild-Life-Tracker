@@ -25,7 +25,7 @@ ReactDOM.render(
           <ProtectedRouteUser path="/Dashboard" component={Dashboard}/>
           <ProtectedRouteAdmin path="/Admin" component={Admin}/>
           <Route exact path="/AdminLogin" component={AdminLogin}/>
-          <Route exact path="/AdminRegister" component={AdminReg}/>
+          <Route exact path="/AdminRegister/:email/:token" component={AdminReg}/>
           <Route exact path="/UserPasswordRec" component={UserPWREmail}/>
           <Route exact path="/AdminPasswordRec" component={AdminPWREmail}/>
           <Route exact path="/PasswordReset/:email/:token" component={PWreset}/>

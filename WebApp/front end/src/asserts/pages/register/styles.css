@@ -45,7 +45,7 @@
 
 @media screen and (min-height: 500px) and (min-width: 800px){
   #reg-form{
-    padding-top: 15%;
+    padding-top: 0%;
   }
 
   #suc-icon{
