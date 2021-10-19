@@ -52,3 +52,6 @@ Create a user for the web app and add the policy
 
 ## AWS SDK
 npm package to use the AWS services
+
+## Firebase
+Experince, minimize cost, maximize time
