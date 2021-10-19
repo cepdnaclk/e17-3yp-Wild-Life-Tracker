@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Template from './asserts/pages/template';
 import Logo from './asserts/pages/logo';
 import Typography from '@mui/material/Typography';

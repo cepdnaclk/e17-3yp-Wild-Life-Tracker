@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+#loginPW-field{
+  position: relative;
+}
+
 
 #button-login:hover {
   background-color: #205C41;
@@ -26,6 +30,14 @@
 
 #resetPWUser{
   display: none;
+}
+
+#togglePW{
+  position:absolute;
+  cursor: pointer;
+  right: 10px;
+  bottom: 5px;
+  color: #188459;
 }
 
 #fail-icon{
