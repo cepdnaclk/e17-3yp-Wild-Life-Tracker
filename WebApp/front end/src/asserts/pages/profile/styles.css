@@ -1,8 +1,8 @@
 #Home{
-	background-color: #ffffff;
-	margin: 3%;
+	background: rgba(255, 255, 255, 0.3);
+	margin: 5vh;
 	padding: 2%;
-	min-height: 70vh;
+	min-height: 80vh;
 	border-radius: 20px;
 	color:#355c7d;
 }
@@ -17,8 +17,7 @@
 	width: 40%;
 }
 
-#profile-info{
-	background-color: #ffffff;
+#profile-info{	 
 	margin: 4%;
 	padding: 2%;
 }

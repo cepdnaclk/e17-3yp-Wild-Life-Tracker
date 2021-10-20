@@ -35,7 +35,7 @@ export default function Dashboard() {
 
         if(menuCollapse){
           setMenuCollapse(false);
-          document.getElementById("content").style.marginLeft = "0px";
+          document.getElementById("content-body").style.marginLeft = "0px";
           document.getElementById("sidebar").style.width = "0px";
           document.getElementById("usr-x").style.display = 'none';
           document.getElementById("usr-=").style.display = 'inline';
@@ -43,7 +43,7 @@ export default function Dashboard() {
         else{
           setMenuCollapse(true);
           document.getElementById("sidebar").style.width = "200px";
-          document.getElementById("content").style.marginLeft = "200px";
+          document.getElementById("content-body").style.marginLeft = "200px";
           document.getElementById("usr-x").style.display = 'inline';
           document.getElementById("usr-=").style.display = 'none';
         } 
@@ -65,7 +65,7 @@ export default function Dashboard() {
        
         <div className='row' id='content-header'>
           <div className='col-4 col-md-1'>
-            <button onClick={menuIconClick} className='btn' id='button-user'>
+            <button onClick={menuIconClick} className='btn btn-secondary' id='button-user'>
             <FaTimes id='usr-x'/> 
             <FaBars id='usr-='/> Menu</button>
           </div>
