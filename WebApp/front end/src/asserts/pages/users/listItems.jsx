@@ -11,7 +11,6 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 const cookies = new Cookies();
 
 function Accept(email){
-
 	axios.delete(`${URL}api/auth/accept-reg`, {
 		headers: {
 			'x-auth-token' : cookies.get('token')
@@ -35,16 +34,16 @@ function Accept(email){
 }
 
 function Reject(email){
-
-	axios.delete(`${URL}api/auth/delete-reg`, {
+	axios.post(`${URL}api/auth/reject-reg`,{
+		'email': email,
+		'reason': document.getElementById("reason").value
+	},
+	{
 		headers: {
 			'x-auth-token' : cookies.get('token')
-		},
-		data: {
-			'email': email,
-			'reason': document.getElementById("reason").value
 		}
-	})
+	}
+	)
     .then(function (response) {
 		console.log(response);
       	document.getElementById('requests-list').innerHTML = "successfull";
