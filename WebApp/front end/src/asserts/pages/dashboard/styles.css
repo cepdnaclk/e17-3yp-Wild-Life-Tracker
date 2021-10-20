@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit');
+
 html {
   overflow-y: scroll; 
 }
@@ -28,7 +30,7 @@ html {
   }
   
 #usr-header .pro-sidebar-inner {
-    background-color: #45A29E;
+    background-color: #205C41;
 
   }
   
@@ -57,7 +59,7 @@ html {
   }
 
 #usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
-    background-color: #355c7d;
+    background-color: #7eb9a3;
     color: #66FCF1
   }
 
@@ -66,8 +68,8 @@ html {
   }
 
 #button-user{
-  background-color: #45A29E;
-  color: #FFFFFF;
+  background-color: #e9c437;
+  color: #000000;
   cursor: pointer;
   width: 100%;
   margin-left: 6%;
@@ -75,31 +77,32 @@ html {
 
 
 #button-user:hover {
-  background-color: #1F2833;
-  color: #66FCF1;
+  background-color:#b28900;
+  color: #ffffff;
 }
 
 #content{
-    background-color: #1F2833;
-    transition: margin-left 0.3s;
-    max-width: vw;
+    background-image: url("../../Pics/Db.jpg");
 }
 
 
 #content-header{
     height: 10vh;
-    background-color:#355c7d;
+    background-color:#188459;
     align-items: center;
     max-width: 100vw;
 }
 
 #content-body{
-    background-color:#ffffff ;
+    margin-left: 0px;
+    background: rgba(76, 175, 80, 0.3);
+    transition: margin-left 0.3s; 
     min-height: 90vh;
 }
 
 #content-logo{
-    color: #66FCF1
+    font-family: "Kanit", sans-serif;
+    color: #ffffff;
 }
 
 #usr-x{
