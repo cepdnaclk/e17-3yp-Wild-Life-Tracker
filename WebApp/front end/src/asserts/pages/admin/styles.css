@@ -1,14 +1,15 @@
-html {
-  overflow-y: scroll; 
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
-#header {
+#header-admin {
 
     position: absolute;
     width: 0px;
   }
   
-#header .closemenu {
+#header-admin .closemenu {
     color: #fff;
     font-size: 50px;
     cursor: pointer;
@@ -16,52 +17,52 @@ html {
     margin-left: 12px;
   }
   
-#header .pro-sidebar {
+#header-admin .pro-sidebar {
     width: 100%;
     min-width: 100%;
-    height: 88vh;
+    height: 90vh;
   }
   
-#header .pro-sidebar.collapsed {
+#header-admin .pro-sidebar.collapsed {
     width: 220px;
     min-width: 220px;
   }
   
-#header .pro-sidebar-inner {
+#header-admin .pro-sidebar-inner {
     background-color: #45A29E;
 
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout {
     overflow-y: hidden;
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout ul {
     padding: 0 5px;
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
     color: #fff;
     margin: 10px 0px;
     font-weight: bold;
   }
   
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper {
     background-color: #fff;
     color: #000;
     border-radius: 3px;
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item .pro-icon-wrapper .pro-item-content {
     color: #66FCF1
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
+#header-admin .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
     background-color: #355c7d;
     color: #66FCF1
   }
 
-#header .pro-sidebar-inner .pro-sidebar-layout .active {
+#header-admin .pro-sidebar-inner .pro-sidebar-layout .active {
     background-color: #1F2833;
   }
 
@@ -93,7 +94,7 @@ html {
 
 #admin-content-body{
     background-color:#ffffff ;
-    min-height: 88vh;
+    min-height: 90vh;
     max-width: 100vw;
 }
 
