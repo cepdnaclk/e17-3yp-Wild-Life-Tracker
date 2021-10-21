@@ -23,7 +23,7 @@ const TITLE = 'Add-New-Admin';
 export default function NewAdmin(){
 
    //states
-   const [data, setData] = useState({
+   const [mails, setData] = useState({
 
     email : "" ,
     cemail : ""
@@ -63,7 +63,7 @@ export default function NewAdmin(){
                 [name]: value
               }));
 
-              if(data['email'].localeCompare(value)!==0){
+              if(mails['email'].localeCompare(value)!==0){
                 document.getElementById('emailmsg2').innerHTML ="email doesn't match";
                 document.getElementById(e.target.id).className += " is-invalid";
                 document.getElementById('button-add').className += ' disabled';                
@@ -83,14 +83,15 @@ export default function NewAdmin(){
 
     document.getElementById('button-add').className += ' disabled';
     document.getElementById('loader').style.display ='block';
-
     /*post request*/
-    axios.post(`${URL}api/auth/register-user`,{
+    axios.post(`${URL}api/auth/add-admin`,{
+        email : mails['email'],
+        cemail : mails['cemail']
+      },{
       headers: {
         'x-auth-token' : cookies.get('token')
-      },
-      data: data
-    })
+      }
+      })
   
     /*if successfull*/
     .then(function (response) {
