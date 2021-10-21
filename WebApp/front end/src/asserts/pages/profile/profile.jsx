@@ -1,13 +1,10 @@
 import React from "react";
 import Cookies from 'universal-cookie';
 
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+
 import './styles.css';
-
-//var name = '';
-//var email = '';
-//var joined : '';
-//var photos : 0;
-
 
 export default function Profile(props) {
 
@@ -16,57 +13,48 @@ export default function Profile(props) {
 	var email = cookies.get('email');
 
 
+	const slides= [
+  {
+    header1: 'NEXT GENERATION OF WILDLIFE RESEARCHING',
+    header2: 'Wildlife Tracker',
+    description: 'A remote wildlife tracking system for researchers.'
+  },
+  {
+    header1: 'OUR SYSTEM MAKES IT',
+    header2: 'Easy and Safe',
+    description: "This system provides facilities to analyse the behaviour of wild animals remotely. You don't have to stay in your researching area all the time anymore. You can do your research while you are in your sweet home."
+
+  },
+  {
+    header1: 'OUR SYSTEM IS',
+    header2: 'Reliable',
+    description: "Don't worry about the connectivity and power issues. Our device will look after all of these things. It has own storage facilities and automatic charging with solar power."
+
+  },
+];
+
+
 	return(
 
 	<div>
 		<div className='row' id="Home">
-			<div className='col-4' id='profile'>
-				<img src="https://www.pngitem.com/pimgs/b/146-1468479_profile-icon-png.png" className="rounded-circle" id="pic" alt="pp"></img>
-					<div>
-	  					<h3>{name}</h3>
-						<h4>{email}</h4>
-					{/*	<li>Joined: {joined}</li>
-						<li>Photos: {photos}</li>*/}
-					</div>
-
-			</div>
 			<div className='col-8'>
-				<h3>Features</h3><br/>
-				<table>
-					<tr>
-						<td>
-							<h5>Remotely Controlable</h5>
-							<p>Researcher can monitor the station through the web app after it is successfully established in researching area.</p>
-						</td>
-						<td>
-							<h5>Solar Power</h5>
-							<p>The stations are powerd by battaries. A solar cell system is used to recharge them.</p>
-						</td>
-					</tr>
 
-					<tr>
-						<td>
-							<h5>High Performance Camera Module</h5>
-							<p>A powerful camera unit to capture perfect photos in any lighting condition.
-								Also provides video recording facilities, recorded videos are stored in the own memory of station.</p>							
-						</td>
-						<td>
-							<h5>Durable</h5>
-							<p>Can be set up in any environment. Made with highly durable and waterproof materials so that animals and unforgiving weather can't damage it.</p>							
-						</td>
-					</tr>
-
-					<tr>
-						<td>
-							<h5>Tracking System</h5>
-							<p>Pinpoint the exact location of the station. The most active station can be observed by the Web App.</p>							
-						</td>
-						<td>
-							<h5>Self Storage In Stations</h5>
-							<p>Data obtained by the system is stored in itself when there is no connection with the database.</p>							
-						</td>
-					</tr>
-				</table>
+				<div className="slide-container">
+        			<Slide>
+         				{slides.map((slideImage, index)=> (
+            				<div className="each-slide" key={index}>
+              					<div style={{'background': `rgba(76, 175, 80, 0)`}} className="pict">
+              							<div className="content">
+                							<div style={{'fontSize': `30px` , 'color':`#000`}}>{slideImage.header1}</div>
+                							<div style={{'fontSize': `60px` , 'color':`#000`}}>{slideImage.header2}</div>
+                							<div style={{'fontSize': `20px` , 'color':`#000`}}>{slideImage.description}</div>
+              							</div>
+              					</div>
+            				</div>
+          				))} 
+        			</Slide>
+      			</div>
 			</div>
 
 		</div>
