@@ -118,7 +118,7 @@ export default function NewAdmin(){
 	return(
 <div>     
 
-    <div className='row d-flex justify-content-center align-items-center' id='newadminform-window'>
+    <div className='row d-flex justify-content-center' id='newadminform-window'>
 
       <div className="col-11 col-md-4 text-center" id='add-error-field'>
         <Tada>

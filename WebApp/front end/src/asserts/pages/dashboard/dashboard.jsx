@@ -11,6 +11,7 @@ import Profile from '../profile/profile';
 import Devices from '../devices/devices';
 import Logout from '../logout/logout';
 import SimpleMap from '../maps/SimpleMap';
+import Contact from '../contact/Contact';
 
 import './styles.css';
 
@@ -45,13 +46,19 @@ export default function Dashboard() {
           document.getElementById("sidebar").style.width = "0px";
           document.getElementById("usr-x").style.display = 'none';
           document.getElementById("usr-=").style.display = 'inline';
+
+          var list = document.getElementsByClassName("leaflet-container");
+          if(list.length>0) list[0].style.width = '95vw';
         }
         else{
           setMenuCollapse(true);
-          document.getElementById("sidebar").style.width = "200px";
-          document.getElementById("content-body").style.marginLeft = "200px";
+          document.getElementById("sidebar").style.width = "15vw";
+          document.getElementById("content-body").style.marginLeft = "15vw";
           document.getElementById("usr-x").style.display = 'inline';
           document.getElementById("usr-=").style.display = 'none';
+
+          var list = document.getElementsByClassName("leaflet-container");
+          if(list.length>0) list[0].style.width = '80vw';
         } 
             
       };
@@ -110,7 +117,7 @@ export default function Dashboard() {
               </MenuItem>              
             
               <MenuItem icon={<FaPhone />}>Contact us
-              <Link to=''></Link>
+              <Link to='/dashboard/contactus'></Link>
               </MenuItem>
             
             </Menu>
@@ -132,7 +139,8 @@ export default function Dashboard() {
             <Switch>
               <Route exact path="/dashboard/profile" component={Profile}/>
               <Route exact path="/dashboard/devices" component={Devices}/>
-              <Route exact path="/dashboard/locations" component={SimpleMap}/>
+              <Route exact path="/dashboard/locations" component={SimpleMap} id='mp'/>
+              <Route exact path="/dashboard/contactus" component={Contact}/>
             </Switch>
           </div>
 

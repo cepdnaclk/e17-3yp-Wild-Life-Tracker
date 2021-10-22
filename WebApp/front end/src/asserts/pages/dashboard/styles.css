@@ -94,7 +94,7 @@ html {
 
 #content-body{
     margin-left: 0px;
-    background: rgba(76, 175, 80, 0.3);
+    background: rgba(76, 175, 80, 0.2);
     transition: margin-left 0.3s; 
     min-height: 90vh;
 }
