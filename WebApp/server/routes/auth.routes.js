@@ -329,6 +329,14 @@ router.post('/user-password-reset-rq',urlencodedParser,[
                     `;
                         
 
+        passwordRSSchema.findOne({
+            email: req.body.email
+        }).then(result=>{
+            if(result){
+                result.delete();
+            }
+        });
+
         //new document to password reset collection
         const request = new passwordRSSchema({                       
             email: req.body.email,
@@ -414,7 +422,14 @@ router.post('/admin-password-reset-rq',urlencodedParser,[
                             </div>
                         </div>
                     `;
-                        
+        
+        passwordRSSchema.findOne({
+            email: req.body.email
+        }).then(result=>{
+            if(result){
+                result.delete();
+            }
+        });
 
         //new document to password reset collection
         const request = new passwordRSSchema({                       
