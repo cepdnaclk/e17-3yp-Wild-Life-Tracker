@@ -63,10 +63,6 @@ body {
     color: #000;
   }
 
-#header-admin .pro-sidebar-inner .pro-sidebar-layout .active {
-    background-color: #1F2833!important;
-  }
-
 #button {
   background-color: #45A29E;
   color: #FFFFFF;
@@ -114,6 +110,10 @@ body {
     color: #ffffff;
 }
 
+#content-logo a{
+    text-decoration: none;
+    color: #ffffff;
+}
 /*
 @media only screen and (max-width: 720px) {
     html {

@@ -4,6 +4,10 @@ html {
   overflow-y: scroll; 
 }
 
+.active-tab{
+    background-color: #7eb9a3;
+}
+
 #usr-header {
 
     position: absolute;
@@ -63,10 +67,6 @@ html {
     color: #000;
   }
 
-#usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :active{
-    background-color: #1F2833!important;
-  }
-
 #button-user{
   background-color: #e9c437;
   color: #000000;
@@ -114,6 +114,10 @@ html {
     color: #ffffff;
 }
 
+#content-logo a{
+    text-decoration: none;
+    color: #ffffff;
+}
 /*
 @media only screen and (max-width: 720px) {
     html {

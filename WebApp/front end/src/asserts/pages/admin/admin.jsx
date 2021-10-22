@@ -77,7 +77,7 @@ export default function Admin() {
           </div>
 
           <div className='col-8 text-center'>
-            <h1 id='content-logo'>WildLife Tracker</h1>
+            <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
           <div className='col-8 offset-sm-1 col-md-1 text-center'>
