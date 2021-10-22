@@ -60,7 +60,7 @@ html {
 
 #usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
     background-color: #7eb9a3;
-    color: #66FCF1
+    color: #000;
   }
 
 #usr-header .pro-sidebar-inner .pro-sidebar-layout ul li :active{
@@ -71,8 +71,8 @@ html {
   background-color: #e9c437;
   color: #000000;
   cursor: pointer;
-  width: 100%;
-  margin-left: 6%;
+  width: 50%;
+  margin-left: 10%;
 }
 
 
@@ -85,7 +85,6 @@ html {
     background-image: url("../../Pics/Db.jpg");
 }
 
-
 #content-header{
     height: 10vh;
     background-color:#188459;
@@ -95,7 +94,7 @@ html {
 
 #content-body{
     margin-left: 0px;
-    background: rgba(76, 175, 80, 0.3);
+    background: rgba(76, 175, 80, 0.2);
     transition: margin-left 0.3s; 
     min-height: 90vh;
 }
@@ -107,6 +106,12 @@ html {
 
 #usr-x{
     display: none;
+}
+
+.dropdown-menu{
+    padding: 5%;
+    background: #7eb9a3;
+    color: #ffffff;
 }
 
 /*

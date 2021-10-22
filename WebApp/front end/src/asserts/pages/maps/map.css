@@ -5,4 +5,5 @@
 	width: 95vw;
 	height: 80vh;
 	border-radius: 20px;
+	transition: width 0.3s;
 }

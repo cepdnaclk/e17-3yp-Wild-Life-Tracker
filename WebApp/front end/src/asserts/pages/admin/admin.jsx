@@ -2,6 +2,9 @@ import { Link , BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ProSidebar, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-pro-sidebar';
 import React, { useState } from "react";
 import { Helmet } from 'react-helmet';
+import Cookies from 'universal-cookie';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 //import components
 import Profile from '../profile/profile';
@@ -14,10 +17,13 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import "./styles.css";
 
 //import icons from react icons
-import { FaUsers, FaBars, FaTimes, FaPlus} from "react-icons/fa";
+import { FaUsers, FaUser , FaBars, FaTimes, FaPlus} from "react-icons/fa";
 import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Admin panel';
+const cookies = new Cookies();
+var name = 'User Name'//cookies.get('name');
+var email = 'Email@email.com'//cookies.get('email');
 
 /*export admin component*/
 export default function Admin() {
@@ -35,7 +41,7 @@ export default function Admin() {
 
         if(menuCollapse){
           setMenuCollapse(false);
-          document.getElementById("admin-content").style.marginLeft = "0px";
+          document.getElementById("admin-content-body").style.marginLeft = "0px";
           document.getElementById("admin-sidebar").style.width = "0px";
           document.getElementById("admin-usr-x").style.display = 'none';
           document.getElementById("admin-usr-=").style.display = 'inline';
@@ -43,7 +49,7 @@ export default function Admin() {
         else{
           setMenuCollapse(true);
           document.getElementById("admin-sidebar").style.width = "200px";
-          document.getElementById("admin-content").style.marginLeft = "200px";
+          document.getElementById("admin-content-body").style.marginLeft = "200px";
           document.getElementById("admin-usr-x").style.display = 'inline';
           document.getElementById("admin-usr-=").style.display = 'none';
         } 
@@ -64,14 +70,24 @@ export default function Admin() {
     <Router>
 
        <div className='row' id='admin-content-header'>
-          <div className='col-4 col-md-1'>
+          <div className='col-4 col-md-2'>
             <button onClick={menuIconClick} className='btn' id='button-user'>
             <FaTimes id='admin-usr-x'/> 
             <FaBars id='admin-usr-='/> Menu</button>
           </div>
 
-          <div className='col-8 col-md-9 text-center'>
+          <div className='col-8 text-center'>
             <h1 id='content-logo'>WildLife Tracker</h1>
+          </div>
+
+          <div className='col-8 offset-sm-1 col-md-1 text-center'>
+            <Dropdown>
+              <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
+              <Dropdown.Menu className="dropdown-menu">
+                  {name}<br/>
+                  {email}
+              </Dropdown.Menu>
+            </Dropdown> 
           </div>
         </div>
 

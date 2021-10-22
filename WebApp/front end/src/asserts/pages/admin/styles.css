@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit');
 body {
   overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
@@ -29,7 +30,7 @@ body {
   }
   
 #header-admin .pro-sidebar-inner {
-    background-color: #45A29E;
+    background-color: #205C41;
 
   }
   
@@ -58,12 +59,12 @@ body {
   }
 
 #header-admin .pro-sidebar-inner .pro-sidebar-layout ul li :hover{
-    background-color: #355c7d;
-    color: #66FCF1
+    background-color: #7eb9a3;
+    color: #000;
   }
 
 #header-admin .pro-sidebar-inner .pro-sidebar-layout .active {
-    background-color: #1F2833;
+    background-color: #1F2833!important;
   }
 
 #button {
@@ -81,29 +82,36 @@ body {
 }
 
 #admin-content{
-    background-color: #1F2833;
-    transition: margin-left 0.3s;
+    background-image: url("../../Pics/Db.jpg");
 }
 
 #admin-content-header{
     height: 10vh;
-    background-color:#355c7d;
+    background-color:#188459;
     align-items: center;
     max-width: 100vw;
 }
 
 #admin-content-body{
-    background-color:#ffffff ;
+    margin-left: 0px;
+    background: rgba(76, 175, 80, 0.2);
+    transition: margin-left 0.3s; 
     min-height: 90vh;
-    max-width: 100vw;
 }
 
 #admin-content-logo{
-    color: #66FCF1
+    font-family: "Kanit", sans-serif;
+    color: #ffffff;
 }
 
 #admin-usr-x{
     display: none;
+}
+
+.dropdown-menu{
+    padding: 5%;
+    background: #7eb9a3;
+    color: #ffffff;
 }
 
 /*
