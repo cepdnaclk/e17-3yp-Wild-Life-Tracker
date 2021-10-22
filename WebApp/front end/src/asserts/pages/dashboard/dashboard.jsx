@@ -21,8 +21,8 @@ import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Dashboard';
 const cookies = new Cookies();
-var name = 'User Name'//cookies.get('name');
-var email = 'Email@email.com'//cookies.get('email');
+var name = cookies.get('name');
+var email = cookies.get('email');
 
 //Modal.setAppElement('root');
 
@@ -32,6 +32,15 @@ export default function Dashboard() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function active(id){
+    
+    document.getElementById('a').style.backgroundColor = '#205C41';
+    document.getElementById('b').style.backgroundColor = '#205C41';
+    document.getElementById('c').style.backgroundColor = '#205C41';
+    document.getElementById('d').style.backgroundColor = '#205C41';
+    document.getElementById(id).style.backgroundColor = '#7eb9a3';
+  }
 
    //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
@@ -84,7 +93,7 @@ export default function Dashboard() {
           </div>
 
           <div className='col-8 text-center'>
-            <h1 id='content-logo'>WildLife Tracker</h1>
+            <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
           <div className='col-8 offset-sm-1 col-md-1 text-center'>
@@ -104,20 +113,20 @@ export default function Dashboard() {
           <SidebarContent>
             <Menu iconShape="square">
 
-              <MenuItem icon={<FiHome />} active={true} >Home
-              <Link to='/dashboard/profile'></Link>
+              <MenuItem icon={<FiHome />} id='a' className='active-tab'>Home
+              <Link to='/dashboard/profile' onClick={()=>{active('a')}}></Link>
               </MenuItem>
             
-              <MenuItem icon={<FaImage />}>Photos 
-               <Link to='/dashboard/devices'></Link>
+              <MenuItem icon={<FaImage />} id='b'>Photos 
+               <Link to='/dashboard/devices' onClick={()=>{active('b')}}></Link>
               </MenuItem>
 
-              <MenuItem icon={<FaMapMarker />}>Locations
-              <Link to='/dashboard/locations'></Link>
+              <MenuItem icon={<FaMapMarker />} id='c'>Locations
+              <Link to='/dashboard/locations' onClick={()=>{active('c')}}></Link>
               </MenuItem>              
             
-              <MenuItem icon={<FaPhone />}>Contact us
-              <Link to='/dashboard/contactus'></Link>
+              <MenuItem icon={<FaPhone />} id='d'>Contact us
+              <Link to='/dashboard/contactus' onClick={()=>{active('d')}}></Link>
               </MenuItem>
             
             </Menu>

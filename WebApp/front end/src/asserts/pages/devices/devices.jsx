@@ -86,15 +86,15 @@ export default function Devices(){
   	return (
     	<div className='row' id='device-tab'>
 			<div className='col-11 col-md-4 text-center' id='connected'>
-				<h2>Devices</h2>
+				
       			<DeviceUl data={devices} />
-      			<button className="btn btn-success" onClick={()=>toggleform()}><FaPlus/></button>
+      			<button className="btn btn-success" id='add-btn' onClick={()=>toggleform()}><FaPlus/></button>
     				<div id="addDevice">
     					<AddDeviceForm handleSubmit={addDevice} />
     				</div>
     		</div>
     		<div className='col-11 col-md-8 text-center'>
-				<h2>Photos</h2>
+				
 				<div className ='row' id='photos'></div>
       	</div>
     	</div>
@@ -108,11 +108,9 @@ function DeviceUl(props){
 	const deviceList = arr.map((val, index) =><li key={index} className='device' id={index}
 
 		onClick={()=>{
-
 			for (var i = arr.length - 1; i >= 0; i--) {
 				document.getElementById(i).classList.remove("activedev");
 			}document.getElementById(index).className+=' activedev';
-
 
 			axios.get(`${URL}api/auth/device_photos/${index}`, {
 				headers: {
@@ -124,12 +122,11 @@ function DeviceUl(props){
   		
     			const photoList = photos.map((val, index) =>
 
-				<div className="col-sm-6 col-md-4 col-lg-2"><img src ={val} key={index} alt={index} className="img-thumbnail"></img>
+				<div className="col-md-6"><img src ={val} key={index} alt={index} className="img-thumbnails"></img>
 				</div>
 				);
 
 				ReactDOM.render(photoList, document.getElementById('photos'));
-
 				
    	 	})
   
@@ -144,7 +141,7 @@ function DeviceUl(props){
 			}			
 		}
 
-		>Device: {val}</li>);
+		><b>Device: {val}</b></li>);
 	return <ul id='device-list'>{deviceList}</ul>;
 
 };
