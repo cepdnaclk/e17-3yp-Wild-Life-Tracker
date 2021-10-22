@@ -1,0 +1,33 @@
+#contact-us-bg{
+	background: rgba(0, 0, 0, 0.3)
+}
+#contact-us{
+	margin-top: 5vh;
+}
+
+#title-contact{
+	color: #e9c437;
+}
+
+#hr{
+	width: 180px;
+	opacity: 1;
+	border-style: solid;
+	border-color: #e9c437;
+	border-width: 3px;
+	border-radius: 5px;
+}
+
+.tile{
+	background-color: #ffffff;
+	height: calc(100vw/6);
+}
+
+.icon{
+	margin-top: 20px;
+}
+
+.icon h5{
+	margin-top: 20px;
+	color: gray;
+}

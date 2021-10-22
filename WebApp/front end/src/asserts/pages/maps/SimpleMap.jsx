@@ -20,6 +20,7 @@ const listItems = positions.map((val, index) =>
 export default function SimpleMap() {
         
 return(
+
   <MapContainer center={positions[0]} zoom={10} scrollWheelZoom={true}>
     <TileLayer
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
