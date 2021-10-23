@@ -2,8 +2,13 @@
 
 .leaflet-container{
 	margin: 2%;
-	width: 80vw;
+	width: 95vw;
 	height: 80vh;
 	border-radius: 20px;
 	transition: width 0.3s;
+}
+
+#map-loader{
+	margin-top: 30vh;
+	color: #188459;
 }
