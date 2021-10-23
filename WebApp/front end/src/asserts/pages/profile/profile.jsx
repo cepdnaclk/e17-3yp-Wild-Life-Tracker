@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-
+import Zoom from 'react-reveal/Zoom';
 import './styles.css';
 
 export default function Profile(props) {
@@ -15,20 +15,32 @@ export default function Profile(props) {
 
 	const slides= [
   {
-    header1: 'NEXT GENERATION OF WILDLIFE RESEARCHING',
+    header1: 'WELCOME TO',
     header2: 'Wildlife Tracker',
-    description: 'A remote wildlife tracking system for researchers.'
+    description: 'Wish you a happy researching with wildlife tracker'
   },
   {
-    header1: 'OUR SYSTEM MAKES IT',
-    header2: 'Easy and Safe',
-    description: "This system provides facilities to analyse the behaviour of wild animals remotely. You don't have to stay in your researching area all the time anymore. You can do your research while you are in your sweet home."
+    header1: 'YOU CAN CONNECT YOUR DEVICE WITH YOUR PROFILE FROM',
+    header2: 'Photos Tab',
+    description: "Click the '+' sign in photos tab to add a new device.Then enter the serial number and the password of your device and submit"
 
   },
   {
-    header1: 'OUR SYSTEM IS',
-    header2: 'Reliable',
-    description: "Don't worry about the connectivity and power issues. Our device will look after all of these things. It has own storage facilities and automatic charging with solar power."
+    header1: 'CLICK ON EACH DEVICE IN THE LIST SHOWN IN',
+    header2: 'Photos tab',
+    description: "To see the photos captured by that device."
+
+  },
+  {
+    header1: 'YOU CAN SEE THE LOCATION IN',
+    header2: 'Location Tab',
+    description: "The map provided in location tab will pinpoint each of your device. Click on the pointer to see the device name."
+
+  },
+  {
+    header1: 'IF YOU WANT ANY GUIDENCE',
+    header2: 'From Us',
+    description: "Contact details are provided under 'contact us' tab."
 
   },
 ];
@@ -37,6 +49,7 @@ export default function Profile(props) {
 	return(
 
 	<div>
+		<Zoom>
 		<div className='row' id="Home">
 			<div className='col-8'>
 
@@ -58,6 +71,7 @@ export default function Profile(props) {
 			</div>
 
 		</div>
+		</Zoom>
 	</div>
 
 	);

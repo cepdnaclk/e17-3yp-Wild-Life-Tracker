@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import './map.css';
-
+import Zoom from 'react-reveal/Zoom';
 const positions = [[6.416809206663523, 81.35046167593366],
                   [6.420562083627918, 81.34805841681332],
                   [6.38132609674358, 81.38445062634995],
@@ -20,7 +20,8 @@ const listItems = positions.map((val, index) =>
 export default function SimpleMap() {
         
 return(
-
+  <div>
+    <Zoom>
   <MapContainer center={positions[0]} zoom={10} scrollWheelZoom={true}>
     <TileLayer
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -30,6 +31,8 @@ return(
     {listItems}
 
   </MapContainer>
+  </Zoom>
+  </div>
 );
   
 }

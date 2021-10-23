@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 import ReactDOM from 'react-dom';
 import './styles.css';
 import { FaPlus } from "react-icons/fa";
-
+import Zoom from 'react-reveal/Zoom';
 /*cookies*/
 const cookies = new Cookies();
 
@@ -84,20 +84,24 @@ export default function Devices(){
   	}
 
   	return (
-    	<div className='row' id='device-tab'>
-			<div className='col-11 col-md-4 text-center' id='connected'>
-				
-      			<DeviceUl data={devices} />
-      			<button className="btn btn-success" id='add-btn' onClick={()=>toggleform()}><FaPlus/></button>
-    				<div id="addDevice">
-    					<AddDeviceForm handleSubmit={addDevice} />
-    				</div>
-    		</div>
-    		<div className='col-11 col-md-8 text-center'>
-				
-				<div className ='row' id='photos'></div>
-      	</div>
-    	</div>
+			<div>
+				<Zoom>
+					<div className='row' id='device-tab'>
+						<div className='col-11 col-md-4 text-center' id='connected'>
+
+							<DeviceUl data={devices} />
+							<button className="btn btn-success" id='add-btn' onClick={() => toggleform()}><FaPlus /></button>
+							<div id="addDevice">
+								<AddDeviceForm handleSubmit={addDevice} />
+							</div>
+						</div>
+						<div className='col-11 col-md-8 text-center'>
+
+							<div className='row' id='photos'></div>
+						</div>
+					</div>
+				</Zoom>
+			</div>
   	);
 }
 
@@ -122,7 +126,8 @@ function DeviceUl(props){
   		
     			const photoList = photos.map((val, index) =>
 
-				<div className="col-md-6"><img src ={val} key={index} alt={index} className="img-thumbnails"></img>
+				<div className="col-md-6">
+					<Zoom><img src ={val} key={index} alt={index} className="img-thumbnails"></img></Zoom>
 				</div>
 				);
 
