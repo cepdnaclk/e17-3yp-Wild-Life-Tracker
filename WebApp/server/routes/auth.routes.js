@@ -138,9 +138,7 @@ router.post('/signin-admin',urlencodedParser,[
     })
     .then(user => {
         if (!user){     //if no user
-            return res.status(401).json({          //parse to json file
-                message: "Authentication failed"
-            })
+            throw new Error("No user with entered email.");
         }
         getUser = user;
         return bcrypt.compare(req.body.password, user.password)     //compare the password

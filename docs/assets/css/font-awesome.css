@@ -4,6 +4,32 @@
  */
 /* FONT PATH
  * -------------------------- */
+.test-image{
+  width: 400px;
+  height: 275px;
+  padding: 5%;
+}
+
+.test-passed{
+  color: rgb(3, 216, 3);
+}
+
+.test-failed{
+  color: red;
+}
+
+.result-table{
+  border: solid;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.result-table tr{
+  border: solid;
+}
+
+
 @font-face {
   font-family: 'FontAwesome';
   src: url('../fonts/fontawesome-webfont.eot?v=4.7.0');

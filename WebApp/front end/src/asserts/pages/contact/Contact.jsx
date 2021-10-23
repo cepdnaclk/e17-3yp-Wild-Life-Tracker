@@ -2,11 +2,13 @@ import './styles.css';
 
 //import icons from react icons
 import { FaPhone, FaMapMarker, FaEnvelope,  } from "react-icons/fa";
+import Zoom from 'react-reveal/Zoom';
 
 export default function Contact(){
 	return(
-
+	
 	<div id='contact-us-bg'>
+		<Zoom>
 		<div className='container col-12' id='contact-us'>
 			<div className='row'>
 				<div className='col-12 text-center'>
@@ -38,6 +40,8 @@ export default function Contact(){
 				</div>
 			</div>
 		</div>
+		</Zoom>
 	</div>
+	
 	);
 }
