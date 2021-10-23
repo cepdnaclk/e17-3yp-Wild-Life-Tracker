@@ -7,7 +7,7 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 //import components
-import Profile from '../profile/profile';
+import Profile from '../adminprofile/adminprofile';
 import Users from '../users/users';
 import Logout from '../logout/logout';
 import NewAdmin from '../NewAdmin/NewAdmin';
@@ -80,17 +80,17 @@ export default function Admin() {
     <Router>
 
        <div className='row' id='admin-content-header'>
-          <div className='col-4 col-md-2'>
-            <button onClick={menuIconClick} className='btn' id='button-user'>
+          
+            <button onClick={menuIconClick} className='btn' id="menu">
             <FaTimes id='admin-usr-x'/> 
             <FaBars id='admin-usr-='/> Menu</button>
-          </div>
+          
 
-          <div className='col-8 text-center'>
+          <div className='col-12 text-center'>
             <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
-          <div className='col-8 offset-sm-1 col-md-1 text-center'>
+          <div className='text-center' id="profile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu">

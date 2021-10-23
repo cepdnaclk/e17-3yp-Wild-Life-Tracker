@@ -71,8 +71,18 @@ html {
   background-color: #e9c437;
   color: #000000;
   cursor: pointer;
-  width: 50%;
-  margin-left: 10%;
+  position:absolute;
+  width: 15vw;
+  left: 15px;
+  margin-left: 0;
+}
+
+#uprofile-data{
+  position:absolute;
+  right: 5vw;
+  bottom: 3vh;
+  width:55px;
+  height: 38px;
 }
 
 
@@ -86,10 +96,10 @@ html {
 }
 
 #content-header{
+    position: relative;
     height: 10vh;
     background-color:#188459;
     align-items: center;
-    max-width: 100vw;
 }
 
 #content-body{
