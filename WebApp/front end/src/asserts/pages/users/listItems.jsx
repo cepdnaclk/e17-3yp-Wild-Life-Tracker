@@ -60,9 +60,15 @@ function Reject(email){
 	document.getElementById('2btn').style.display='block'; 
 }
 
-function showReason(){
-	document.getElementById('2btn').style.display='none';
-	document.getElementById('textarea').style.display='block';
+function showReason(x){
+	if(x==1){
+		document.getElementById('2btn').style.display='none';
+		document.getElementById('textarea').style.display='block';
+	}else{
+		document.getElementById('2btn').style.display='block';
+		document.getElementById('textarea').style.display='none';
+	}
+	
 }
 
 export default function ListItems(props){
@@ -80,26 +86,51 @@ export default function ListItems(props){
 							const user = users[index];
 							const userItems =
 										<div className='row'>
-											<div className='col-12 col-md-6'>
-												<ul className="list-unstyled">  
-								      			<li>Name    : {user["name"]}</li>
-      											<li>Email   : {user["email"]}</li>
-      										 {/*<li>Address : {user["address"]}</li>
-      											<li>Country : {user["country"]}</li>*/} 
-      											</ul>
-      											<div id='2btn'>
-      												<button className='btn control' onClick={() => Accept(user["email"])}>Accept</button>	
-													<button className='btn control' onClick={() => showReason()}>Reject</button>
+											<div className='col-12 col-md-4'>
+												<b>
+												<div className="row">
+													<div className='col-4'>
+														Name
+													</div>
+													<div className='col-8'>
+														{user["name"]}
+													</div>
 												</div>
-												<div id='textarea'>
-													<label htmlFor="reason">Reason :</label>
-													<textarea id="reason" name="reson" rows="4" cols="50">
-													</textarea>
-													<button className='btn control' onClick={() => Reject(user["email"])}>Reject</button>
+												<div className="row">
+													<div className='col-4'>
+														Email
+													</div>
+													<div className='col-8'>
+														{user["email"]}
+													</div>
 												</div>
+												<div className="row">
+													<div className='col-4'>
+														Phone
+													</div>
+													<div className='col-8'>
+														{user["phonenumber"]}
+													</div>
+												</div>
+												</b>
+      											<div className="row mt-5">
+      												<div className="col-12" id="2btn">
+      													
+      														<button className='btn control' onClick={() => Accept(user["email"])}>Accept</button>
+															<button className='btn control' onClick={() => showReason(1)}>Reject</button>
+														
+													</div>
+													<div id='textarea'>
+														<label htmlFor="reason">Reason :</label>
+														<textarea id="reason" name="reson" rows="4" cols="35"></textarea>
+														<button className='btn control' onClick={() => Reject(user["email"])}>Reject</button>
+
+														<button className='btn control' onClick={() => showReason(0)}>Cancel</button>
+													</div>
+      											</div>
       										</div>
 
-      										<div className='col-12 col-md-6'>
+      										<div className='col-12 col-md-8' id="letter-container">
       											<img className='letter' alt='letter' src={URL+user["letter"]}></img>
       										</div>
       									</div>;
@@ -120,14 +151,7 @@ export default function ListItems(props){
 
       				}      	> 
       	
-      		<div className='row'>
-      			<div className='col-6 text-center'>
-      				{val["name"]}<br/>
-      				{val["country"]}
-      			</div>
-      			<div className='col-6 text-center'>
-      			</div>
-      		</div>
+      			<b>{val["name"]}</b>
       	</li>);
 
     return(

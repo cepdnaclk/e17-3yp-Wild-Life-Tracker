@@ -4,6 +4,10 @@ body {
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
+.active-tab{
+    background-color: #7eb9a3;
+}
+
 #header-admin {
 
     position: absolute;

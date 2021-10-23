@@ -22,8 +22,10 @@ import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Admin panel';
 const cookies = new Cookies();
-var name = 'User Name'//cookies.get('name');
-var email = 'Email@email.com'//cookies.get('email');
+var name = cookies.get('name');//'User Name'//
+var email =cookies.get('email');// 'Email@email.com'//
+
+
 
 /*export admin component*/
 export default function Admin() {
@@ -34,6 +36,14 @@ export default function Admin() {
   
    //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
+
+    function active(id){
+    
+      document.getElementById('x').style.backgroundColor = '#205C41';
+      document.getElementById('y').style.backgroundColor = '#205C41';
+      document.getElementById('z').style.backgroundColor = '#205C41';
+      document.getElementById(id).style.backgroundColor = '#7eb9a3';
+    }
 
     //create a custom function that will change menucollapse state from false to true and true to false
     const menuIconClick = () => {
@@ -84,8 +94,8 @@ export default function Admin() {
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu">
-                  {name}<br/>
-                  {email}
+                  <small>{name}<br/>
+                  {email}</small>
               </Dropdown.Menu>
             </Dropdown> 
           </div>
@@ -97,16 +107,16 @@ export default function Admin() {
           <SidebarContent>
             <Menu iconShape="square">
 
-              <MenuItem active={true} icon={<FiHome />}>Home
-              <Link to='/Admin/profile'></Link>
+              <MenuItem icon={<FiHome />} id='x' className='active-tab'>Home
+              <Link to='/Admin/profile' onClick={()=>{active('x')}}></Link>
               </MenuItem>
             
-              <MenuItem icon={<FaUsers />}>Users
-               <Link to='/Admin/users'></Link>
+              <MenuItem icon={<FaUsers /> } id='y'>Users
+               <Link to='/Admin/users' onClick={()=>{active('y')}}></Link>
               </MenuItem>
 
-              <MenuItem icon={<FaPlus />}>New Admin
-               <Link to='/Admin/newadmin'></Link>
+              <MenuItem icon={<FaPlus />} id='z'>New Admin
+               <Link to='/Admin/newadmin' onClick={()=>{active('z')}}></Link>
               </MenuItem>            
             
             </Menu>
