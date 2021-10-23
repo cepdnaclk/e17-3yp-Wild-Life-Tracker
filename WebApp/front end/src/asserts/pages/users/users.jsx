@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import ReactDOM from 'react-dom';
+import Zoom from 'react-reveal/Zoom';
 
 import ListItems from './listItems';
 
@@ -51,7 +52,7 @@ export default function Users() {
 }
 
 	return(
-
+<Zoom>
 	<div onClick={getRequests()}>
 
 		<div className='row' id="profiles">
@@ -69,6 +70,6 @@ export default function Users() {
 
 		</div>
 	</div>
-
+</Zoom>
 	);
 }

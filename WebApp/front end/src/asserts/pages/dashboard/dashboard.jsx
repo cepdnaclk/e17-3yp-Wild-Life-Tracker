@@ -21,12 +21,17 @@ import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Dashboard';
 const cookies = new Cookies();
-var name = cookies.get('name');
-var email = cookies.get('email');
+var name; //= cookies.get('name');
+var email; //= cookies.get('email');
 
 //Modal.setAppElement('root');
 
 export default function Dashboard() {
+
+  function update(){
+    name = cookies.get('name');
+    email = cookies.get('email');
+  }
   
   const [show, setShow] = useState(false);
 
@@ -99,7 +104,7 @@ export default function Dashboard() {
           <div id="uprofile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-menu">
+              <Dropdown.Menu className="dropdown-menu" onClick={update()}>
                   <small>{name}<br/>
                   {email}</small>
               </Dropdown.Menu>
