@@ -1,0 +1,36 @@
+#Home{
+	margin: 0;
+	padding: 1vw;
+	min-height: 80vh;
+	border-radius: 20px;
+	color:#355c7d;
+}
+
+.pict{
+	padding-top: 15vh;
+  margin-left: 5vw;
+	min-height: 60vh;
+}
+
+#pic{
+	width: 40%;
+	opacity: 0.5;
+}
+
+#profile-info{	 
+	margin: 4%;
+	padding: 2%;
+}
+
+
+#profile-info .p{
+
+	max-width: 96vw;
+	
+}
+
+.token-error{
+  font-size: 40px;
+  color: red;
+  text-align: center;
+}

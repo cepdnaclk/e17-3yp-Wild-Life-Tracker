@@ -86,17 +86,17 @@ export default function Dashboard() {
       <Router>
        
         <div className='row' id='content-header'>
-          <div className='col-4 col-md-2'>
+          
             <button onClick={menuIconClick} className='btn btn-secondary' id='button-user'>
             <FaTimes id='usr-x'/> 
             <FaBars id='usr-='/> Menu</button>
-          </div>
+          
 
-          <div className='col-8 text-center'>
+          <div class="text-center">
             <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
-          <div className='col-8 offset-sm-1 col-md-1 text-center'>
+          <div id="uprofile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu">

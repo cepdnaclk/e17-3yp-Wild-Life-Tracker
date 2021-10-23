@@ -35,7 +35,7 @@
 #requests{
 	padding: 5%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	min-height: 90vh;
+	min-height: 88vh;
 }
 #profile-informations{
 	padding-left: 3% ;

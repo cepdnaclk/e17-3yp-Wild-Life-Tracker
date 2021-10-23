@@ -4,8 +4,8 @@ import Cookies from 'universal-cookie';
 import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
 import { FaExclamationCircle  } from "react-icons/fa";
-import Tada from 'react-reveal/Tada'
-
+import Tada from 'react-reveal/Tada';
+import Zoom from 'react-reveal/Zoom';
 
 //import stylesheet
 import './styles.css'
@@ -131,6 +131,7 @@ export default function NewAdmin(){
       </div>  
 
       <div className="col-11 col-md-4" id='newadminform'>
+      <Zoom>
       <form onSubmit={handleSubmit}>
         <div className="text-center"> 
           <h1>
@@ -159,6 +160,7 @@ export default function NewAdmin(){
           <button type="submit" className="btn btn-block" id="button-add">Add</button>
         </div>
       </form>
+      </Zoom>
       </div>
     </div>
      </div> 
