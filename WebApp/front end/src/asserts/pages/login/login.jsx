@@ -114,7 +114,7 @@ function Form() {
     .catch(function (error) {
         cookies.set('isSigned', false , { path: '/' });
         if(error.response){
-          if(error.response.status===401){
+          if(error.response.status===401 || error.response.status===403){
             document.getElementById('loader').style.display ='none';
             document.getElementById('l-form').style.display ='none';
             document.getElementById('button-login').className = document.getElementById('button-login').className.replace("disabled", "");
