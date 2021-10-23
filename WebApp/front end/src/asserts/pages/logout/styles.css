@@ -1,14 +1,15 @@
 .mymodal {
-    color: #ffffff;
-    background-color: #45A29E;
+    color: #000000;
+    background-color: #ffffff;
     border-style: solid;
-    background-color: ;
 
 }
-
+.mymodal .closeButton{
+  background-color: red;
+}
 #modal-button{
   font-size:small;
-  background-color:#355c7d;
+  background-color:#188459;
   color: #ffffff;
   margin:10px;
   margin-top: 0;
@@ -16,5 +17,9 @@
 }
 
 #modal-button:hover{
-  background-color: red;
+  background-color:#b28900;
+}
+
+#close-btn{
+  cursor: pointer;
 }

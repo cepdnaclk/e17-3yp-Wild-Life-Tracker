@@ -4,11 +4,9 @@ import {Modal,Button} from 'react-bootstrap';
 import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
 
+import {FaTimesCircle} from "react-icons/fa";
+
 const cookies = new Cookies();
-
-
-
-
 
 export default function Logout(props){
 
@@ -35,8 +33,9 @@ export default function Logout(props){
           centered
       >
       
-        <Modal.Header closeButton closeLabel=" ">
+        <Modal.Header>
           <Modal.Title>Logout</Modal.Title>
+          <FaTimesCircle onClick={props.handleClose} size={20} id='close-btn'/>
         </Modal.Header>
         <Modal.Body>Do you want to logout?</Modal.Body>
         <Modal.Footer>

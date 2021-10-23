@@ -1,4 +1,5 @@
-#device-tab{
+body{
+	overflow-y: hidden;
 }
 
 #device-list{
@@ -24,17 +25,26 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 .device:hover{
 	cursor: pointer;
+	background-color: #7eb9a3;
+  color: #000;
 }
 
 .activedev{
-	background-color: green;
+	background-color: #188459;
 }
 
 #dev-form{
 	margin: 5%;
 	border-style: solid;
+	border-color: #188459;
 	border-radius: 20px;
+	margin-left: 45px;
 }
+
+#add-btn{
+	margin-left: 45px;
+}
+
 #addDevice{
 	display: none;
 }
@@ -45,15 +55,24 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 60px;
 }
 
-.img-thumbnail{
+.img-thumbnails{
+	margin: 2px;
+	width: 100%;
 	cursor: pointer;
 }
-.img-thumbnail:hover {
+.img-thumbnails:hover {
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.8s;
 
   /* When the animation is finished, start again */
   animation-iteration-count: 1;
+}
+
+#photos{
+	margin-top: 2vh;
+	float:left;
+	overflow-y: auto;
+	height: 85vh;
 }
 
 @keyframes shake {
