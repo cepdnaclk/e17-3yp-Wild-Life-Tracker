@@ -100,8 +100,8 @@ export default function Dashboard() {
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu">
-                  {name}<br/>
-                  {email}
+                  <small>{name}<br/>
+                  {email}</small>
               </Dropdown.Menu>
             </Dropdown> 
           </div>

@@ -56,14 +56,14 @@ export default function Users() {
 
 		<div className='row' id="profiles">
 			<div className='col-12 col-md-4 text-center' id="requests">
-				<h2>Requests<br/></h2>
+				<h5>REQUESTS<br/></h5>
 				<div className="list-unstyled text-center" id='requests-list'>
 				{/*all the requested profiles are dislayed in there*/}
 				</div>
 
 			</div>
 
-			<div className="col-12 col-md-8 text-center" id="profile-informations">
+			<div className="col-12 col-md-8" id="profile-informations">
 			{/*profile informations are displayed in there*/}
 			</div>
 

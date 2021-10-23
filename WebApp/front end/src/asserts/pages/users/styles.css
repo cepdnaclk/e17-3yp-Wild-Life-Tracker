@@ -3,21 +3,23 @@
 	background-color: #ffffff;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-size: 90%;
-	color: black;
+	padding: 2%;
+	margin: 2%;
 	padding: 5%;
 	margin-bottom: 5%;
-	transition: background-color 1s ease-out 100ms;
 	cursor: pointer;
 }
 .items:hover{
-	
-  	background-color: green;
+
+	cursor: pointer;
+	background-color: #7eb9a3;
+  	color: #000;
 
 }
 
 .items-active{
 
-	background-color: #355c7d;
+	background-color: #188459;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	font-size: 90%;
 	color: black;
@@ -36,6 +38,7 @@
 	min-height: 90vh;
 }
 #profile-informations{
+	padding-left: 3% ;
 	margin-top: 10vh;
 	height: 70vh;
 }
@@ -50,23 +53,25 @@
 	background-color: #45A29E;
 }
 .control{
-	background-color: #355c7d;
-  	border-color: #355c7d;
+	background-color:  #188459;
   	color: #ffffff;
   	margin: 1%;
   	cursor: pointer;
-  	max-width: 40%;
 }
 
 .control:hover{
-	background-color: #45A29E;
+	background-color: #7eb9a3;
+  	color: #000;
 }
 
 .letter{
-	height: 60vh;
-	border-style: solid;
 	cursor: pointer;
-
+	margin-left: 2%;
+	width: 33vw;
+}
+#letter-container{
+	height: 75vh;
+	overflow-y: scroll;
 }
 
 #button-div{
