@@ -12,11 +12,12 @@
 2. [Goals](#Goals)
 3. [Solution Architecture](#solution-Architecture )
 4. [Hardware List](#Hardware-List)
-5. [System Overview](#System-Overview)
-6. [Hardware Design](#Hardware-Design)
-7. [Testing Plan](#Testing-Plan)
-8. [Implementation](#Implementation)
-9. [Links](#links)
+5. [Testing Plan](#Testing-Plan)
+6. [Security Features](#Security-Features)
+7. [System Overview](#System-Overview)
+8. [Hardware Design](#Hardware-Design)
+9. [Implementation](#Implementation)
+10. [Links](#links)
 
 ---
 
@@ -86,6 +87,14 @@
     - Postman API testing tool is used to test the backend of the web application.
     - Postman allows to send HTTP requests using a GUI which makes it easier to test the REST API.
     - Postman is used to test routings in the backend, authentication and authorization, error handlings ans sending responses in the API.
+
+## Security Features
+Our system handles really sensitive information about wildlife. Therefore, the CIA triad (Confidentiality, Availability, Integrity) of the application is maintained in the best way possible.
+![image]()
+- JsonWebTokens (JWT) are used for the authorization of users. These tokens are stateless, portable, high performing and decentralized which improves the security and scalability of the web application as well.
+- HTTPS protocol is used for secure communication.
+- A special system of user registration is introduced to ensure the users of our web app are researchers. 
+
 ## System Overview
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/images/System%20Overview.PNG)
 
@@ -93,7 +102,7 @@
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/assets/images/HardwareOrg.jpg)
 
 ## Implementation
-
+ 
 
 ## Links
 
