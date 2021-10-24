@@ -15,6 +15,7 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 
 var deviceIdList = [];
 
+/*
 var photos = [
 	 "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
 	 "https://images.unsplash.com/photo-1549480017-d76466a4b7e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=738&q=80",
@@ -26,7 +27,7 @@ var photos = [
 	 "https://images.unsplash.com/photo-1517486430290-35657bdcef51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80",
 	 "https://images.unsplash.com/photo-1543782248-03e2c5a93e18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=751&q=80"
 ];
-
+*/
 export default function Devices(){
 
 	useEffect(() => {
@@ -125,11 +126,20 @@ function DeviceUl(props){
 			})
     
     		.then(function (response) {
-  		
+
+    			var dir = URL+response.data.device.photos[0];
+
+    			const photos = [dir+"/1.png",
+    						 dir+"/2.png",
+    						 dir+"/3.png",
+    						 dir+"/4.png",
+    						 dir+"/5.png"
+    			];
+
     			const photoList = photos.map((val, index) =>
 
 				<div className="col-md-6">
-					<Zoom><img src ={val} key={index} alt={index} className="img-thumbnails"></img></Zoom>
+					<Zoom><img src ={val} key={index} alt={index} key={index} className="img-thumbnails"></img></Zoom>
 				</div>
 				);
 
