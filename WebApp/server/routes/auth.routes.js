@@ -1004,12 +1004,14 @@ api/auth/device_location    (get the xy coordinates)
 router.route('/connect-device').put(authorize, (req,res)=>{
     let status_c=500;
     //find the device by serial_number
+    
     deviceSchema.findOne({
         serial_number: req.body.serial_number
     })
     .then(device =>{
         if(!device){
             //if device with the given serial not in database throw error
+            
             status_c = 404
             throw new Error("No device with given serial number!!")
         }else{
@@ -1046,6 +1048,7 @@ router.route('/connect-device').put(authorize, (req,res)=>{
         }
     })
     .catch((err) => {
+        console.log(err);
         return res.status(status_c).json({
             message:err.message
         });

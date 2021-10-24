@@ -67,7 +67,12 @@ export default function Devices(){
   	const [devices, setDevices] = useState(deviceIdList);
 
   	function addDevice(device) {
-		axios.put(`${URL}api/auth/connect-device`, device ,{
+		let data = {
+			serial_number : device['serial_number'],
+			password : device['password'],
+			email : cookies.get('email')
+		};
+		axios.put(`${URL}api/auth/connect-device`, data,{
 			headers: {
 				'x-auth-token' : cookies.get('token')
 			}
