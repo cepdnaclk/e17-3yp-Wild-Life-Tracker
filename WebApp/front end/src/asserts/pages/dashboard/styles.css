@@ -9,7 +9,6 @@ html {
 }
 
 #usr-header {
-
     position: absolute;
     width: 0px;
   }
@@ -72,9 +71,6 @@ html {
   color: #000000;
   cursor: pointer;
   position:absolute;
-  width: 15vw;
-  left: 15px;
-  margin-left: 0;
 }
 
 #uprofile-data{
@@ -83,6 +79,7 @@ html {
   bottom: 3vh;
   width:55px;
   height: 38px;
+  margin-right: 20px;
 }
 
 
@@ -127,6 +124,15 @@ html {
 #content-logo a{
     text-decoration: none;
     color: #ffffff;
+}
+
+@media screen and (min-height: 500px) and (min-width: 600px){
+  #menu{
+    width: 120px;
+  }
+  #uprofile-data{
+    margin-right: 0;
+  }
 }
 /*
 @media only screen and (max-width: 720px) {

@@ -34,7 +34,8 @@ export default function Users() {
     		users[i]={
     			'name' : response.data[i].name,
     			'email' : response.data[i].email,
-    			'letter': response.data[i].verificationLetter 
+    			'letter': response.data[i].verificationLetter,
+    			'phonenumber': response.data[i].phonenumber  
     		}
     	}
 

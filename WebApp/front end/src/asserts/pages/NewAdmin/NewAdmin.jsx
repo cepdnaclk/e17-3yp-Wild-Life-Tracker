@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { Helmet } from 'react-helmet';
+//import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
 import { FaExclamationCircle  } from "react-icons/fa";
 import Tada from 'react-reveal/Tada';
@@ -17,7 +17,7 @@ const cookies = new Cookies();
 const URL = process.env.REACT_APP_BACKEND_URL;
 
 /*page title*/
-const TITLE = 'Add-New-Admin';
+//const TITLE = 'Add-New-Admin';
 
 
 export default function NewAdmin(){

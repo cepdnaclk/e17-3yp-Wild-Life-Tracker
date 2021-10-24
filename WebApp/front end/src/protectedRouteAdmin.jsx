@@ -8,14 +8,14 @@ const cookies = new Cookies();
 
 export default function ProtectedRouteAdmin({ component: Component, ...restOfProps }) {
   const isSigned = (cookies.get('isSigned') === 'true');
-  console.log(isSigned);
+  //console.log(isSigned);
 
   return (
     <Route
       {...restOfProps}
       render={(props) =>
-        <Component {...props} />
-        /*isSigned? <Component {...props} /> : <Redirect to="/AdminLogin" />*/
+        //<Component {...props} />
+        isSigned? <Component {...props} /> : <Redirect to="/AdminLogin" />
       }
     />
   );
