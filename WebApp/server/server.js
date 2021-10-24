@@ -18,6 +18,7 @@ const app = express();
 
 //new
 app.use('/uploads',express.static('uploads'))
+app.use('/device_photos', express.static('device_photos'));  
 
 app.use(express.json());        //expect json
 app.use(cors())                 //TODO

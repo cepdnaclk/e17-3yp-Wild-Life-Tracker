@@ -192,12 +192,7 @@ function Form() {
            name="password" onChange={handleChange} required></input>
           <FaEye id="togglePW" size={25} onClick={showPW}/>
         </div>
-  
-        <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1"></input>
-          <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-        </div>
- 
+        
         <div className="d-grid gap-2">
           <button type="submit" className="btn btn-block" id="button-login">Login</button>
         </div>
