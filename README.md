@@ -90,7 +90,7 @@
 
 ## Security Features
 Our system handles really sensitive information about wildlife. Therefore, the CIA triad (Confidentiality, Availability, Integrity) of the application is maintained in the best way possible.
-![image]()
+![image](https://github.com/hansa31/e17-3yp-Wild-Life-Tracker/tree/main/docs/images/CIA-Triad.png)
 - JsonWebTokens (JWT) are used for the authorization of users. These tokens are stateless, portable, high performing and decentralized which improves the security and scalability of the web application as well.
 - HTTPS protocol is used for secure communication.
 - A special system of user registration is introduced to ensure the users of our web app are researchers. 
