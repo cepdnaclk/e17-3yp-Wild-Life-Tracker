@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React/*, { useState, useEffect }*/ from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -82,7 +82,7 @@ export default function SimpleMap() {
     <div>
       <div id='map-container' onLoad={fetchStationsData()}>
       </div>
-      <div className="offset-5 col-2 text-center" id='map-loader'>
+      <div className="offset-md-5 col-2 text-center" id='map-loader'>
         <Loader
           type="Puff"
           color=" #188459"

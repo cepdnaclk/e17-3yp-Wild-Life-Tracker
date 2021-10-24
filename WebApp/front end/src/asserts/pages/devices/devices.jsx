@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import ReactDOM from 'react-dom';
-import listReactFiles from 'list-react-files';
+//import listReactFiles from 'list-react-files';
 
 import './styles.css';
 import { FaPlus } from "react-icons/fa";
@@ -80,10 +80,20 @@ export default function Devices(){
     
     	.then(function (response) {
 			console.log(response);
+			if(document.getElementById('addDevice')){
+				document.getElementById('addDevice').style.display = 'block';
+				document.getElementById('addDevice').innerHTML = "Successfull";
+			}
+			window.location.reload(false);
     	})
   
     	.catch(function (error) {
 			console.log(error);
+			if(document.getElementById('addDevice')){
+				document.getElementById('addDevice').style.display = 'block';
+				document.getElementById('addDevice').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+			}
+			window.location.reload(false);
       		//cookies.set('user', admin , { path: '/' });
       		//document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
       		//document.getElementById('requests-list').className ='token-error';
@@ -95,7 +105,7 @@ export default function Devices(){
 			<div>
 				<Zoom>
 					<div className='row' id='device-tab'>
-						<div className='col-11 col-md-4 text-center' id='connected'>
+						<div className='col-12 col-md-4 text-center' id='connected'>
 
 							<DeviceUl data={devices} />
 							<button className="btn btn-success" id='add-btn' onClick={() => toggleform()}><FaPlus /></button>
@@ -103,7 +113,7 @@ export default function Devices(){
 								<AddDeviceForm handleSubmit={addDevice} />
 							</div>
 						</div>
-						<div className='col-11 col-md-8 text-center'>
+						<div className='col-12 col-md-8 text-center'>
 
 							<div className='row' id='photos'></div>
 						</div>
@@ -144,7 +154,7 @@ function DeviceUl(props){
     			const photoList = photos.map((val, index) =>
 
 				<div className="col-md-6">
-					<Zoom><img src ={val} key={index} alt={index} key={index} className="img-thumbnails"></img></Zoom>
+					<Zoom><img src ={val} alt={index} key={index} className="img-thumbnails"></img></Zoom>
 				</div>
 				);
 
@@ -198,8 +208,8 @@ function AddDeviceForm(props) {
 	return(
 		<form onSubmit={handleSubmit} id='dev-form'>
 			<br/>
-			<div className="d-flex justify-content-center">
-			<table>
+			<div className="ml-md-3">
+			{/*<table>
 				<tr>
 					<td><label htmlFor="id">Serial Number :</label></td>
 					<td><input type="text" id="id" name="serial_number" onChange={handleChange}></input></td>
@@ -208,7 +218,19 @@ function AddDeviceForm(props) {
 					<td><label htmlFor="pw">Password :</label></td>
 					<td><input type="text" id="pw" name="password" onChange={handleChange}></input></td>
 				</tr>
-			</table>	
+			</table>*/}	
+				<div className="form-group row">
+               <label htmlFor="id" class="col-md-4 col-form-label">Serial Number</label>
+               <div class="col-md-8">
+                  <input type="text" id="id" name="serial_number" onChange={handleChange} placeholder="Serial Number"></input>
+               </div> 
+				</div>
+				<div className="form-group row">
+               <label htmlFor="pw" class="col-md-4 col-form-label">Password</label>
+               <div class="col-md-8">
+                  <input type="text" id="pw" name="password" onChange={handleChange} placeholder="Password"></input>
+               </div> 
+				</div>
 			</div>
 			<button className="btn btn-success download" type="submit">Add</button>
 		</form>

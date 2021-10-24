@@ -35,7 +35,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #dev-form{
-	margin: 5%;
+	margin: 10%;
 	border-style: solid;
 	border-color: #188459;
 	border-radius: 20px;
@@ -86,3 +86,19 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   50% { transform: translate(-1px, 2px) rotate(-1deg); }
 }
 
+@media only screen and (max-width: 600px) {
+		.device{
+			width: 75vw;
+		}
+
+		.activedev{
+			margin: 2%;
+		}
+    #device-list{
+    	margin-top: 10px;
+    }
+
+    #add-btn{
+			margin-left: 0px;
+		}
+  }

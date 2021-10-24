@@ -3,8 +3,8 @@ import { ProSidebar, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-
 import React, { useState } from "react";
 import { Helmet } from 'react-helmet';
 import Cookies from 'universal-cookie';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { Dropdown } from 'react-bootstrap';
+//import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Zoom from 'react-reveal/Zoom';
 
 //import components
@@ -65,7 +65,7 @@ export default function Admin() {
         else{
           setMenuCollapse(true);
           document.getElementById("admin-sidebar").style.width = "200px";
-          document.getElementById("admin-content-body").style.marginLeft = "200px";
+          if(window.screen.width>600)document.getElementById("admin-content-body").style.marginLeft = "200px";
           document.getElementById("admin-usr-x").style.display = 'inline';
           document.getElementById("admin-usr-=").style.display = 'none';
         } 
@@ -86,17 +86,18 @@ export default function Admin() {
     <Router>
 
        <div className='row' id='admin-content-header'>
-          
+        <div className="row">
+          <div className="col-4 col-md-2 m-3 m-md-2">
             <button onClick={menuIconClick} className='btn' id="menu">
             <FaTimes id='admin-usr-x'/> 
             <FaBars id='admin-usr-='/> Menu</button>
-          
+          </div>          
 
-          <div className='col-12 text-center'>
+          <div className="col-4 col-md-8 text-center">
             <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
-          <div className='text-center' id="profile-data">
+          <div className="col-4 col-md-2" id="profile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu" onClick={update()}>
@@ -106,7 +107,7 @@ export default function Admin() {
             </Dropdown> 
           </div>
         </div>
-
+        </div>
       <div id="header-admin">
         <ProSidebar id='admin-sidebar'>
           

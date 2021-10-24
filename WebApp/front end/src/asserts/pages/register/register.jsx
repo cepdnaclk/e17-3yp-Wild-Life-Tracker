@@ -19,6 +19,7 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 
 const  TITLE = 'Sign-up';
 
+/*
 const styles = theme => ({
   field: {
     margin: '10px 0',
@@ -27,6 +28,7 @@ const styles = theme => ({
     ...theme.typography.body1,
   },
 });
+*/
 
 /*export registration page*/
 export default function Register() {

@@ -97,9 +97,6 @@ body {
   color: #000000;
   cursor: pointer;
   position:absolute;
-  width: 75px;
-  left: 15px;
-  margin-left: 0;
 }
 
 #menu:hover {
@@ -113,6 +110,7 @@ body {
   bottom: 4vh;
   width:55px;
   height: 38px;
+  margin-right: 20px;
 }
 
 #admin-content-body{
@@ -145,6 +143,9 @@ body {
 @media screen and (min-height: 500px) and (min-width: 800px){
   #menu{
     width: 120px;
+  }
+  #profile-data{
+    margin-right: 0;
   }
 }
 /*

@@ -85,3 +85,31 @@
 #textarea{
 	display: none;
 }
+
+@media only screen and (max-width: 600px) {
+	#requests{
+		min-height: 0;
+	}
+
+	.items{
+		margin-left: 0px;
+		width: 90%;
+	}
+
+	.items-active{
+		margin: 0;
+		margin-bottom: 5%;
+		width: 90%;
+	}
+
+	#profile-informations{
+		margin: 5vw;
+		padding: 0;
+		height: 100%;
+	}
+
+	.letter{
+		width: 90vw;
+		margin-top: 20px;
+	}
+  }

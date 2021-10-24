@@ -23,7 +23,7 @@ export default function Login() {
 			<Typography variant="h1" component="h1" id="title">
 				Wildlife <span>Tracker</span>
 			</Typography>
-			<Typography variant="h6" component="h6" id="animatedText">
+			<Typography variant="h6" component="h6" id="animatedText" className="d-none d-md-block">
 				<Wave text="NEXT GENERATION OF WILDLIFE RESEARCHING" effect="pop" effectChange={2.2} delay={10.0}/>
 			</Typography>
 			<div id="docButtonCon">
