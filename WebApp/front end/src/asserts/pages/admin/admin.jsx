@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import Cookies from 'universal-cookie';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Zoom from 'react-reveal/Zoom';
 
 //import components
 import Profile from '../adminprofile/adminprofile';
@@ -22,13 +23,18 @@ import { FiHome, FiLogOut} from "react-icons/fi";
 
 const  TITLE = 'Admin panel';
 const cookies = new Cookies();
-var name = cookies.get('name');//'User Name'//
-var email =cookies.get('email');// 'Email@email.com'//
+var name; //= cookies.get('name');//'User Name'//
+var email; //=cookies.get('email');// 'Email@email.com'//
 
 
 
 /*export admin component*/
 export default function Admin() {
+
+  function update(){
+    name = cookies.get('name');
+    email = cookies.get('email');
+  }
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -69,7 +75,7 @@ export default function Admin() {
   return (
 
   <div>
-
+  <Zoom>
       {/*logout message box*/}
       <Logout handleClose={handleClose} handleShow={handleShow} show={show}/>    
 
@@ -93,7 +99,7 @@ export default function Admin() {
           <div className='text-center' id="profile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-menu">
+              <Dropdown.Menu className="dropdown-menu" onClick={update()}>
                   <small>{name}<br/>
                   {email}</small>
               </Dropdown.Menu>
@@ -145,6 +151,7 @@ export default function Admin() {
       </div>
 
     </Router>
+  </Zoom>
   </div>
   );
 }
