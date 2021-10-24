@@ -30,7 +30,7 @@ export default function Login() {
 				<Button
 					color="primary"
 					variant="contained"
-					href="http://wildlifetrackeruopintro.com.s3-website-us-east-1.amazonaws.com"
+					href="http://www.wildlifetrackeruopintro.com.s3-website-us-east-1.amazonaws.com"
 					id="docButton"
 					endIcon={<ArrowIcon/>}
 				>Explore More</Button>
