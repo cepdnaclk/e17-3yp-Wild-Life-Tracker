@@ -3,8 +3,8 @@ import { ProSidebar, SidebarFooter, SidebarContent, Menu, MenuItem} from 'react-
 import React, { useState } from "react";
 import { Helmet } from 'react-helmet';
 import Cookies from 'universal-cookie';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { Dropdown } from 'react-bootstrap';
+//import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Zoom from 'react-reveal/Zoom';
 //import components
 import Profile from '../profile/profile';
@@ -53,7 +53,7 @@ export default function Dashboard() {
     //create a custom function that will change menucollapse state from false to true and true to false
     const menuIconClick = () => {
     //condition checking to change state from true to false and vice versa
-
+        var list;
         if(menuCollapse){
           setMenuCollapse(false);
           document.getElementById("content-body").style.marginLeft = "0px";
@@ -61,18 +61,18 @@ export default function Dashboard() {
           document.getElementById("usr-x").style.display = 'none';
           document.getElementById("usr-=").style.display = 'inline';
 
-          var list = document.getElementsByClassName("leaflet-container");
-          if(list.length>0) list[0].style.width = '95vw';
+          list = document.getElementsByClassName("leaflet-container");
+          if(list.length>0 && window.screen.width>600) list[0].style.width = '95vw';
         }
         else{
           setMenuCollapse(true);
-          document.getElementById("sidebar").style.width = "15vw";
-          document.getElementById("content-body").style.marginLeft = "15vw";
+          document.getElementById("sidebar").style.width = "200px";
+          if(window.screen.width>600)document.getElementById("content-body").style.marginLeft = "200px";
           document.getElementById("usr-x").style.display = 'inline';
           document.getElementById("usr-=").style.display = 'none';
 
-          var list = document.getElementsByClassName("leaflet-container");
-          if(list.length>0) list[0].style.width = '80vw';
+          list = document.getElementsByClassName("leaflet-container");
+          if(list.length>0 && window.screen.width>600) list[0].style.width = '80vw';
         } 
             
       };
@@ -91,17 +91,18 @@ export default function Dashboard() {
       <Router>
        
         <div className='row' id='content-header'>
-          
+          <div className="row">
+          <div className="col-4 col-md-2 m-3 m-md-2"> 
             <button onClick={menuIconClick} className='btn btn-secondary' id='button-user'>
             <FaTimes id='usr-x'/> 
             <FaBars id='usr-='/> Menu</button>
-          
+          </div>
 
-          <div class="text-center">
+          <div className="col-4 col-md-8 text-center">
             <h1 id='content-logo'><a href="/" target="_blank">WildLife Tracker</a></h1>
           </div>
 
-          <div id="uprofile-data">
+          <div className="col-4 col-md-2" id="uprofile-data">
             <Dropdown>
               <Dropdown.Toggle id="dropdown-basic-button" variant="success"><FaUser/></Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu" onClick={update()}>
@@ -111,6 +112,8 @@ export default function Dashboard() {
             </Dropdown> 
           </div>
         </div>
+        </div>
+
 
         <div id="usr-header">
         <ProSidebar id="sidebar">

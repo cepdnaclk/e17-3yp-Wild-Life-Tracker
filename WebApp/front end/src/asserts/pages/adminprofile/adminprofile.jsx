@@ -1,5 +1,5 @@
 import React from "react";
-import Cookies from 'universal-cookie';
+//import Cookies from 'universal-cookie';
 
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -8,9 +8,9 @@ import './styles.css';
 
 export default function Profile(props) {
 
-	const cookies = new Cookies();
-	var name = cookies.get('name');
-	var email = cookies.get('email');
+	//const cookies = new Cookies();
+	//var name = cookies.get('name');
+	//var email = cookies.get('email');
 
 
 	const slides= [
@@ -51,7 +51,7 @@ export default function Profile(props) {
 	<div>
 		<Zoom>
 		<div className='row' id="Home">
-			<div className='col-8'>
+			<div className='col-12 col-md-8'>
 
 				<div className="slide-container">
         			<Slide>

@@ -31,3 +31,22 @@
 	margin-top: 20px;
 	color: gray;
 }
+
+@media only screen and (max-width: 600px) {
+	#hr{
+		width: 55vw;
+	}
+	.tile{
+		height: 22vh;
+	}
+
+	.FaMapMarker{
+		size:10px ;
+	}
+	h5{
+		font-size: 70%;
+	}
+	h6{
+		font-size: 70%;
+	}
+}

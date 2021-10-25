@@ -21,11 +21,14 @@ function Accept(email){
 	})
     .then(function (response) {
 		console.log(response);
-      	document.getElementById('profile-informations').innerHTML = "successfull";
+      	if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "successfull";
+      	window.location.reload(false);
     })
   
     .catch(function (error) {
 		console.log(error);
+		if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+		window.location.reload(false);
       //cookies.set('user', admin , { path: '/' });
       //document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
       //document.getElementById('requests-list').className ='token-error';
@@ -46,11 +49,16 @@ function Reject(email){
 	)
     .then(function (response) {
 		console.log(response);
-      	document.getElementById('requests-list').innerHTML = "successfull";
+      	if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "successfull";
+      	window.location.reload(false);
+
     })
   
     .catch(function (error) {
 		console.log(error);
+		if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+		window.location.reload(false);
+
       //cookies.set('user', admin , { path: '/' });
       //document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
       //document.getElementById('requests-list').className ='token-error';
@@ -61,7 +69,7 @@ function Reject(email){
 }
 
 function showReason(x){
-	if(x==1){
+	if(x===1){
 		document.getElementById('2btn').style.display='none';
 		document.getElementById('textarea').style.display='block';
 	}else{
@@ -89,31 +97,31 @@ export default function ListItems(props){
 											<div className='col-12 col-md-4'>
 												<b>
 												<div className="row">
-													<div className='col-4'>
+													<div className='col-2 col-md-4'>
 														Name
 													</div>
-													<div className='col-8'>
+													<div className='col-10 col-md-8'>
 														{user["name"]}
 													</div>
 												</div>
 												<div className="row">
-													<div className='col-4'>
+													<div className='col-2 col-md-4'>
 														Email
 													</div>
-													<div className='col-8'>
+													<div className='col-10 col-md-8'>
 														{user["email"]}
 													</div>
 												</div>
 												<div className="row">
-													<div className='col-4'>
+													<div className='col-2 col-md-4'>
 														Phone
 													</div>
-													<div className='col-8'>
+													<div className='col-10 col-md-8'>
 														{user["phonenumber"]}
 													</div>
 												</div>
 												</b>
-      											<div className="row mt-5">
+      											<div className="row mt-2 mt-md-5">
       												<div className="col-12" id="2btn">
       													
       														<button className='btn control' onClick={() => Accept(user["email"])}>Accept</button>
@@ -121,11 +129,20 @@ export default function ListItems(props){
 														
 													</div>
 													<div id='textarea'>
-														<label htmlFor="reason">Reason :</label>
-														<textarea id="reason" name="reson" rows="4" cols="35"></textarea>
-														<button className='btn control' onClick={() => Reject(user["email"])}>Reject</button>
-
-														<button className='btn control' onClick={() => showReason(0)}>Cancel</button>
+														<div className="row mt-3">
+															<div className="col-2">
+																<label htmlFor="reason">Reason </label>
+															</div>
+															<div className="col-9">
+																<textarea id="reason" name="reson" rows="4" cols="35"></textarea>
+															</div>
+														</div>
+														<div className="row">
+															<div className="offset-2">
+																<button className='btn control' onClick={() => Reject(user["email"])}>Reject</button>
+																<button className='btn control' onClick={() => showReason(0)}>Cancel</button>
+															</div>
+														</div>
 													</div>
       											</div>
       										</div>
