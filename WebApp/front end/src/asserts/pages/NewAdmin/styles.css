@@ -23,3 +23,11 @@ color: #000;
 #fail-icon-2{
 	color: red;
 }
+
+#an-suc-icon-2{
+  color: #188459;
+}
+
+#an-suc-field{
+  display: none;
+}

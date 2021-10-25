@@ -56,7 +56,7 @@ function Reject(email){
   
     .catch(function (error) {
 		console.log(error);
-		if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+		if(document.getElementById("profile-informations"))document.getElementById('profile-informations').innerHTML = "Unexpected error occured.Try again.";
 		window.location.reload(false);
 
       //cookies.set('user', admin , { path: '/' });
@@ -72,9 +72,11 @@ function showReason(x){
 	if(x===1){
 		document.getElementById('2btn').style.display='none';
 		document.getElementById('textarea').style.display='block';
+		document.getElementById('letter-container').style.display='none';
 	}else{
 		document.getElementById('2btn').style.display='block';
 		document.getElementById('textarea').style.display='none';
+		document.getElementById('letter-container').style.display='block';
 	}
 	
 }

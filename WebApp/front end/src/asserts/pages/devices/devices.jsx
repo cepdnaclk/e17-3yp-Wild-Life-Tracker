@@ -3,10 +3,11 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import ReactDOM from 'react-dom';
 //import listReactFiles from 'list-react-files';
-
+import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
 import './styles.css';
 import { FaPlus } from "react-icons/fa";
 import Zoom from 'react-reveal/Zoom';
+import Tada from 'react-reveal/Tada';
 /*cookies*/
 const cookies = new Cookies();
 
@@ -15,19 +16,6 @@ const URL = process.env.REACT_APP_BACKEND_URL;
 
 var deviceIdList = [];
 
-/*
-var photos = [
-	 "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
-	 "https://images.unsplash.com/photo-1549480017-d76466a4b7e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=738&q=80",
-	 "https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80",
-	 "https://images.unsplash.com/photo-1504173010664-32509aeebb62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=713&q=80",
-	 "https://images.unsplash.com/photo-1545063914-a1a6ec821c88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80",
-	 "https://images.unsplash.com/photo-1535941339077-2dd1c7963098?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=756&q=80",
-	 "https://images.unsplash.com/photo-1518709594023-6eab9bab7b23?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=625&q=80",
-	 "https://images.unsplash.com/photo-1517486430290-35657bdcef51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80",
-	 "https://images.unsplash.com/photo-1543782248-03e2c5a93e18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=751&q=80"
-];
-*/
 export default function Devices(){
 
 	useEffect(() => {
@@ -82,7 +70,11 @@ export default function Devices(){
 			console.log(response);
 			if(document.getElementById('addDevice')){
 				document.getElementById('addDevice').style.display = 'block';
-				document.getElementById('addDevice').innerHTML = "Successfull";
+				document.getElementById('suc-field-dev').style.display = 'block';
+      			document.getElementById('suc-icon-dev').style.display = "block";
+      			document.getElementById('suc-field-dev').innerHTML = "Successfull<br>";
+
+				//document.getElementById('addDevice').innerHTML = "Successfull";
 			}
 			window.location.reload(false);
     	})
@@ -91,7 +83,10 @@ export default function Devices(){
 			console.log(error);
 			if(document.getElementById('addDevice')){
 				document.getElementById('addDevice').style.display = 'block';
-				document.getElementById('addDevice').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
+				document.getElementById('error-field-dev').style.display = 'block';
+      			document.getElementById('fail-icon-dev').style.display = "block";
+				document.getElementById('error-field-dev').innerHTML = "The device is not connected. Try Again.";
+				//document.getElementById('addDevice').innerHTML = "";
 			}
 			window.location.reload(false);
       		//cookies.set('user', admin , { path: '/' });
@@ -109,9 +104,17 @@ export default function Devices(){
 
 							<DeviceUl data={devices} />
 							<button className="btn btn-success" id='add-btn' onClick={() => toggleform()}><FaPlus /></button>
+							<div id='deviceadd-msg-field'>
+									<Tada>
+									<div id='suc-icon-dev'><FaCheckCircle size={50}/></div>
+									<div id='fail-icon-dev'><FaExclamationCircle size={50}/></div> 
+									<div id='error-field-dev'></div>
+									<div id='suc-field-dev'></div>
+									</Tada>
+							</div>
 							<div id="addDevice">
 								<AddDeviceForm handleSubmit={addDevice} />
-							</div>
+							</div>							
 						</div>
 						<div className='col-12 col-md-8 text-center'>
 
@@ -228,7 +231,7 @@ function AddDeviceForm(props) {
 				<div className="form-group row">
                <label htmlFor="pw" class="col-md-4 col-form-label">Password</label>
                <div class="col-md-8">
-                  <input type="text" id="pw" name="password" onChange={handleChange} placeholder="Password"></input>
+                  <input type="password" id="pw" name="password" onChange={handleChange} placeholder="Password"></input>
                </div> 
 				</div>
 			</div>

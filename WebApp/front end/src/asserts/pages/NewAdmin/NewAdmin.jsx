@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 //import { Helmet } from 'react-helmet';
 import Loader from "react-loader-spinner";
-import { FaExclamationCircle  } from "react-icons/fa";
+import { FaCheckCircle,FaExclamationCircle  } from "react-icons/fa";
 import Tada from 'react-reveal/Tada';
 import Zoom from 'react-reveal/Zoom';
 
@@ -98,9 +98,8 @@ export default function NewAdmin(){
       document.getElementById('loader').style.display ='none';
       document.getElementById('button-add').classList.remove("disabled");
       document.getElementById('newadminform').style.display = "none";
-      //document.getElementById('suc-field').style.display = 'block';
-      //document.getElementById('suc-icon').style.display = "block";
-      //document.getElementById('suc-field').innerHTML = "Your data has been sent. It may take 3-5 working days to accept your registration.<br>";
+      document.getElementById('an-suc-field').style.display = 'block';
+      document.getElementById('an-msg-field').innerHTML = "Request Sent<br>";
 
     })
   
@@ -119,7 +118,15 @@ export default function NewAdmin(){
 <div>     
 
     <div className='row d-flex justify-content-center' id='newadminform-window'>
-
+      <div className="col-11 col-md-4 text-center" id='an-suc-field'>
+        <Tada>
+        <div id='an-suc-icon-2'><FaCheckCircle size={70}/></div>
+        <div id='an-msg-field'></div>
+        <small>
+          <a href='/Admin/newadmin'>back</a>
+        </small> 
+        </Tada>
+      </div> 
       <div className="col-11 col-md-4 text-center" id='add-error-field'>
         <Tada>
         <div id='fail-icon-2'><FaExclamationCircle size={70}/></div>
