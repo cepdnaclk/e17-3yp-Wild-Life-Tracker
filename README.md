@@ -105,7 +105,9 @@ Our system handles really sensitive information about wildlife. Therefore, the C
 
 ## Implementation
 User Interfaces
-![video](https://drive.google.com/file/d/1mpXVvSlbE2Xvl3koiyFE5fgIOMTO5rwZ/view?usp=sharing)
+
+[![VIDEO](https://img.youtube.com/vi/Y6AA_-oQNm8/0.jpg)](https://www.youtube.com/watch?v=Y6AA_-oQNm8)
+
 
 ## Links
 
