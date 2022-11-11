@@ -1,12 +1,4 @@
-/*************************************************************************************************************************************************
- *  TITLE: This sketch takes an image when motion is detected using a PIR sensor module that connected to pin GPIO 13 
- *  Watch the video to learn more. 
- *  YouTube Video: https://youtu.be/KTRwBBLEsXg
- *  by Tech StudyCell
- *************************************************************************************************************************************************/
-
 /********************************************************************************************************************
- *  Preferences--> Aditional boards Manager URLs : https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json
  *  Board Settings:
  *  Board: "ESP32 Wrover Module"
  *  Upload Speed: "921600"
@@ -27,11 +19,15 @@
 #include "soc/soc.h"           // Disable brownour problems
 #include "soc/rtc_cntl_reg.h"  // Disable brownour problems
 #include "driver/rtc_io.h"
+#include <SerialTransfer.h>
+
+
 #include <EEPROM.h>            // read and write from flash memory
 // define the number of bytes you want to access
 #define EEPROM_SIZE 1
  
 RTC_DATA_ATTR int bootCount = 0;
+
 
 // Pin definition for CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
@@ -50,13 +46,18 @@ RTC_DATA_ATTR int bootCount = 0;
 #define VSYNC_GPIO_NUM    25
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
+
  
 int pictureNumber = 0;
-  
+SerialTransfer imgTransfer;
+
 void setup() {
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
   Serial.begin(115200);
- 
+  //Serial1.begin(115200);
+
+  imgTransfer.begin(Serial);
+
   Serial.setDebugOutput(true);
  
   camera_config_t config;
@@ -82,11 +83,12 @@ void setup() {
   config.pixel_format = PIXFORMAT_JPEG;
   
   pinMode(4, INPUT);
+  
   digitalWrite(4, LOW);
   rtc_gpio_hold_dis(GPIO_NUM_4);
  
   if(psramFound()){
-    config.frame_size = FRAMESIZE_UXGA; // FRAMESIZE_ + QVGA|CIF|VGA|SVGA|XGA|SXGA|UXGA
+    config.frame_size = FRAMESIZE_VGA; // FRAMESIZE_ + QVGA|CIF|VGA|SVGA|XGA|SXGA|UXGA
     config.jpeg_quality = 10;
     config.fb_count = 2;
   } else {
@@ -98,7 +100,9 @@ void setup() {
   // Init Camera
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
+    
     Serial.printf("Camera init failed with error 0x%x", err);
+    
     return;
   }
 
@@ -132,16 +136,18 @@ void setup() {
     Serial.println("Exiting now"); 
     while(1);   //wait here as something is not right
   }
+  
   // initialize EEPROM with predefined size
   EEPROM.begin(EEPROM_SIZE);
   pictureNumber = EEPROM.read(0) + 1;
  
   // Path where new picture will be saved in SD Card
-  String path = "/picture" + String(pictureNumber) +".jpg";
- 
+  String path = "/picture" + String(pictureNumber) +".jpg";  
+  
+  
   fs::FS &fs = SD_MMC;
-  Serial.printf("Picture file name: %s\n", path.c_str());
- //create new file
+
+  //create new file
   File file = fs.open(path.c_str(), FILE_WRITE);
   if(!file){
     Serial.println("Failed to open file in writing mode");
@@ -155,23 +161,54 @@ void setup() {
     EEPROM.commit();
   }
   file.close();
-  esp_camera_fb_return(fb);
   
-  delay(1000);
+  delay(500);
   
+  sendFile(fb,path);
+    
   // Turns off the ESP32-CAM white on-board LED (flash) connected to GPIO 4
   pinMode(4, OUTPUT);  //GPIO for LED flash
   digitalWrite(4, LOW);  //turn OFF flash LED
   rtc_gpio_hold_en(GPIO_NUM_4);  //make sure flash is held LOW in sleep
+
+  delay(200);
+  
+  esp_camera_fb_return(fb);
 
   esp_sleep_enable_ext0_wakeup(GPIO_NUM_13, 0);
  
   Serial.println("Going to sleep now");
   delay(3000);
   esp_deep_sleep_start();
-  Serial.println("Now in Deep Sleep Mode");
 } 
  
 void loop() {
- 
+  
+}
+
+void sendFile(camera_fb_t * fb,String name){
+  imgTransfer.sendDatum(name);
+  
+  uint16_t numPackets = fb->len / (MAX_PACKET_SIZE - 2); // Reserve two bytes for current file index
+  
+  if (fb->len  % MAX_PACKET_SIZE) // Add an extra transmission if needed
+    numPackets++;
+  
+  for (uint16_t i=0; i<numPackets; i++) // Send all data within the file across multiple packets
+  {
+    uint16_t fileIndex = i * MAX_PACKET_SIZE; // Determine the current file index
+    uint8_t dataLen = MAX_PACKET_SIZE - 2;
+
+    if ((fileIndex + (MAX_PACKET_SIZE - 2)) > fb->len) // Determine data length for the last packet if file length is not an exact multiple of MAX_PACKET_SIZE-2
+      dataLen = fb->len - fileIndex;
+    
+    uint8_t sendSize = imgTransfer.txObj(fileIndex); // Stuff the current file index
+    sendSize = imgTransfer.txObj(fb->buf[fileIndex], sendSize, dataLen); // Stuff the current file data
+    
+    imgTransfer.sendData(sendSize, 1); // Send the current file index and data
+    delay(100);
+  }
+  Serial.printf("\nTransfer Finished\n");
+  delay(10000);
+  
 }
