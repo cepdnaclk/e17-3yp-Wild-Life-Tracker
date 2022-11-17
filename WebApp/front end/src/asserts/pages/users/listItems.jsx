@@ -130,15 +130,15 @@ export default function ListItems(props){
 													</div>
 													<div id='textarea'>
 														<div className="row mt-3">
-															<div className="col-2">
+															<div className="col-3">
 																<label htmlFor="reason">Reason </label>
 															</div>
-															<div className="col-9">
-																<textarea id="reason" name="reson" rows="4" cols="35"></textarea>
+															<div className="col-9 ml-3">
+																<textarea id="reason" name="reson" rows="4" cols="25"></textarea>
 															</div>
 														</div>
 														<div className="row">
-															<div className="offset-2">
+															<div className="offset-3">
 																<button className='btn control' onClick={() => Reject(user["email"])}>Reject</button>
 																<button className='btn control' onClick={() => showReason(0)}>Cancel</button>
 															</div>
