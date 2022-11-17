@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import Cookies from 'universal-cookie';
 import { Dropdown } from 'react-bootstrap';
 //import ButtonGroup from "react-bootstrap/ButtonGroup";
-import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
 //import components
 import Profile from '../profile/profile';
 import Devices from '../devices/devices';
@@ -80,7 +80,7 @@ export default function Dashboard() {
   return (
 
   <div>
-      <Zoom>
+      <Fade>
       {/*logout message box*/}
       <Logout handleClose={handleClose} handleShow={handleShow} show={show}/>
       
@@ -164,7 +164,7 @@ export default function Dashboard() {
       </div>
 
       </Router>
-      </Zoom>
+      </Fade>
 
   </div>
   );

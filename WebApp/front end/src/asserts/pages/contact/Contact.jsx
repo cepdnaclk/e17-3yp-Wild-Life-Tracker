@@ -36,15 +36,15 @@ export default function Contact(){
 					</div>
 				</div>
 				<div className='col-12 col-md-4 tile text-center'>
-					<div className='icon'><FaPhone size={getsize()} color={'#e9c437'}/>
+					<div className='icon'><FaEnvelope size={getsize()} color={'#e9c437'}/>
 						<h5>Email</h5>
-						<h6>e17338@eng.pdn.ac.lk<br/>e17338@eng.pdn.ac.lk<br/>e17338@eng.pdn.ac.lk</h6>
+						<a href="mailto:wildlifetrackeruop@gmail.com">wildlifetrackeruop@gmail.com</a>
 					</div>
 				</div>
 				<div className='col-12 col-md-4 tile text-center'>
-					<div className='icon'><FaEnvelope size={getsize()} color={'#e9c437'}/>
+					<div className='icon'><FaPhone size={getsize()} color={'#e9c437'}/>
 						<h5>Call Us</h5>
-						<h6>+94 112367763<br/>+94 112367763<br/>+94 112367763</h6>
+						<h6>+94 776396597<br/>+94 719777032<br/>+94 766595991</h6>
 					</div>
 				</div>
 			</div>

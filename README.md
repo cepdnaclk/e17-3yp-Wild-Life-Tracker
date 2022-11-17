@@ -104,7 +104,12 @@ Our system handles really sensitive information about wildlife. Therefore, the C
 ![image](https://github.com/EsaraSithumal/e17-3yp-Wild-Life-Tracker/blob/main/docs/assets/images/HardwareOrg.jpg)
 
 ## Implementation
- 
+User Interfaces
+
+-click on the below image to watch the video
+
+[![VIDEO](https://img.youtube.com/vi/Y6AA_-oQNm8/0.jpg)](https://www.youtube.com/watch?v=Y6AA_-oQNm8)
+
 
 ## Links
 
