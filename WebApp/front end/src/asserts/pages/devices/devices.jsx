@@ -132,32 +132,24 @@ function DeviceUl(props){
 	const arr = props.data;
 	const deviceList = arr.map((val, index) =><li key={index} className='device' id={index}
 
+
 		onClick={()=>{
 			for (var i = arr.length - 1; i >= 0; i--) {
 				document.getElementById(i).classList.remove("activedev");
 			}document.getElementById(index).className+=' activedev';
 
-			axios.get(`${URL}api/auth/device_photos/${index}`, {
-				headers: {
-					'x-auth-token' : cookies.get('newtoken')
-				}
-			})
-    
+
+			axios.get("https://www.googleapis.com/drive/v2/files?q='1VTWwurgdrB8iIUMHgBwgnbV_TT2qOV2C'+in+parents&key=AIzaSyBKBh-L51SIkTYtUovN9GFlDbPsqWknhXA")
     		.then(function (response) {
 
-    			var dir = URL+response.data.device.photos[0];
+    			const photos = response.data.items;
 
-    			const photos = [dir+"/1.png",
-    						 dir+"/2.png",
-    						 dir+"/3.png",
-    						 dir+"/4.png",
-    						 dir+"/5.png"
-    			];
+    			console.log(photos);
 
     			const photoList = photos.map((val, index) =>
 
 				<div className="col-md-6">
-					<Zoom><img src ={val} alt={index} key={index} className="img-thumbnails"></img></Zoom>
+					<Zoom><img src ={"https://drive.google.com/uc?export=view&id="+val.id} alt={index} key={index} className="img-thumbnails"></img></Zoom>
 				</div>
 				);
 
@@ -171,6 +163,7 @@ function DeviceUl(props){
       		//document.getElementById('requests-list').innerHTML = "!!!Something went to wrong. Plesse try again later!!!";
       		//document.getElementById('requests-list').className ='token-error';
     		}); 
+    		
 
 
 			}			

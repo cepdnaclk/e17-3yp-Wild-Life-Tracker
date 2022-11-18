@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/local-auth": "^2.1.0",
     "aws-sdk": "^2.1007.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
@@ -19,6 +20,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.12.2",
     "fs": "^0.0.1-security",
+    "googleapis": "^105.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.3",
     "mongoose-unique-validator": "^2.0.3",
