@@ -581,52 +581,57 @@
                 <div class="design_sub" style="border-bottom: 25px solid #ffffff;">
                     <h2>Hardware</h2>
                 </div>
-                <h3 style="text-align: center;">Organization of the Hardware System</h3>
-                <div class="container">
-    
+
+                <div style="margin-top: 2%;text-align: center;">
+                    <video autoplay loop controls id="device_video" width="100%" height="80%" >
+                        <source src="assets/video/Tracking Device.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div>
+                    <h3 style="text-align: center;">Organization of the Hardware System</h3>
                     <img src="assets/images/HardwareOrg.jpg" style="width: 100%;padding: 2%;" alt="hardware diagram">
-    
-                    <div class="row">
+                </div>
+                <div class="container">
+                    <!-- <div class="row">
                         <div class="col-lg-12" style="text-align: center;">
                             <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
                                 <h3 style="text-align: center;">Algorithm that runs in the camera unit</h3>
                             </div>
                             <img src="assets/images/Algorithm.png" style="width: 60%;height: 70%;" alt="First">
                         </div>
-                    </div>
+                    </div> -->
     
                     <div style="border-top: 25px solid #ffffff;border-bottom: 25px solid #ffffff;" id="hardware">
-                        <h3 style="text-align: center;">Hardware Implementation</h3>
+                        <h3 style="text-align: center;">Hardware Components</h3>
                     </div>
     
                     <div class="row" id="tabs" style="border-bottom: 100px solid #ffffff;">
                         <div class="col-lg-4">
                             <ul>
                                 <li>
-                                    <a href='#hardware' onclick="infofunc(event, 'tabs-5')" class="demo active"
-                                        style="font-size: 1em;">
-                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera And Sensor unit</a>
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-9')" class="demo active">
+                                        <img src="assets/images/tabs-first-icon-hw.png" alt="">Camera, Sensing and Control unit</a>
                                 </li>
                                 <li>
-                                    <a href='#hardware' onclick="infofunc(event, 'tabs-6')" class="demo"
-                                        style="font-size: 1em;">
+                                    <a href='#hardware' onclick="infofunc(event, 'tabs-10')" class="demo">
                                         <img src="assets/images/tabs-first-icon-hw.png" alt="">Connection And GPS unit</a>
                                 </li>
                                 <li>
                                     <a href='#hardware' onclick="infofunc(event, 'tabs-7')" class="demo">
                                         <img src="assets/images/tabs-first-icon-hw.png" alt="">Power unit</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href='#hardware' onclick="infofunc(event, 'tabs-8')" class="demo">
                                         <img src="assets/images/tabs-first-icon-hw.png" alt="">Data processing unit</a>
-                                </li>
+                                </li> -->
+                                
                             </ul>
                         </div>
     
     
                         <div class="col-lg-8">
                             <section class='tabs-content'>
-                                <article id='tabs-5' class="demo2">
+                                <article id='tabs-9' class="demo2">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -645,18 +650,20 @@
                                                     unit that allows to take very clear photos
                                                     and a SD card slot. The PIR sensor is directly connected to the ESP32
                                                     cam board. The captured photos are
-                                                    stored in the SD card before send to the cloud database. Videos are not
-                                                    sent to cloud database they will be stored
-                                                    in the SD card.
+                                                    stored in the SD card before send to the cloud database. The captured photo
+                                                    is encoded with Base64 and sent to sim800L module in the connection unit using serial
+                                                    transfer method.
+                                                    <!-- Videos are not
+                                                    sent to cloud database they will be stored in the SD card.
                                                     </br>&emsp;The LDR is used to monitor light conditions and according to
                                                     those readings the LED flash will automatically turn on.
-                                                    This allow us to capture clear photos in bad light conditions.
+                                                    This allow us to capture clear photos in bad light conditions. -->
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                 </article>
-                                <article id='tabs-6' class="demo2" style="display:none;">
+                                <article id='tabs-10' class="demo2" style="display:none;">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -690,7 +697,7 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <p>
-                                                    &emsp;The main components in this unit are <b>3.7V 1800mAh batteris,
+                                                    &emsp;The main components in this unit are <b>3.7V 18000mAh batteris,
                                                         Solar panel, voltage regulator and battery charger</b>.
                                                     Solar cell recharges the batteries when there is optimal sunlight.
                                                     This generated power can be used to power the system very efficiently in
@@ -726,11 +733,134 @@
                                     </div>
                                 </article>
                             </section>
-    
                         </div>
-    
                     </div>
                 </div>
+                <div>
+                    <h3 style="text-align: center;">Implementation</h3>
+                    <h4>Schematic Diagram</h4>
+                    <img src="assets/images/Schematic.png" style="width: 100%;padding: 2%;" alt="hardware schematic">
+                    <h4>Implementation Details</h4>
+                    <div style="margin-left: 10%;">
+                        <div>
+                            <h5 style="text-decoration: underline;margin-top: 2%;">Libraries Used in Firmware implementation</h5>
+                            <ul style="margin-left: 5%;">
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    esp_camera.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    Arduino.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    FS.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    SD_MMC.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    soc/soc.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    soc/rtc_cntl_reg.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    driver/rtc_io.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    SerialTransfer.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    EEPROM.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    SoftwareSerial.h
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 2%;"></i>
+                                    TinyGPS++.h
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="text-decoration: underline;margin-top: 2%;">Special Design Decisions</h5>
+                            <ul style="margin-left: 5%;">
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 5%;"></i>
+                                    SIM800L module is connected to ESP32-CAM board throgh serial port of the ESP32-CAM board. The captured image is sent to 
+                                    SIM800L module as a Base64 encoded byte stream. Also AT commands to control the SIM800L are sent sirially throgh the serial port.
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 5%;"></i>
+                                    The NEO-6M GPS module continously publish GPS data throgh its serial port. So, we needed another serial port in ESP32-CAM module.
+                                    But there is only one serial port in ESP32-CAM board. Therefore, we have used SoftwareSerial library to configure two GPIO pins 
+                                    as a serial port. We have made GPIO2 and GPIO14 pins as TX,RX for GPS module.
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 5%;"></i>
+                                    The ESP32-CAM board is programmed to go to the deep sleep mode after capturing and sending a image to reduce the power consumption 
+                                    of the device. An interrupt generated by PIR sensor wakes the ESP32-CAM board up.
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 5%;"></i>
+                                    All the photos captured by the camera are written to SD card to make sure there is no data losses.
+                                </li>
+                                <li>
+                                    <i class="fa fa-circle" style="margin-top: 5%;"></i>
+                                    GPS data is updated every 2 hours.
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="text-decoration: underline;margin-top: 2%;margin-bottom: 2%;">Final Product</h5>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                  
+
+                                </ol>
+                                <div class="carousel-inner">
+                                  <div class="carousel-item active">
+                                    <img class="d-block w-100" src="assets/images/Hardware/Final/1.jpg" alt="First slide">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/Hardware/Final/2.jpg" alt="Second slide">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/Hardware/Final/3.jpg" alt="Second slide">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/Hardware/Final/4.jpg" alt="Second slide">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-block w-100" src="assets/images/Hardware/Final/5.jpg" alt="Second slide">
+                                  </div>                                 
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
         </section>
 
 
@@ -1163,73 +1293,67 @@
                                 <tr>
                                     <td>Infrared PIR motion Sensor</td>
                                     <td>1</td>
-                                    <td>235.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>445.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
                                     <td>ESP32 Cam Board</td>
                                     <td>1</td>
-                                    <td>1890.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>2590.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
                                     <td>FTDI connector</td>
-                                    <td>1</td>
-                                    <td>470.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>2</td>
+                                    <td>1365.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
-                                    <td>ESP32-SIM800L module</td>
+                                    <td>SIM800L module</td>
                                     <td>1</td>
-                                    <td>3250.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>-</td>
+                                    <td>Purchased from department</td>
                                 </tr>
                                 <tr>
-                                    <td>Ublox NEO_6M GPS module</td>
+                                    <td>NEO-6M GPS module</td>
                                     <td>1</td>
-                                    <td>985.00</td>
-                                    <td>tronics.lk</td>
-                                </tr>
-                                <tr>
-                                    <td>1W LED</td>
-                                    <td>1</td>
-                                    <td>25.00</td>
-                                    <td>tronics.lk</td>
-                                </tr>
-                                <tr>
-                                    <td>LDR</td>
-                                    <td>1</td>
-                                    <td>10.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>1950.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
                                     <td>Solar Panel (>6V) 165mA</td>
                                     <td>1</td>
-                                    <td>560.00</td>
+                                    <td>-</td>
+                                    <td>Purchased from department</td>
+                                </tr>
+                                <tr>
+                                    <td>3.7V 18650mAh batteris</td>
+                                    <td>2</td>
+                                    <td>1780.00</td>
                                     <td>duino.lk</td>
                                 </tr>
                                 <tr>
-                                    <td>Battery Charger</td>
+                                    <td>Battery Holder</td>
                                     <td>1</td>
-                                    <td>90.00</td>
-                                    <td>tronics.lk</td>
+                                    <td>155.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
-                                    <td>3.7V 4800mAh batteris</td>
-                                    <td>2</td>
-                                    <td>700.00</td>
-                                    <td>nilambaraelectronics.com</td>
+                                    <td>Enclosure Box</td>
+                                    <td>-</td>
+                                    <td>1290.00</td>
+                                    <td>duino.lk</td>
                                 </tr>
                                 <tr>
                                     <td>Other Expenditures</td>
                                     <td>-</td>
-                                    <td>1500.00</td>
+                                    <td>325.00</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td style="font-size:15px;"><b>TOTAL</b></td>
                                     <td></td>
-                                    <td style="font-size:15px"><u><b>9715.00</b></u></td>
+                                    <td style="font-size:15px"><u><b>9900.00</b></u></td>
                                     <td></td>
                                 </tr>
                             </tbody>
