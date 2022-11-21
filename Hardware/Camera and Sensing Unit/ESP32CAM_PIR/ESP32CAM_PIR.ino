@@ -20,6 +20,8 @@
 #include "soc/rtc_cntl_reg.h"  // Disable brownour problems
 #include "driver/rtc_io.h"
 #include <SerialTransfer.h>
+#include <TinyGPS++.h>
+#include <SoftwareSerial.h>
 
 
 #include <EEPROM.h>            // read and write from flash memory
@@ -47,8 +49,12 @@ RTC_DATA_ATTR int bootCount = 0;
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
+#define GPS_TX_PIN        2
+#define GPS_RX_PIN        14
+
  
 int pictureNumber = 0;
+int gpsSentHour = 0;
 SerialTransfer imgTransfer;
 
 void setup() {
@@ -140,7 +146,8 @@ void setup() {
   // initialize EEPROM with predefined size
   EEPROM.begin(EEPROM_SIZE);
   pictureNumber = EEPROM.read(0) + 1;
- 
+  gpsSentHour = EEPROM.read(1);
+
   // Path where new picture will be saved in SD Card
   String path = "/picture" + String(pictureNumber) +".jpg";  
   
@@ -211,4 +218,46 @@ void sendFile(camera_fb_t * fb,String name){
   Serial.printf("\nTransfer Finished\n");
   delay(10000);
   
+}
+
+void getGPSData(){
+  int GPSBaud = 9600;
+
+  // Create a TinyGPS++ object
+  TinyGPSPlus gps;
+
+  // Create a software serial port called "gpsSerial"
+  SoftwareSerial gpsSerial(GPS_RX_PIN,GPS_TX_PIN);
+  
+  // This sketch sends information every 2 hours, if a new sentence is correctly encoded.
+  while (gpsSerial.available() > 0){
+    if (gps.encode(gpsSerial.read())){
+      sendInfo(gps);
+      return;   
+    }
+  }
+  // If 5000 milliseconds pass and there are no characters coming in
+  // over the software serial port, show a "No GPS detected" error
+  if (millis() > 5000 && gps.charsProcessed() < 10)
+  {
+    return;
+  }
+  
+}
+
+void sendInfo(TinyGPSPlus gps){
+  if(gps.location.isValid()){
+    double latitude = gps.location.lat();
+    double logitude = gps.location.lng();
+    double altitude = gps.altitude.meters();
+    //send data only 
+    if(gps.time.hour()>=gpsSentHour+2){
+      EEPROM.write(1, gps.time.hour());
+      EEPROM.commit();
+      char buffer[100];
+      snprintf(buffer, sizeof(buffer), "{latitude:%lf, longitude:%lf, altitude:%lf}", latidude,logitude,altitude);
+      imgTransfer.txObj(buffer);           
+    }
+  }
+  return;
 }
