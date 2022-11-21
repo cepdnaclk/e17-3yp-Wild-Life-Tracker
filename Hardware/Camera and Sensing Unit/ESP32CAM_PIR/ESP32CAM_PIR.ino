@@ -158,7 +158,7 @@ String get_ccid() {
 
 
 
-void sim800HTTP() {
+void sim800HTTP(buffer b) {
   // put your setup code here, to run once:
   pinMode(RESET_PIN,OUTPUT);
  
@@ -434,6 +434,10 @@ void sendFile(camera_fb_t * fb,String name){
       dataLen = fb->len - fileIndex;
     
     uint8_t sendSize = imgTransfer.txObj(fileIndex); // Stuff the current file index
+
+    //send file
+    sim800HTTP(buffer imgTransfer);
+
     sendSize = imgTransfer.txObj(fb->buf[fileIndex], sendSize, dataLen); // Stuff the current file data
     
     imgTransfer.sendData(sendSize, 1); // Send the current file index and data
